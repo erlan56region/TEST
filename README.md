@@ -1,8 +1,4 @@
-САЙТ В РАЗРАБОТКЕ
-САЙТ В РАЗРАБОТКЕ
-САЙТ В РАЗРАБОТКЕ 
-
-<!DOCTYPE html>
+Сайт в разработке
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +17,8 @@
             --white: #ffffff;
             --black: #0a0a0a;
             --shadow: 0 5px 15px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --radius: 12px;
         }
         
         /* Темная тема */
@@ -41,6 +38,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
@@ -65,10 +66,10 @@
         
         .btn {
             display: inline-block;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radius);
             font-weight: 600;
             transition: var(--transition);
             border: none;
@@ -76,44 +77,64 @@
             font-size: 16px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 86, 179, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
         }
         
         section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
+            font-size: 42px;
+            margin-bottom: 50px;
             text-align: center;
             position: relative;
+            font-weight: 700;
         }
         
         h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 4px;
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
         }
         
         /* Переключатель темы */
         .theme-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: var(--primary);
             color: var(--white);
@@ -124,38 +145,40 @@
             z-index: 1000;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: none;
         }
         
         .theme-toggle:hover {
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(15deg);
         }
         
         /* Шапка */
         header {
             background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
         }
         
         header.scrolled {
-            padding: 5px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            padding: 0;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
         }
         
         .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 20px 0;
             transition: var(--transition);
         }
         
         .logo {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--primary);
             display: flex;
@@ -163,8 +186,8 @@
         }
         
         .logo i {
-            margin-right: 10px;
-            font-size: 28px;
+            margin-right: 12px;
+            font-size: 32px;
         }
         
         .logo-subtitle {
@@ -179,7 +202,7 @@
         }
         
         .desktop-nav ul li {
-            margin-left: 25px;
+            margin-left: 30px;
             position: relative;
         }
         
@@ -187,6 +210,7 @@
             font-weight: 500;
             transition: var(--transition);
             padding: 5px 0;
+            position: relative;
         }
         
         .desktop-nav ul li a::after {
@@ -198,6 +222,7 @@
             height: 2px;
             background: var(--primary);
             transition: var(--transition);
+            border-radius: 1px;
         }
         
         .desktop-nav ul li a:hover::after {
@@ -216,7 +241,7 @@
         }
         
         .phone i {
-            margin-right: 8px;
+            margin-right: 10px;
             color: var(--primary);
         }
         
@@ -227,6 +252,11 @@
             font-size: 24px;
             cursor: pointer;
             color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
         }
         
         /* Мобильная навигация */
@@ -236,11 +266,16 @@
             text-align: center;
             padding: 20px 0;
             background: var(--white);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: var(--transition);
         }
         
         .mobile-nav.active {
             display: block;
+            transform: translateY(0);
+            opacity: 1;
         }
         
         .mobile-nav ul {
@@ -249,18 +284,20 @@
         }
         
         .mobile-nav ul li {
-            margin: 10px 0;
+            margin: 12px 0;
         }
         
         .mobile-nav ul li a {
             font-weight: 500;
-            padding: 10px 0;
+            padding: 12px 0;
             display: block;
             transition: var(--transition);
+            font-size: 18px;
         }
         
         .mobile-nav ul li a:hover {
             color: var(--primary);
+            transform: translateX(5px);
         }
         
         /* Герой секция */
@@ -268,22 +305,46 @@
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
-            padding: 200px 0 120px;
-            margin-top: 70px;
+            padding: 220px 0 140px;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,86,179,0.3) 0%, rgba(0,184,148,0.3) 100%);
+            z-index: 1;
+        }
+        
+        .hero .container {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
-            font-size: 52px;
-            margin-bottom: 20px;
-            font-weight: 700;
+            font-size: 58px;
+            margin-bottom: 25px;
+            font-weight: 800;
+            animation: fadeInUp 1s ease;
         }
         
         .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            max-width: 700px;
+            font-size: 22px;
+            margin-bottom: 45px;
+            max-width: 750px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        .hero .btn {
+            animation: fadeInUp 1s ease 0.4s both;
         }
         
         /* Услуги */
@@ -293,24 +354,27 @@
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
         }
         
         .service-card {
             background-color: var(--white);
-            border-radius: 12px;
+            border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            position: relative;
+            transform: translateY(0);
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
         
         .service-img {
-            height: 200px;
+            height: 220px;
             overflow: hidden;
         }
         
@@ -322,21 +386,27 @@
         }
         
         .service-card:hover .service-img img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
         
         .service-content {
-            padding: 25px;
+            padding: 30px;
         }
         
         .service-content h3 {
             margin-bottom: 15px;
-            font-size: 22px;
+            font-size: 24px;
+            color: var(--dark);
+        }
+        
+        .service-content p {
+            color: var(--gray);
+            line-height: 1.7;
         }
         
         /* Каталог */
         .catalog-section {
-            padding: 80px 0;
+            padding: 100px 0;
             background-color: var(--white);
         }
         
@@ -344,39 +414,43 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
+            gap: 12px;
+            margin-bottom: 50px;
         }
         
         .catalog-filter-btn {
-            padding: 8px 20px;
+            padding: 10px 24px;
             background: var(--white);
             border: 1px solid #ddd;
             border-radius: 30px;
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         .catalog-filter-btn:hover, .catalog-filter-btn.active {
             background: var(--primary);
             color: var(--white);
             border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.2);
         }
         
         .catalog-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
         
         .product-card {
             background: var(--white);
-            border-radius: 12px;
+            border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            transform: translateY(0);
         }
         
         .product-card:hover {
@@ -385,7 +459,7 @@
         }
         
         .product-img {
-            height: 200px;
+            height: 220px;
             overflow: hidden;
             position: relative;
         }
@@ -407,59 +481,62 @@
             right: 15px;
             background: var(--primary);
             color: var(--white);
-            padding: 5px 10px;
+            padding: 6px 12px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
+            z-index: 2;
         }
         
         .product-content {
-            padding: 20px;
+            padding: 25px;
         }
         
         .product-content h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 12px;
+            font-size: 20px;
             color: var(--dark);
+            line-height: 1.4;
         }
         
         .product-content p {
             color: var(--gray);
-            font-size: 14px;
+            font-size: 15px;
             margin-bottom: 15px;
-            min-height: 60px;
+            min-height: 70px;
+            line-height: 1.6;
         }
         
         .product-features {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .product-feature {
             background: var(--light);
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 15px;
             font-size: 12px;
             color: var(--dark);
         }
         
         .product-price {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .product-actions {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
         
         .product-actions .btn {
             flex: 1;
-            padding: 10px;
+            padding: 12px;
             font-size: 14px;
         }
         
@@ -467,6 +544,7 @@
             background: transparent;
             border: 2px solid var(--primary);
             color: var(--primary);
+            box-shadow: none;
         }
         
         .product-actions .btn-outline:hover {
@@ -487,32 +565,54 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .product-modal.active {
             display: flex;
+            opacity: 1;
         }
         
         .product-modal-content {
             background: var(--white);
-            border-radius: 12px;
-            max-width: 900px;
+            border-radius: var(--radius);
+            max-width: 1000px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .product-modal.active .product-modal-content {
+            transform: scale(1);
         }
         
         .product-modal-close {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.1);
             border: none;
-            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
             color: var(--gray);
             z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .product-modal-close:hover {
+            background: rgba(0,0,0,0.2);
+            transform: rotate(90deg);
         }
         
         .product-modal-body {
@@ -522,48 +622,50 @@
         
         .product-modal-img {
             flex: 1;
-            min-width: 300px;
-            height: 400px;
+            min-width: 350px;
+            height: 450px;
         }
         
         .product-modal-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 12px 0 0 12px;
+            border-radius: var(--radius) 0 0 var(--radius);
         }
         
         .product-modal-info {
             flex: 1;
-            min-width: 300px;
-            padding: 30px;
+            min-width: 350px;
+            padding: 40px;
         }
         
         .product-modal-info h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
+            font-size: 28px;
+            margin-bottom: 20px;
             color: var(--dark);
+            line-height: 1.3;
         }
         
         .product-modal-price {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .product-modal-description {
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-        
-        .product-modal-specs {
             margin-bottom: 25px;
         }
         
+        .product-modal-description {
+            margin-bottom: 25px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+        
+        .product-modal-specs {
+            margin-bottom: 30px;
+        }
+        
         .product-modal-specs h4 {
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 15px;
+            font-size: 20px;
             color: var(--dark);
         }
         
@@ -572,7 +674,7 @@
         }
         
         .specs-list li {
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
@@ -593,25 +695,34 @@
         
         .product-modal-actions .btn {
             flex: 1;
+            padding: 15px;
         }
         
         /* О компании */
         .about-section {
-            padding: 80px 0;
+            padding: 100px 0;
         }
         
         .about {
             display: flex;
             align-items: center;
-            gap: 50px;
+            gap: 60px;
         }
         
         .about-img {
             flex: 1;
-            height: 450px;
-            border-radius: 12px;
+            height: 500px;
+            border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
+            transform: translateX(-20px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .about-img.animated {
+            transform: translateX(0);
+            opacity: 1;
         }
         
         .about-img img {
@@ -623,6 +734,14 @@
         
         .about-content {
             flex: 1;
+            transform: translateX(20px);
+            opacity: 0;
+            transition: all 0.8s ease 0.2s;
+        }
+        
+        .about-content.animated {
+            transform: translateX(0);
+            opacity: 1;
         }
         
         .about-content h2 {
@@ -634,21 +753,44 @@
             transform: none;
         }
         
+        .about-content p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
         .stats {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
+            margin-top: 40px;
         }
         
         .stat-item {
             text-align: center;
+            padding: 20px;
+            border-radius: var(--radius);
+            background: var(--light);
+            transition: var(--transition);
+            flex: 1;
+            margin: 0 10px;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .stat-number {
-            font-size: 36px;
-            font-weight: 700;
+            font-size: 42px;
+            font-weight: 800;
             color: var(--primary);
             display: block;
+            transition: all 1.5s ease;
+        }
+        
+        .stat-text {
+            font-size: 16px;
+            color: var(--gray);
+            margin-top: 10px;
         }
         
         /* Контакты */
@@ -658,80 +800,108 @@
         
         .contacts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
         
         .contact-info {
             background-color: var(--white);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 40px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .contact-info.animated {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .contact-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
         
         .contact-info h3 {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--primary);
+            font-size: 24px;
         }
         
         .contact-item {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: flex-start;
         }
         
         .contact-item i {
-            margin-right: 10px;
+            margin-right: 15px;
             color: var(--primary);
             width: 20px;
             text-align: center;
-            font-size: 18px;
+            font-size: 20px;
+            margin-top: 2px;
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 500;
         }
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 15px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
             transition: var(--transition);
+            background: var(--white);
+            color: var(--dark);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
         }
         
         /* Подвал */
         footer {
             background-color: var(--dark);
             color: var(--white);
-            padding: 60px 0 20px;
+            padding: 80px 0 30px;
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 40px;
+            margin-bottom: 50px;
         }
         
         .footer-column {
             flex: 1;
-            min-width: 200px;
+            min-width: 220px;
         }
         
         .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 18px;
+            margin-bottom: 25px;
+            font-size: 20px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
         
         .footer-column h3::after {
@@ -739,33 +909,56 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 30px;
-            height: 2px;
+            width: 40px;
+            height: 3px;
             background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            transition: var(--transition);
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             transition: var(--transition);
         }
         
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
+            font-size: 15px;
             color: rgba(255, 255, 255, 0.7);
         }
         
@@ -777,54 +970,127 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 2000;
             align-items: center;
             justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
         }
         
         .modal-content {
             background: var(--white);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
+            border-radius: var(--radius);
+            padding: 40px;
+            max-width: 550px;
+            width: 100%;
             position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
         }
         
         .close-modal {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.1);
             border: none;
-            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
             color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            background: rgba(0,0,0,0.2);
+            transform: rotate(90deg);
+        }
+        
+        .modal-content h3 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: var(--dark);
         }
         
         .notification {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 15px 25px;
+            bottom: 30px;
+            right: 30px;
+            padding: 18px 30px;
             background: var(--primary);
             color: var(--white);
-            border-radius: 8px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
             transform: translateX(150%);
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 1000;
+            font-weight: 500;
         }
         
         .notification.show {
             transform: translateX(0);
         }
         
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
         /* Адаптивность */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+        
         @media (max-width: 992px) {
+            .container {
+                max-width: 720px;
+            }
+            
             .about {
                 flex-direction: column;
+                gap: 40px;
             }
             
             .about-content h2 {
@@ -839,9 +1105,30 @@
             .stats {
                 justify-content: space-around;
             }
+            
+            .product-modal-body {
+                flex-direction: column;
+            }
+            
+            .product-modal-img {
+                height: 300px;
+                min-width: 100%;
+            }
+            
+            .product-modal-img img {
+                border-radius: var(--radius) var(--radius) 0 0;
+            }
+            
+            .product-modal-info {
+                min-width: 100%;
+            }
         }
         
         @media (max-width: 768px) {
+            .container {
+                max-width: 540px;
+            }
+            
             .desktop-nav {
                 display: none;
             }
@@ -855,56 +1142,121 @@
             }
             
             .phone {
-                margin-top: 10px;
+                margin-top: 15px;
                 width: 100%;
                 justify-content: center;
             }
             
             .hero h1 {
-                font-size: 36px;
+                font-size: 42px;
             }
             
             .hero p {
                 font-size: 18px;
             }
             
-            .product-modal-body {
-                flex-direction: column;
-            }
-            
-            .product-modal-img {
-                height: 250px;
-            }
-            
-            .product-modal-img img {
-                border-radius: 12px 12px 0 0;
-            }
-            
-            .stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            section {
-                padding: 60px 0;
-            }
-            
             h2 {
-                font-size: 28px;
+                font-size: 36px;
             }
             
-            .hero {
-                padding: 150px 0 80px;
+            .services-grid {
+                grid-template-columns: 1fr;
             }
             
             .catalog-grid {
                 grid-template-columns: 1fr;
             }
             
-            .services-grid {
+            .contacts-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .stat-item {
+                margin: 0;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .product-modal-actions {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            h2 {
+                font-size: 32px;
+            }
+            
+            .hero {
+                padding: 180px 0 100px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .catalog-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .catalog-filter-btn {
+                white-space: nowrap;
+            }
+            
+            .product-modal-info {
+                padding: 25px;
+            }
+            
+            .modal-content {
+                padding: 30px 25px;
+            }
+            
+            .theme-toggle {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 15px;
+            }
+            
+            .service-content, .product-content {
+                padding: 20px;
+            }
+            
+            .contact-info {
+                padding: 25px;
             }
         }
     </style>
@@ -953,7 +1305,7 @@
         <div class="container">
             <h1>Водоснабжение и отопление</h1>
             <p>Профессиональные услуги по монтажу и обслуживанию систем водоснабжения и отопления для домов и предприятий в Оренбурге и Оренбургской области</p>
-            <a href="#contacts" class="btn" id="contactBtn">Связаться с нами</a>
+            <a href="#contacts" class="btn pulse" id="contactBtn">Связаться с нами</a>
         </div>
     </section>
 
@@ -1043,24 +1395,24 @@
     <section id="about" class="about-section">
         <div class="container">
             <div class="about">
-                <div class="about-img">
+                <div class="about-img" id="aboutImage">
                     <img src="https://images.unsplash.com/photo-1581094794321-8410e6a0d6d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="О компании" loading="lazy">
                 </div>
-                <div class="about-content">
+                <div class="about-content" id="aboutContent">
                     <h2>О компании</h2>
                     <p><strong>ИП Рахметов А.К.</strong> (ИНН 561902398552) специализируется на услугах в области водоснабжения и отопления с 2010 года. Мы предлагаем полный комплекс услуг от проектирования до монтажа и обслуживания систем в Оренбурге и Оренбургской области.</p>
                     <p>Наша команда состоит из опытных специалистов, которые используют современное оборудование и материалы для обеспечения высокого качества работ.</p>
                     <div class="stats">
                         <div class="stat-item">
-                            <span class="stat-number">15</span>
+                            <span class="stat-number" id="yearsCounter">0</span>
                             <span class="stat-text">Лет опыта</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">1200</span>
+                            <span class="stat-number" id="projectsCounter">0</span>
                             <span class="stat-text">Выполненных проектов</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">98%</span>
+                            <span class="stat-number" id="clientsCounter">0</span>
                             <span class="stat-text">Довольных клиентов</span>
                         </div>
                     </div>
@@ -1074,7 +1426,7 @@
         <div class="container">
             <h2>Контакты</h2>
             <div class="contacts-grid">
-                <div class="contact-info">
+                <div class="contact-info" id="contactInfo">
                     <h3>Контактная информация</h3>
                     <div class="contact-item">
                         <i class="fas fa-user-tie"></i>
@@ -1111,7 +1463,7 @@
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="contact-info">
+                <div class="contact-info" id="contactForm">
                     <h3>Форма обратной связи</h3>
                     <form id="contact-form">
                         <div class="form-group">
@@ -1178,9 +1530,9 @@
     </footer>
 
     <!-- Переключатель темы -->
-    <div class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
         <i class="fas fa-moon" id="themeIcon"></i>
-    </div>
+    </button>
 
     <!-- Модальное окно -->
     <div class="modal" id="modal">
@@ -1211,6 +1563,71 @@
     </div>
 
     <script>
+        // Современный движок анимаций для 2025 года
+        class AnimationEngine {
+            constructor() {
+                this.observers = [];
+                this.init();
+            }
+            
+            init() {
+                // Инициализация Intersection Observer для анимаций при скролле
+                this.scrollObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animated');
+                        }
+                    });
+                }, { threshold: 0.1 });
+                
+                // Наблюдаем за элементами с анимацией
+                document.querySelectorAll('.about-img, .about-content, .contact-info').forEach(el => {
+                    this.scrollObserver.observe(el);
+                });
+            }
+            
+            // Плавное появление элемента
+            fadeIn(element, duration = 500) {
+                element.style.opacity = 0;
+                element.style.display = 'block';
+                
+                let start = null;
+                const animate = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    const opacity = Math.min(progress / duration, 1);
+                    element.style.opacity = opacity;
+                    
+                    if (progress < duration) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Плавное исчезновение элемента
+            fadeOut(element, duration = 500) {
+                let start = null;
+                const initialOpacity = parseFloat(getComputedStyle(element).opacity);
+                
+                const animate = (timestamp) => {
+                    if (!start) start = timestamp;
+                    const progress = timestamp - start;
+                    const opacity = Math.max(initialOpacity - (progress / duration), 0);
+                    element.style.opacity = opacity;
+                    
+                    if (progress < duration) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        element.style.display = 'none';
+                    }
+                };
+                
+                requestAnimationFrame(animate);
+            }
+        }
+
         // Данные товаров
         const products = [
             {
@@ -1365,84 +1782,40 @@
                     { name: "Габариты", value: "840x840x300 мм" },
                     { name: "Вес", value: "32 кг" }
                 ]
-            },
-            {
-                id: 9,
-                name: "Холодильная машина York YCIV 120",
-                description: "Промышленная холодильная машина с винтовыми компрессорами",
-                price: "1 250 000 ₽",
-                image: "https://images.unsplash.com/photo-1617864065587-0e5d0289c930?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                features: ["Мощность 120 кВт", "Винтовые компрессоры", "Полная автоматизация"],
-                category: "cryology",
-                badge: "Профессиональный",
-                fullDescription: "Холодильная машина York YCIV 120 с винтовыми компрессорами предназначена для промышленного применения. Обеспечивает высокую надежность и энергоэффективность в системах охлаждения.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "120 кВт" },
-                    { name: "Потребляемая мощность", value: "32 кВт" },
-                    { name: "Тип хладагента", value: "R134a" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "2500x1200x1800 мм" },
-                    { name: "Вес", value: "980 кг" }
-                ]
-            },
-            {
-                id: 10,
-                name: "Система холодоснабжения Daikin EWAD-B200",
-                description: "Модульная система холодоснабжения для коммерческих объектов",
-                price: "680 000 ₽",
-                image: "https://images.unsplash.com/photo-1603712610496-5368a70c7f80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                features: ["Модульная конструкция", "Мощность 200 кВт", "Инверторное управление"],
-                category: "cryology",
-                badge: "Энергоэффективный",
-                fullDescription: "Система холодоснабжения Daikin EWAD-B200 с модульной конструкцией и инверторным управлением обеспечивает высокую энергоэффективность и гибкость в применении для коммерческих объектов.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "200 кВт" },
-                    { name: "Потребляемая мощность", value: "55 кВт" },
-                    { name: "Тип хладагента", value: "R410A" },
-                    { name: "Количество модулей", value: "2" },
-                    { name: "Габариты", value: "3200x1500x1800 мм" },
-                    { name: "Вес", value: "1250 кг" }
-                ]
-            },
-            {
-                id: 11,
-                name: "Охладитель жидкости GEA Grasso RC 35",
-                description: "Промышленный охладитель жидкости для технологических процессов",
-                price: "420 000 ₽",
-                image: "https://images.unsplash.com/photo-1581093458791-8a6b22bb640e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                features: ["Мощность 35 кВт", "Поршневые компрессоры", "Защита от коррозии"],
-                category: "cryology",
-                badge: "Промышленный",
-                fullDescription: "Охладитель жидкости GEA Grasso RC 35 с поршневыми компрессорами предназначен для промышленного применения в системах охлаждения технологических процессов.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "35 кВт" },
-                    { name: "Потребляемая мощность", value: "11 кВт" },
-                    { name: "Тип хладагента", value: "R407C" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "1500x800x1200 мм" },
-                    { name: "Вес", value: "320 кг" }
-                ]
-            },
-            {
-                id: 12,
-                name: "Абсорбционная холодильная машина Broad BDH 80",
-                description: "Абсорбционная холодильная машина на горячей воде",
-                price: "1 850 000 ₽",
-                image: "https://images.unsplash.com/photo-1615992174118-9b8e9be025e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-                features: ["Мощность 80 кВт", "Абсорбционный цикл", "Работа на горячей воде"],
-                category: "cryology",
-                badge: "Экологичный",
-                fullDescription: "Абсорбционная холодильная машина Broad BDH 80 использует тепло горячей воды для производства холода. Экологичное решение для объектов с избыточным теплом.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "80 кВт" },
-                    { name: "Температура горячей воды", value: "85-95°C" },
-                    { name: "Температура охлажденной воды", value: "7°C" },
-                    { name: "Потребление горячей воды", value: "12 м³/ч" },
-                    { name: "Габариты", value: "2800x1400x1800 мм" },
-                    { name: "Вес", value: "1800 кг" }
-                ]
             }
         ];
+
+        // Инициализация движка анимаций
+        const animationEngine = new AnimationEngine();
+
+        // Функция для анимации счетчика
+        function animateCounter(element, start, end, duration, suffix = '') {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * (end - start) + start);
+                element.textContent = currentValue + suffix;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Функция для запуска счетчиков при загрузке страницы
+        function initCounters() {
+            const yearsCounter = document.getElementById('yearsCounter');
+            const projectsCounter = document.getElementById('projectsCounter');
+            const clientsCounter = document.getElementById('clientsCounter');
+            
+            // Запускаем анимацию счетчиков с небольшой задержкой для лучшего эффекта
+            setTimeout(() => {
+                animateCounter(yearsCounter, 0, 15, 2000);
+                animateCounter(projectsCounter, 0, 1200, 2500);
+                animateCounter(clientsCounter, 0, 98, 1800, '%');
+            }, 500);
+        }
 
         // Инициализация каталога
         function initCatalog() {
@@ -1509,36 +1882,42 @@
             productCards.forEach(card => {
                 if (filter === 'all' || card.getAttribute('data-category') === filter) {
                     card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
                 } else {
-                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
                 }
             });
         }
         
         // Инициализация обработчиков событий для кнопок товаров
         function initProductButtons() {
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
-                const buttons = card.querySelectorAll('.btn');
-                buttons.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const productId = button.getAttribute('data-product-id');
-                        if (button.classList.contains('btn-outline')) {
-                            // Заказ товара
-                            orderProduct(productId);
-                        } else {
-                            // Просмотр подробной информации
-                            viewProductDetails(productId);
-                        }
-                    });
-                });
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('.product-card .btn') || e.target.closest('.product-card .btn')) {
+                    const button = e.target.matches('.btn') ? e.target : e.target.closest('.btn');
+                    const productId = button.getAttribute('data-product-id');
+                    
+                    if (button.classList.contains('btn-outline')) {
+                        // Заказ товара
+                        orderProduct(productId);
+                    } else {
+                        // Просмотр подробной информации
+                        viewProductDetails(productId);
+                    }
+                }
                 
-                // Клик по карточке товара
-                card.addEventListener('click', () => {
-                    const productId = card.querySelector('.btn').getAttribute('data-product-id');
+                // Клик по карточке товара (кроме кнопок)
+                if (e.target.closest('.product-card') && !e.target.matches('.btn') && !e.target.closest('.btn')) {
+                    const productCard = e.target.closest('.product-card');
+                    const productId = productCard.querySelector('.btn').getAttribute('data-product-id');
                     viewProductDetails(productId);
-                });
+                }
             });
         }
         
@@ -1642,25 +2021,34 @@
             if (mobileMenuBtn) {
                 mobileMenuBtn.addEventListener('click', () => {
                     mobileNav.classList.toggle('active');
+                    mobileMenuBtn.querySelector('i').classList.toggle('fa-bars');
+                    mobileMenuBtn.querySelector('i').classList.toggle('fa-times');
                 });
             }
             
             // Плавная прокрутка
-            document.querySelectorAll('nav a').forEach(anchor => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
                         window.scrollTo({
-                            top: targetElement.offsetTop - 70,
+                            top: targetPosition,
                             behavior: 'smooth'
                         });
                         
                         // Закрытие мобильного меню после клика
                         if (mobileNav) {
                             mobileNav.classList.remove('active');
+                            mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                            mobileMenuBtn.querySelector('i').classList.remove('fa-times');
                         }
                     }
                 });
@@ -1699,14 +2087,14 @@
             
             function openModal() {
                 if (modal) {
-                    modal.style.display = 'flex';
+                    modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }
             }
             
             function closeModalFunc() {
                 if (modal) {
-                    modal.style.display = 'none';
+                    modal.classList.remove('active');
                     document.body.style.overflow = 'auto';
                 }
             }
@@ -1768,6 +2156,18 @@
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 768 && mobileNav) {
                     mobileNav.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                }
+            });
+            
+            // Эффект скролла для header
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('header');
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
             });
         }
@@ -1777,6 +2177,7 @@
             try {
                 initBaseFunctionality();
                 initCatalog();
+                initCounters();
             } catch (error) {
                 console.error('Ошибка инициализации:', error);
             }
