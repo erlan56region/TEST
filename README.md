@@ -1,3 +1,4 @@
+v<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -275,7 +276,7 @@
         
         /* Герой секция */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Водоснабжение+и+отопление') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
@@ -367,6 +368,12 @@
         .service-img {
             height: 200px;
             overflow: hidden;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 48px;
         }
         
         .service-img img {
@@ -451,6 +458,12 @@
             height: 200px;
             overflow: hidden;
             position: relative;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 48px;
         }
         
         .product-img img {
@@ -596,6 +609,12 @@
             flex: 1;
             min-width: 300px;
             height: 400px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 64px;
         }
         
         .product-modal-img img {
@@ -686,6 +705,12 @@
             box-shadow: var(--shadow);
             opacity: 0;
             transform: translateX(-30px);
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 64px;
         }
         
         .about-img.animate {
@@ -1119,7 +1144,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Монтаж систем водоснабжения" loading="lazy">
+                        <i class="fas fa-water"></i>
                     </div>
                     <div class="service-content">
                         <h3>Монтаж систем водоснабжения</h3>
@@ -1128,7 +1153,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1581093458791-8a6b22bb640e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Отопление" loading="lazy">
+                        <i class="fas fa-fire"></i>
                     </div>
                     <div class="service-content">
                         <h3>Отопление</h3>
@@ -1137,7 +1162,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Канализация" loading="lazy">
+                        <i class="fas fa-recycle"></i>
                     </div>
                     <div class="service-content">
                         <h3>Канализация</h3>
@@ -1173,7 +1198,7 @@
             <button class="product-modal-close" id="productModalClose" aria-label="Закрыть">&times;</button>
             <div class="product-modal-body">
                 <div class="product-modal-img">
-                    <img id="modalProductImage" src="" alt="">
+                    <i class="fas fa-cog" id="modalProductIcon"></i>
                 </div>
                 <div class="product-modal-info">
                     <h3 id="modalProductName"></h3>
@@ -1199,7 +1224,7 @@
         <div class="container">
             <div class="about">
                 <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1973&q=80" alt="О компании" loading="lazy">
+                    <i class="fas fa-building"></i>
                 </div>
                 <div class="about-content">
                     <h2>О компании</h2>
@@ -1366,14 +1391,14 @@
     </div>
 
     <script>
-        // Данные товаров
+        // Данные товаров с иконками вместо изображений
         const products = [
             {
                 id: 1,
                 name: "Насосная станция Grundfos JPBasic 3",
                 description: "Автоматическая насосная станция для водоснабжения дома",
                 price: "12 500 ₽",
-                image: "https://images.unsplash.com/photo-1615992174118-9b8e9be025e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-tint",
                 features: ["Автоматика", "Мощность 750 Вт", "Производительность 3 м³/ч"],
                 category: "pumps",
                 badge: "Хит",
@@ -1392,7 +1417,7 @@
                 name: "Газовый котел Baxi Eco Four 24F",
                 description: "Настенный двухконтурный газовый котел для отопления и ГВС",
                 price: "45 800 ₽",
-                image: "https://images.unsplash.com/photo-1603712610496-5368a70c7f80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-fire",
                 features: ["Двухконтурный", "КПД 93%", "Мощность 24 кВт"],
                 category: "boilers",
                 badge: "Акция",
@@ -1411,7 +1436,7 @@
                 name: "Биметаллический радиатор Global Style Plus 500",
                 description: "Секционный биметаллический радиатор для систем отопления",
                 price: "8 200 ₽",
-                image: "https://images.unsplash.com/photo-1617864065587-0e5d0289c930?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-temperature-high",
                 features: ["Биметалл", "Высота 500 мм", "Теплоотдача 185 Вт"],
                 category: "radiators",
                 badge: "Популярный",
@@ -1430,7 +1455,7 @@
                 name: "Трубы полипропиленовые Valtec PP-R 20мм",
                 description: "Полипропиленовые трубы для систем отопления и водоснабжения",
                 price: "85 ₽/м",
-                image: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80",
+                icon: "fas fa-pipe",
                 features: ["Полипропилен", "Диаметр 20 мм", "Рабочая t: 95°C"],
                 category: "pipes",
                 badge: "Скидка",
@@ -1449,7 +1474,7 @@
                 name: "Водонагреватель Thermex Champion Silverheat 100",
                 description: "Накопительный водонагреватель для обеспечения ГВС",
                 price: "18 900 ₽",
-                image: "https://images.unsplash.com/photo-1581093458791-8a6b22bb640e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-water",
                 features: ["Объем 100 л", "Мощность 1,5 кВт", "Вертикальный"],
                 category: "water-heaters",
                 badge: "Новинка",
@@ -1468,7 +1493,7 @@
                 name: "Циркуляционный насос Wilo Star-RS 25/4",
                 description: "Циркуляционный насос для систем отопления",
                 price: "6 800 ₽",
-                image: "https://images.unsplash.com/photo-1615992174118-9b8e9be025e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-pump",
                 features: ["Три скорости", "Напор 4 м", "Производительность 3 м³/ч"],
                 category: "pumps",
                 badge: "",
@@ -1488,7 +1513,7 @@
                 name: "Чиллер Trane CGAM 60",
                 description: "Центральный холодильный агрегат для систем кондиционирования",
                 price: "850 000 ₽",
-                image: "https://images.unsplash.com/photo-1581094794321-8410e6a0d6d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-snowflake",
                 features: ["Мощность 60 кВт", "Водяное охлаждение", "Энергоэффективность A++"],
                 category: "cryology",
                 badge: "Профессиональный",
@@ -1507,7 +1532,7 @@
                 name: "Фанкойл Carrier 42CQ",
                 description: "Внутренний блок фанкойла для систем чиллер-фанкойл",
                 price: "32 500 ₽",
-                image: "https://images.unsplash.com/photo-1581094794321-8410e6a0d6d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-wind",
                 features: ["Кассетный тип", "Расход воздуха 1200 м³/ч", "4-х трубная система"],
                 category: "cryology",
                 badge: "Популярный",
@@ -1526,7 +1551,7 @@
                 name: "Холодильная машина York YCIV 120",
                 description: "Промышленная холодильная машина с винтовыми компрессорами",
                 price: "1 250 000 ₽",
-                image: "https://images.unsplash.com/photo-1581094794321-8410e6a0d6d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-industry",
                 features: ["Мощность 120 кВт", "Винтовые компрессоры", "Полная автоматизация"],
                 category: "cryology",
                 badge: "Профессиональный",
@@ -1545,7 +1570,7 @@
                 name: "Система холодоснабжения Daikin EWAD-B200",
                 description: "Модульная система холодоснабжения для коммерческих объектов",
                 price: "680 000 ₽",
-                image: "https://images.unsplash.com/photo-1581094794321-8410e6a0d6d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-cogs",
                 features: ["Модульная конструкция", "Мощность 200 кВт", "Инверторное управление"],
                 category: "cryology",
                 badge: "Энергоэффективный",
@@ -1564,7 +1589,7 @@
                 name: "Охладитель жидкости GEA Grasso RC 35",
                 description: "Промышленный охладитель жидкости для технологических процессов",
                 price: "420 000 ₽",
-                image: "https://images.unsplash.com/photo-1581094794321-8410e6a0d6d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-tint",
                 features: ["Мощность 35 кВт", "Поршневые компрессоры", "Защита от коррозии"],
                 category: "cryology",
                 badge: "Промышленный",
@@ -1583,7 +1608,7 @@
                 name: "Абсорбционная холодильная машина Broad BDH 80",
                 description: "Абсорбционная холодильная машина на горячей воде",
                 price: "1 850 000 ₽",
-                image: "https://images.unsplash.com/photo-1581094794321-8410e6a0d6d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+                icon: "fas fa-recycle",
                 features: ["Мощность 80 кВт", "Абсорбционный цикл", "Работа на горячей воде"],
                 category: "cryology",
                 badge: "Экологичный",
@@ -1808,10 +1833,6 @@
             }
         }
 
-        // Остальной код функций (initCatalog, initBaseFunctionality и т.д.) остается без изменений
-        // [Здесь должен быть весь остальной JavaScript код из предыдущей версии]
-        // Для экономии места я не дублирую весь JS, так как он уже был проверен и работает корректно
-
         // Инициализация каталога
         function initCatalog() {
             const catalogGrid = document.getElementById('catalogGrid');
@@ -1828,7 +1849,7 @@
                 productCard.setAttribute('data-category', product.category);
                 productCard.innerHTML = `
                     <div class="product-img">
-                        <img src="${product.image}" alt="${product.name}" loading="lazy">
+                        <i class="${product.icon}"></i>
                         ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
                     </div>
                     <div class="product-content">
@@ -1936,17 +1957,16 @@
             const product = products.find(p => p.id == productId);
             if (product) {
                 const modal = document.getElementById('productModal');
-                const modalImage = document.getElementById('modalProductImage');
+                const modalIcon = document.getElementById('modalProductIcon');
                 const modalName = document.getElementById('modalProductName');
                 const modalPrice = document.getElementById('modalProductPrice');
                 const modalDescription = document.getElementById('modalProductDescription');
                 const modalSpecs = document.getElementById('modalProductSpecs');
                 
-                if (!modal || !modalImage || !modalName || !modalPrice || !modalDescription || !modalSpecs) return;
+                if (!modal || !modalIcon || !modalName || !modalPrice || !modalDescription || !modalSpecs) return;
                 
                 // Заполнение модального окна данными товара
-                modalImage.src = product.image;
-                modalImage.alt = product.name;
+                modalIcon.className = product.icon;
                 modalName.textContent = product.name;
                 modalPrice.textContent = product.price;
                 modalDescription.textContent = product.fullDescription;
