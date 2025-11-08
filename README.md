@@ -2362,4 +2362,52 @@
         });
     </script>
 </body>
+/* Добавьте в существующие медиа-запросы или в конец стилей */
+@media (max-width: 768px) {
+    .btn, .catalog-filter-btn, .mobile-menu-btn {
+        min-height: 44px; /* Минимальный размер для касания */
+        padding: 12px 16px;
+    }
+    
+    .form-control {
+        font-size: 16px; /* Предотвращает масштабирование в iOS */
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+    
+    .product-actions .btn {
+        margin-bottom: 10px;
+    }
+}
+
+/* Улучшение скролла на iOS */
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Предотвращение выделения при касании */
+button, a {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+button:focus, a:focus {
+    outline: none;
+}
+// Добавьте в раздел JavaScript
+// Определение типа устройства
+function isTouchDevice() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+}
+
+// Оптимизация для touch-устройств
+if (isTouchDevice()) {
+    document.body.classList.add('touch-device');
+} else {
+    document.body.classList.add('no-touch-device');
+}
 </html>
