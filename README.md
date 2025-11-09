@@ -1,1088 +1,1208 @@
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <style>
-        :root {
-            --primary: #0056b3;
-            --primary-dark: #003d82;
-            --secondary: #00b894;
-            --dark: #343a40;
-            --light: #f8f9fa;
-            --gray: #6c757d;
-            --white: #ffffff;
-            --black: #0a0a0a;
-            --shadow: 0 5px 15px rgba(0,0,0,0.08);
-            --transition: all 0.3s ease;
-        }
-        
-        /* Темная тема */
-        .dark-theme {
-            --primary: #4dabf7;
-            --primary-dark: #339af0;
-            --secondary: #00d9a5;
-            --dark: #1a1a1a;
-            --light: #2d2d2d;
-            --gray: #a0a0a0;
-            --white: #e0e0e0;
-            --shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        body {
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-color: var(--white);
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
-        }
-        
-        section {
-            padding: 80px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
-        
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-        
-        /* Переключатель темы */
-        .theme-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Шапка */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: var(--transition);
-            transform: translateY(0);
-        }
-        
-        header.hidden {
-            transform: translateY(-100%);
-        }
-        
-        header.scrolled {
-            padding: 5px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            transition: var(--transition);
-        }
-        
-        .logo {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-            font-size: 28px;
-        }
-        
-        .logo-subtitle {
-            font-size: 12px;
-            color: var(--gray);
-            margin-top: 2px;
-        }
-        
-        .desktop-nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        .desktop-nav ul li {
-            margin-left: 25px;
-            position: relative;
-        }
-        
-        .desktop-nav ul li a {
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 5px 0;
-        }
-        
-        .desktop-nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .desktop-nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        .desktop-nav ul li a:hover {
-            color: var(--primary);
-        }
-        
-        .phone {
-            font-weight: 700;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .phone i {
-            margin-right: 8px;
-            color: var(--primary);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--primary);
-        }
-        
-        /* Мобильная навигация */
-        .mobile-nav {
-            display: none;
-            width: 100%;
-            text-align: center;
-            padding: 20px 0;
-            background: var(--white);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        }
-        
-        .mobile-nav.active {
-            display: block;
-        }
-        
-        .mobile-nav ul {
-            flex-direction: column;
-            list-style: none;
-        }
-        
-        .mobile-nav ul li {
-            margin: 10px 0;
-        }
-        
-        .mobile-nav ul li a {
-            font-weight: 500;
-            padding: 10px 0;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .mobile-nav ul li a:hover {
-            color: var(--primary);
-        }
-        
-        /* Герой секция */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Водоснабжение+и+отопление') no-repeat center center/cover;
-            color: var(--white);
-            text-align: center;
-            padding: 200px 0 120px;
-            margin-top: 70px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .hero.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        
-        .hero h1 {
-            font-size: 52px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .hero .btn {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .hero.animate h1,
-        .hero.animate p,
-        .hero.animate .btn {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .hero.animate h1 {
-            transition-delay: 0.2s;
-        }
-        
-        .hero.animate p {
-            transition-delay: 0.4s;
-        }
-        
-        .hero.animate .btn {
-            transition-delay: 0.6s;
-        }
-        
-        /* Услуги */
-        .services {
-            background-color: var(--light);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .service-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .service-img {
-            height: 200px;
-            overflow: hidden;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 48px;
-        }
-        
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-img img {
-            transform: scale(1.1);
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-        
-        /* Каталог */
-        .catalog-section {
-            padding: 80px 0;
-            background-color: var(--white);
-        }
-        
-        .catalog-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-        
-        .catalog-filter-btn {
-            padding: 8px 20px;
-            background: var(--white);
-            border: 1px solid #ddd;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-        
-        .catalog-filter-btn:hover, .catalog-filter-btn.active {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-        
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        
-        .product-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .product-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-        }
-        
-        .product-img {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 48px;
-        }
-        
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .product-card:hover .product-img img {
-            transform: scale(1.1);
-        }
-        
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--primary);
-            color: var(--white);
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        
-        .product-content {
-            padding: 20px;
-        }
-        
-        .product-content h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: var(--dark);
-        }
-        
-        .product-content p {
-            color: var(--gray);
-            font-size: 14px;
-            margin-bottom: 15px;
-            min-height: 60px;
-        }
-        
-        .product-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .product-feature {
-            background: var(--light);
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            color: var(--dark);
-        }
-        
-        .product-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .product-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .product-actions .btn {
-            flex: 1;
-            padding: 10px;
-            font-size: 14px;
-        }
-        
-        .product-actions .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .product-actions .btn-outline:hover {
-            background: var(--primary);
-            color: var(--white);
-        }
-        
-        /* Модальное окно товара */
-        .product-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .product-modal.active {
-            display: flex;
-            opacity: 1;
-        }
-        
-        .product-modal-content {
-            background: var(--white);
-            border-radius: 12px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        
-        .product-modal.active .product-modal-content {
-            transform: scale(1);
-        }
-        
-        .product-modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--gray);
-            z-index: 10;
-        }
-        
-        .product-modal-body {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        .product-modal-img {
-            flex: 1;
-            min-width: 300px;
-            height: 400px;
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 64px;
-        }
-        
-        .product-modal-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px 0 0 12px;
-        }
-        
-        .product-modal-info {
-            flex: 1;
-            min-width: 300px;
-            padding: 30px;
-        }
-        
-        .product-modal-info h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .product-modal-price {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .product-modal-description {
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-        
-        .product-modal-specs {
-            margin-bottom: 25px;
-        }
-        
-        .product-modal-specs h4 {
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: var(--dark);
-        }
-        
-        .specs-list {
-            list-style: none;
-        }
-        
-        .specs-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .spec-name {
-            font-weight: 500;
-        }
-        
-        .spec-value {
-            color: var(--gray);
-        }
-        
-        .product-modal-actions {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .product-modal-actions .btn {
-            flex: 1;
-        }
-        
-        /* О компании */
-        .about-section {
-            padding: 80px 0;
-        }
-        
-        .about {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-img {
-            flex: 1;
-            height: 450px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateX(-30px);
-            background-color: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 64px;
-        }
-        
-        .about-img.animate {
-            opacity: 1;
-            transform: translateX(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .about-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .about-content {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        
-        .about-content.animate {
-            opacity: 1;
-            transform: translateX(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .about-content h2 {
-            text-align: left;
-        }
-        
-        .about-content h2::after {
-            left: 0;
-            transform: none;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-        }
-        
-        .stat-item {
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .stat-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .stat-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary);
-            display: block;
-        }
-        
-        /* Контакты */
-        .contacts {
-            background-color: var(--light);
-        }
-        
-        .contacts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .contact-info {
-            background-color: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .contact-info.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .contact-info h3 {
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .contact-item {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .contact-item i {
-            margin-right: 10px;
-            color: var(--primary);
-            width: 20px;
-            text-align: center;
-            font-size: 18px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: var(--transition);
-        }
-        
-        /* Подвал */
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .footer-column h3 {
-            margin-bottom: 20px;
-            font-size: 18px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: var(--primary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Модальное окно */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .modal.active {
-            display: flex;
-            opacity: 1;
-        }
-        
-        .modal-content {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-        
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--gray);
-        }
-        
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            background: var(--primary);
-            color: var(--white);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            transform: translateX(150%);
-            transition: transform 0.3s;
-            z-index: 1000;
-        }
-        
-        .notification.show {
-            transform: translateX(0);
-        }
-        
-        /* Анимация загрузки */
-        .loading-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--white);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        
-        .loading-animation.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(0, 86, 179, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 992px) {
-            .about {
-                flex-direction: column;
-            }
-            
-            .about-content h2 {
-                text-align: center;
-            }
-            
-            .about-content h2::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .stats {
-                justify-content: space-around;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .header-inner {
-                flex-wrap: wrap;
-            }
-            
-            .phone {
-                margin-top: 10px;
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .product-modal-body {
-                flex-direction: column;
-            }
-            
-            .product-modal-img {
-                height: 250px;
-            }
-            
-            .product-modal-img img {
-                border-radius: 12px 12px 0 0;
-            }
-            
-            .stats {
-                flex-direction: column;
-                gap: 20px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            section {
-                padding: 60px 0;
-            }
-            
-            h2 {
-                font-size: 28px;
-            }
-            
-            .hero {
-                padding: 150px 0 80px;
-            }
-            
-            .catalog-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+:root {
+    --primary: #0056b3;
+    --primary-dark: #003d82;
+    --secondary: #00b894;
+    --dark: #343a40;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --shadow: 0 5px 15px rgba(0,0,0,0.08);
+    --transition: all 0.3s ease;
+    --header-height: 80px;
+}
+
+/* Темная тема */
+.dark-theme {
+    --primary: #4dabf7;
+    --primary-dark: #339af0;
+    --secondary: #00d9a5;
+    --dark: #1a1a1a;
+    --light: #2d2d2d;
+    --gray: #a0a0a0;
+    --white: #e0e0e0;
+    --black: #f5f5f5;
+    --shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-color: var(--white);
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
+}
+
+section {
+    padding: 80px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+/* Переключатель темы */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Шапка - ИСПРАВЛЕНА */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+    transform: translateY(0);
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+header.scrolled {
+    padding: 5px 0;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    transition: var(--transition);
+    min-height: var(--header-height);
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo i {
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+.logo-subtitle {
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 2px;
+}
+
+.desktop-nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.desktop-nav ul li {
+    margin-left: 25px;
+    position: relative;
+}
+
+.desktop-nav ul li a {
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 5px 0;
+}
+
+.desktop-nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition);
+}
+
+.desktop-nav ul li a:hover::after {
+    width: 100%;
+}
+
+.desktop-nav ul li a:hover {
+    color: var(--primary);
+}
+
+.phone {
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.phone i {
+    margin-right: 8px;
+    color: var(--primary);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--primary);
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Мобильная навигация - ИСПРАВЛЕНА */
+.mobile-nav {
+    display: none;
+    width: 100%;
+    text-align: center;
+    background: var(--white);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 999;
+}
+
+.mobile-nav.active {
+    display: block;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav ul li {
+    margin: 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.mobile-nav ul li a {
+    font-weight: 500;
+    padding: 15px 0;
+    display: block;
+    transition: var(--transition);
+    color: var(--dark);
+}
+
+.mobile-nav ul li a:hover {
+    color: var(--primary);
+    background-color: rgba(0,0,0,0.02);
+}
+
+/* Герой секция */
+.hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 200px 0 120px;
+    margin-top: var(--header-height);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.hero .btn {
+    opacity: 0;
+    transform: translateY(20px);
+    background-color: var(--white);
+    color: var(--primary);
+}
+
+.hero .btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.hero.animate h1,
+.hero.animate p,
+.hero.animate .btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero.animate h1 {
+    transition-delay: 0.2s;
+}
+
+.hero.animate p {
+    transition-delay: 0.4s;
+}
+
+.hero.animate .btn {
+    transition-delay: 0.6s;
+}
+
+/* Услуги */
+.services {
+    background-color: var(--light);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.service-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-img {
+    height: 200px;
+    overflow: hidden;
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 48px;
+}
+
+.service-content {
+    padding: 25px;
+}
+
+.service-content h3 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: var(--dark);
+}
+
+.service-content p {
+    color: var(--gray);
+}
+
+/* Каталог */
+.catalog-section {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.catalog-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.catalog-filter-btn {
+    padding: 8px 20px;
+    background: var(--white);
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.catalog-filter-btn:hover, .catalog-filter-btn.active {
+    background: var(--primary);
+    color: var(--white);
+    border-color: var(--primary);
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.product-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.product-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 48px;
+}
+
+.product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--primary);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.product-content {
+    padding: 20px;
+}
+
+.product-content h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.product-content p {
+    color: var(--gray);
+    font-size: 14px;
+    margin-bottom: 15px;
+    min-height: 60px;
+}
+
+.product-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.product-feature {
+    background: var(--light);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 12px;
+    color: var(--dark);
+}
+
+.product-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.product-actions .btn {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.product-actions .btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.product-actions .btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Модальное окно товара */
+.product-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.product-modal-content {
+    background: var(--white);
+    border-radius: 12px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.product-modal.active .product-modal-content {
+    transform: scale(1);
+}
+
+.product-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gray);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-modal-body {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-modal-img {
+    flex: 1;
+    min-width: 300px;
+    height: 400px;
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 64px;
+}
+
+.product-modal-info {
+    flex: 1;
+    min-width: 300px;
+    padding: 30px;
+}
+
+.product-modal-info h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.product-modal-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.product-modal-description {
+    margin-bottom: 20px;
+    color: var(--gray);
+}
+
+.product-modal-specs {
+    margin-bottom: 25px;
+}
+
+.product-modal-specs h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: var(--dark);
+}
+
+.specs-list {
+    list-style: none;
+}
+
+.specs-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.spec-name {
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.spec-value {
+    color: var(--gray);
+}
+
+.product-modal-actions {
+    display: flex;
+    gap: 15px;
+}
+
+.product-modal-actions .btn {
+    flex: 1;
+}
+
+/* О компании */
+.about-section {
+    padding: 80px 0;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-img {
+    flex: 1;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateX(-30px);
+    background-color: var(--light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    font-size: 64px;
+}
+
+.about-img.animate {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-content {
+    flex: 1;
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.about-content.animate {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-content h2 {
+    text-align: left;
+}
+
+.about-content h2::after {
+    left: 0;
+    transform: none;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.stat-item {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stat-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+}
+
+.stat-text {
+    color: var(--gray);
+}
+
+/* Контакты */
+.contacts {
+    background-color: var(--light);
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.contact-info {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.contact-info.animate {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.contact-info h3 {
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.contact-item {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.contact-item i {
+    margin-right: 10px;
+    color: var(--primary);
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.contact-item div {
+    color: var(--dark);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: var(--transition);
+    background-color: var(--white);
+    color: var(--dark);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* Подвал */
+footer {
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    position: relative;
+    padding-bottom: 10px;
+    color: var(--white);
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: var(--transition);
+}
+
+.footer-column ul li a:hover {
+    color: var(--primary);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: var(--transition);
+    color: var(--white);
+}
+
+.social-links a:hover {
+    background: var(--primary);
+    transform: translateY(-3px);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gray);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content h3 {
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transform: translateX(150%);
+    transition: transform 0.3s;
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+/* Анимация загрузки */
+.loading-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loading-animation.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 86, 179, 0.2);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .about {
+        flex-direction: column;
+    }
+    
+    .about-content h2 {
+        text-align: center;
+    }
+    
+    .about-content h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .stats {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 768px) {
+    .desktop-nav {
+        display: none;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    .header-inner {
+        flex-wrap: wrap;
+    }
+    
+    .phone {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+        order: 3;
+    }
+    
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .hero p {
+        font-size: 18px;
+    }
+    
+    .product-modal-body {
+        flex-direction: column;
+    }
+    
+    .product-modal-img {
+        height: 250px;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    /* Улучшения для мобильных устройств */
+    .btn, .catalog-filter-btn, .mobile-menu-btn {
+        min-height: 44px;
+        padding: 12px 16px;
+    }
+    
+    .form-control {
+        font-size: 16px;
+    }
+    
+    .product-actions {
+        flex-direction: column;
+    }
+    
+    .product-actions .btn {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    section {
+        padding: 60px 0;
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+    
+    .hero {
+        padding: 150px 0 80px;
+    }
+    
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-inner {
+        padding: 10px 0;
+    }
+    
+    .logo {
+        font-size: 18px;
+    }
+    
+    .logo i {
+        font-size: 24px;
+    }
+}
+
+/* Улучшение скролла на iOS */
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Предотвращение выделения при касании */
+button, a {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+button:focus, a:focus {
+    outline: none;
+}
+
+/* Улучшения для темной темы */
+.dark-theme .form-control {
+    background-color: var(--light);
+    border-color: #444;
+    color: var(--white);
+}
+
+.dark-theme .catalog-filter-btn {
+    background-color: var(--light);
+    border-color: #444;
+    color: var(--white);
+}
+
+.dark-theme .catalog-filter-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.dark-theme .product-feature {
+    background-color: #3a3a3a;
+    color: var(--white);
+}
+
+.dark-theme .specs-list li {
+    border-bottom-color: #444;
+}
+</style>
 </head>
 <body>
     <!-- Анимация загрузки -->
@@ -1090,7 +1210,7 @@
         <div class="loader"></div>
     </div>
 
-    <!-- Шапка -->
+    <!-- Шапка - ИСПРАВЛЕНА -->
     <header id="header">
         <div class="container">
             <div class="header-inner">
@@ -1128,6 +1248,7 @@
         </div>
     </header>
 
+    <!-- Остальной код остается без изменений -->
     <!-- Герой секция -->
     <section class="hero" id="hero">
         <div class="container">
@@ -1461,7 +1582,7 @@
                 badge: "Скидка",
                 fullDescription: "Полипропиленовые трубы Valtec PP-R предназначены для систем холодного и горячего водоснабжения, а также отопления. Не подвержены коррозии и имеют длительный срок службы.",
                 specifications: [
-                    { name: "Наружный диаметр", value: "20 мм" },
+                    { name: "Наружный диаметер", value: "20 мм" },
                     { name: "Толщина стенки", value: "2,8 мм" },
                     { name: "Рабочая температура", value: "95°C" },
                     { name: "Рабочее давление", value: "25 бар" },
@@ -1624,156 +1745,206 @@
             }
         ];
 
+        // Fallback для GSAP
+        if (typeof gsap === 'undefined') {
+            console.warn('GSAP not loaded, using fallback');
+            // Простой fallback для анимаций
+            window.gsap = {
+                to: function(el, config) {
+                    if (config.onComplete) setTimeout(config.onComplete, config.duration * 1000 || 0);
+                },
+                fromTo: function(el, from, to) {
+                    if (to.onComplete) setTimeout(to.onComplete, to.duration * 1000 || 0);
+                },
+                utils: {
+                    toArray: function(selector) {
+                        return document.querySelectorAll(selector);
+                    }
+                },
+                registerPlugin: function() {} // Пустая функция для ScrollTrigger
+            };
+            
+            // Простой ScrollTrigger fallback
+            window.ScrollTrigger = {
+                create: function() {}
+            };
+        }
+
+        // Безопасная функция анимации
+        function safeGsapAnimation(element, animationConfig) {
+            try {
+                if (element && element.nodeType === 1) {
+                    if (animationConfig.from && animationConfig.to) {
+                        gsap.fromTo(element, animationConfig.from, animationConfig.to);
+                    } else if (animationConfig.to) {
+                        gsap.to(element, animationConfig.to);
+                    }
+                }
+            } catch (error) {
+                console.warn('GSAP animation error:', error);
+            }
+        }
+
         // Инициализация GSAP анимаций
         function initAnimations() {
-            // Инициализация ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
-            
-            // Анимация появления секций при скролле
-            gsap.utils.toArray('section').forEach(section => {
-                gsap.fromTo(section, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                        end: "bottom 20%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-            
-            // Анимация карточек услуг
-            gsap.utils.toArray('.service-card').forEach((card, i) => {
-                gsap.fromTo(card, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-            
-            // Анимация карточек товаров
-            gsap.utils.toArray('.product-card').forEach((card, i) => {
-                gsap.fromTo(card, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-            
-            // Анимация элементов "О компании"
-            gsap.fromTo('.about-img', {
-                opacity: 0,
-                x: -50
-            }, {
-                opacity: 1,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: '.about',
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
+            try {
+                // Инициализация ScrollTrigger
+                if (typeof ScrollTrigger !== 'undefined') {
+                    gsap.registerPlugin(ScrollTrigger);
                 }
-            });
-            
-            gsap.fromTo('.about-content', {
-                opacity: 0,
-                x: 50
-            }, {
-                opacity: 1,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: '.about',
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            });
-            
-            // Анимация статистики
-            gsap.utils.toArray('.stat-item').forEach((item, i) => {
-                gsap.fromTo(item, {
-                    opacity: 0,
-                    y: 30
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: '.stats',
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
+                
+                // Анимация появления секций при скролле
+                gsap.utils.toArray('section').forEach(section => {
+                    safeGsapAnimation(section, {
+                        from: { opacity: 0, y: 50 },
+                        to: {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: section,
+                                start: "top 80%",
+                                end: "bottom 20%",
+                                toggleActions: "play none none reverse"
+                            }
+                        }
+                    });
+                });
+                
+                // Анимация карточек услуг
+                gsap.utils.toArray('.service-card').forEach((card, i) => {
+                    safeGsapAnimation(card, {
+                        from: { opacity: 0, y: 50 },
+                        to: {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            delay: i * 0.1,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 85%",
+                                toggleActions: "play none none reverse"
+                            }
+                        }
+                    });
+                });
+                
+                // Анимация карточек товаров
+                gsap.utils.toArray('.product-card').forEach((card, i) => {
+                    safeGsapAnimation(card, {
+                        from: { opacity: 0, y: 50 },
+                        to: {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            delay: i * 0.1,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 85%",
+                                toggleActions: "play none none reverse"
+                            }
+                        }
+                    });
+                });
+                
+                // Анимация элементов "О компании"
+                safeGsapAnimation(document.querySelector('.about-img'), {
+                    from: { opacity: 0, x: -50 },
+                    to: {
+                        opacity: 1,
+                        x: 0,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: '.about',
+                            start: "top 80%",
+                            toggleActions: "play none none reverse"
+                        }
                     }
                 });
-            });
-            
-            // Анимация контактных блоков
-            gsap.utils.toArray('.contact-info').forEach((info, i) => {
-                gsap.fromTo(info, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: '.contacts-grid',
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
+                
+                safeGsapAnimation(document.querySelector('.about-content'), {
+                    from: { opacity: 0, x: 50 },
+                    to: {
+                        opacity: 1,
+                        x: 0,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: '.about',
+                            start: "top 80%",
+                            toggleActions: "play none none reverse"
+                        }
                     }
                 });
-            });
+                
+                // Анимация статистики
+                gsap.utils.toArray('.stat-item').forEach((item, i) => {
+                    safeGsapAnimation(item, {
+                        from: { opacity: 0, y: 30 },
+                        to: {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            delay: i * 0.2,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: '.stats',
+                                start: "top 80%",
+                                toggleActions: "play none none reverse"
+                            }
+                        }
+                    });
+                });
+                
+                // Анимация контактных блоков
+                gsap.utils.toArray('.contact-info').forEach((info, i) => {
+                    safeGsapAnimation(info, {
+                        from: { opacity: 0, y: 50 },
+                        to: {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.8,
+                            delay: i * 0.2,
+                            ease: "power2.out",
+                            scrollTrigger: {
+                                trigger: '.contacts-grid',
+                                start: "top 80%",
+                                toggleActions: "play none none reverse"
+                            }
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error('Animation initialization error:', error);
+            }
         }
 
         // Улучшенная функция для анимации счетчика с GSAP
         function animateCounter(element, start, end, duration) {
+            if (!element) return;
+            
             const obj = { value: start };
-            gsap.to(obj, {
-                value: end,
-                duration: duration / 1000,
-                ease: "power2.out",
-                onUpdate: function() {
-                    if (element.id === 'clientsCounter') {
-                        element.textContent = Math.floor(obj.value) + '%';
-                    } else {
-                        element.textContent = Math.floor(obj.value).toLocaleString();
+            safeGsapAnimation(null, {
+                to: {
+                    value: end,
+                    duration: duration / 1000,
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        if (element.id === 'clientsCounter') {
+                            element.textContent = Math.floor(obj.value) + '%';
+                        } else {
+                            element.textContent = Math.floor(obj.value).toLocaleString();
+                        }
+                    },
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
                     }
-                },
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
                 }
             });
         }
@@ -1798,38 +1969,30 @@
                 hero.classList.add('animate');
                 
                 // Анимация элементов героя с GSAP
-                gsap.fromTo(hero.querySelector('h1'), {
-                    opacity: 0,
-                    y: 30
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    delay: 0.2,
-                    ease: "power2.out"
-                });
+                const h1 = hero.querySelector('h1');
+                const p = hero.querySelector('p');
+                const btn = hero.querySelector('.btn');
                 
-                gsap.fromTo(hero.querySelector('p'), {
-                    opacity: 0,
-                    y: 30
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    delay: 0.4,
-                    ease: "power2.out"
-                });
+                if (h1) {
+                    safeGsapAnimation(h1, {
+                        from: { opacity: 0, y: 30 },
+                        to: { opacity: 1, y: 0, duration: 1, delay: 0.2, ease: "power2.out" }
+                    });
+                }
                 
-                gsap.fromTo(hero.querySelector('.btn'), {
-                    opacity: 0,
-                    y: 30
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    delay: 0.6,
-                    ease: "power2.out"
-                });
+                if (p) {
+                    safeGsapAnimation(p, {
+                        from: { opacity: 0, y: 30 },
+                        to: { opacity: 1, y: 0, duration: 1, delay: 0.4, ease: "power2.out" }
+                    });
+                }
+                
+                if (btn) {
+                    safeGsapAnimation(btn, {
+                        from: { opacity: 0, y: 30 },
+                        to: { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: "power2.out" }
+                    });
+                }
             }
         }
 
@@ -1881,6 +2044,8 @@
         // Инициализация фильтров каталога
         function initCatalogFilters() {
             const filterButtons = document.querySelectorAll('.catalog-filter-btn');
+            if (filterButtons.length === 0) return;
+            
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     // Убираем активный класс у всех кнопок
@@ -1897,28 +2062,37 @@
         // Фильтрация каталога
         function filterCatalog(filter) {
             const productCards = document.querySelectorAll('.product-card');
+            if (productCards.length === 0) return;
+            
             productCards.forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                const shouldShow = filter === 'all' || card.getAttribute('data-category') === filter;
+                
+                if (shouldShow && card.style.display === 'none') {
                     card.style.display = 'block';
-                    // Анимация появления отфильтрованных карточек
-                    gsap.fromTo(card, {
-                        opacity: 0,
-                        scale: 0.8
-                    }, {
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.5,
-                        ease: "power2.out"
+                    // Используем requestAnimationFrame для гарантии что элемент в DOM
+                    requestAnimationFrame(() => {
+                        safeGsapAnimation(card, {
+                            from: { opacity: 0, scale: 0.8 },
+                            to: {
+                                opacity: 1,
+                                scale: 1,
+                                duration: 0.5,
+                                ease: "power2.out"
+                            }
+                        });
                     });
-                } else {
-                    // Анимация скрытия карточек
-                    gsap.to(card, {
-                        opacity: 0,
-                        scale: 0.8,
-                        duration: 0.3,
-                        ease: "power2.out",
-                        onComplete: () => {
-                            card.style.display = 'none';
+                } else if (!shouldShow && card.style.display !== 'none') {
+                    safeGsapAnimation(card, {
+                        to: {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.3,
+                            ease: "power2.out",
+                            onComplete: () => {
+                                card.style.display = 'none';
+                                // Сбрасываем стили после анимации
+                                gsap.set(card, { opacity: 1, scale: 1 });
+                            }
                         }
                     });
                 }
@@ -1928,6 +2102,8 @@
         // Инициализация обработчиков событий для кнопок товаров
         function initProductButtons() {
             const productCards = document.querySelectorAll('.product-card');
+            if (productCards.length === 0) return;
+            
             productCards.forEach(card => {
                 const buttons = card.querySelectorAll('.btn');
                 buttons.forEach(button => {
@@ -1987,14 +2163,14 @@
                 document.body.style.overflow = 'hidden';
                 
                 // Анимация появления контента в модальном окне
-                gsap.fromTo('.product-modal-content', {
-                    scale: 0.8,
-                    opacity: 0
-                }, {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.3,
-                    ease: "back.out(1.7)"
+                safeGsapAnimation(document.querySelector('.product-modal-content'), {
+                    from: { scale: 0.8, opacity: 0 },
+                    to: {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.3,
+                        ease: "back.out(1.7)"
+                    }
                 });
             }
         }
@@ -2055,14 +2231,16 @@
             const modal = document.getElementById('productModal');
             if (modal) {
                 // Анимация закрытия модального окна
-                gsap.to('.product-modal-content', {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.2,
-                    ease: "power2.in",
-                    onComplete: () => {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
+                safeGsapAnimation(document.querySelector('.product-modal-content'), {
+                    to: {
+                        scale: 0.8,
+                        opacity: 0,
+                        duration: 0.2,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
                     }
                 });
             }
@@ -2078,7 +2256,7 @@
                 }, 1000);
             }
             
-            // Мобильное меню
+            // Мобильное меню - ИСПРАВЛЕНО
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileNav = document.getElementById('mobileNav');
             
@@ -2090,14 +2268,9 @@
                     const icon = mobileMenuBtn.querySelector('i');
                     if (mobileNav.classList.contains('active')) {
                         icon.className = 'fas fa-times';
-                        gsap.fromTo(mobileNav, {
-                            opacity: 0,
-                            y: -20
-                        }, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.3,
-                            ease: "power2.out"
+                        safeGsapAnimation(mobileNav, {
+                            from: { opacity: 0, y: -20 },
+                            to: { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
                         });
                     } else {
                         icon.className = 'fas fa-bars';
@@ -2114,19 +2287,26 @@
                     
                     if (targetElement) {
                         // Анимация прокрутки с GSAP
-                        gsap.to(window, {
-                            duration: 1,
-                            scrollTo: {
-                                y: targetElement,
-                                offsetY: 70
-                            },
-                            ease: "power2.inOut"
-                        });
+                        if (typeof gsap !== 'undefined') {
+                            gsap.to(window, {
+                                duration: 1,
+                                scrollTo: {
+                                    y: targetElement,
+                                    offsetY: 70
+                                },
+                                ease: "power2.inOut"
+                            });
+                        } else {
+                            // Fallback для прокрутки
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
                         
                         // Закрытие мобильного меню после клика
                         if (mobileNav) {
                             mobileNav.classList.remove('active');
-                            mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                            if (mobileMenuBtn) {
+                                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                            }
                         }
                     }
                 });
@@ -2140,17 +2320,10 @@
             function applyTheme() {
                 if (isDarkTheme) {
                     document.body.classList.add('dark-theme');
-                    themeIcon.className = 'fas fa-sun';
-                    // Анимация переключения темы
-                    gsap.to('body', {
-                        backgroundColor: getComputedStyle(document.body).getPropertyValue('--white'),
-                        color: getComputedStyle(document.body).getPropertyValue('--dark'),
-                        duration: 0.5,
-                        ease: "power2.inOut"
-                    });
+                    if (themeIcon) themeIcon.className = 'fas fa-sun';
                 } else {
                     document.body.classList.remove('dark-theme');
-                    themeIcon.className = 'fas fa-moon';
+                    if (themeIcon) themeIcon.className = 'fas fa-moon';
                 }
             }
             
@@ -2160,14 +2333,16 @@
                 applyTheme();
                 
                 // Анимация переключателя темы
-                gsap.fromTo(themeToggle, {
-                    scale: 1
-                }, {
-                    scale: 1.2,
-                    duration: 0.2,
-                    yoyo: true,
-                    repeat: 1
-                });
+                if (themeToggle) {
+                    safeGsapAnimation(themeToggle, {
+                        to: {
+                            scale: 1.2,
+                            duration: 0.2,
+                            yoyo: true,
+                            repeat: 1
+                        }
+                    });
+                }
             }
             
             if (themeToggle && themeIcon) {
@@ -2186,14 +2361,14 @@
                     document.body.style.overflow = 'hidden';
                     
                     // Анимация открытия модального окна
-                    gsap.fromTo('.modal-content', {
-                        scale: 0.8,
-                        opacity: 0
-                    }, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.3,
-                        ease: "back.out(1.7)"
+                    safeGsapAnimation(document.querySelector('.modal-content'), {
+                        from: { scale: 0.8, opacity: 0 },
+                        to: {
+                            scale: 1,
+                            opacity: 1,
+                            duration: 0.3,
+                            ease: "back.out(1.7)"
+                        }
                     });
                 }
             }
@@ -2201,14 +2376,16 @@
             function closeModalFunc() {
                 if (modal) {
                     // Анимация закрытия модального окна
-                    gsap.to('.modal-content', {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.2,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
+                    safeGsapAnimation(document.querySelector('.modal-content'), {
+                        to: {
+                            scale: 0.8,
+                            opacity: 0,
+                            duration: 0.2,
+                            ease: "power2.in",
+                            onComplete: () => {
+                                modal.classList.remove('active');
+                                document.body.style.overflow = 'auto';
+                            }
                         }
                     });
                 }
@@ -2242,22 +2419,25 @@
                     notification.classList.add('show');
                     
                     // Анимация появления уведомления
-                    gsap.fromTo(notification, {
-                        x: 150
-                    }, {
-                        x: 0,
-                        duration: 0.5,
-                        ease: "back.out(1.7)"
+                    safeGsapAnimation(notification, {
+                        from: { x: 150 },
+                        to: {
+                            x: 0,
+                            duration: 0.5,
+                            ease: "back.out(1.7)"
+                        }
                     });
                     
                     setTimeout(() => {
                         // Анимация скрытия уведомления
-                        gsap.to(notification, {
-                            x: 150,
-                            duration: 0.3,
-                            ease: "power2.in",
-                            onComplete: () => {
-                                notification.classList.remove('show');
+                        safeGsapAnimation(notification, {
+                            to: {
+                                x: 150,
+                                duration: 0.3,
+                                ease: "power2.in",
+                                onComplete: () => {
+                                    notification.classList.remove('show');
+                                }
                             }
                         });
                     }, 3000);
@@ -2299,22 +2479,24 @@
             let lastScrollY = window.scrollY;
             const header = document.getElementById('header');
             
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-                
-                // Скрытие/показ шапки при скролле
-                if (window.scrollY > lastScrollY && window.scrollY > 100) {
-                    header.classList.add('hidden');
-                } else {
-                    header.classList.remove('hidden');
-                }
-                
-                lastScrollY = window.scrollY;
-            });
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                    
+                    // Скрытие/показ шапки при скролле
+                    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                        header.classList.add('hidden');
+                    } else {
+                        header.classList.remove('hidden');
+                    }
+                    
+                    lastScrollY = window.scrollY;
+                });
+            }
         }
         
         // Инициализация при загрузке страницы
