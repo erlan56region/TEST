@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -1545,6 +1546,22 @@
                         toggleActions: "play none none reverse"
                     }
                 });
+            } else {
+                // Fallback без GSAP
+                let current = start;
+                const increment = (end - start) / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= end) {
+                        current = end;
+                        clearInterval(timer);
+                    }
+                    if (element.id === 'clientsCounter') {
+                        element.textContent = Math.floor(current) + '%';
+                    } else {
+                        element.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, duration / 50);
             }
         }
 
@@ -1694,8 +1711,6 @@
             
             orderButton.addEventListener('click', () => {
                 closeProductModal();
-                const productName = document.getElementById('modalProductName').textContent;
-                const productPrice = document.getElementById('modalProductPrice').textContent;
                 openModal();
             });
             
