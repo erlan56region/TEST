@@ -1,3 +1,107 @@
+<?php
+// Обработка отправки форм
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $to = 'erlan56region@gmail.com';
+    
+    // Определяем какая форма отправлена
+    if (isset($_POST['form_type'])) {
+        $form_type = $_POST['form_type'];
+        
+        // Общие данные
+        $name = htmlspecialchars($_POST['name'] ?? '');
+        $phone = htmlspecialchars($_POST['phone'] ?? '');
+        $location = htmlspecialchars($_POST['location'] ?? 'Оренбург');
+        $message = htmlspecialchars($_POST['message'] ?? '');
+        
+        // Валидация
+        $errors = [];
+        if (empty($name)) $errors[] = "Имя обязательно";
+        if (empty($phone)) $errors[] = "Телефон обязателен";
+        
+        if (empty($errors)) {
+            // Формируем тему и тело письма в зависимости от типа формы
+            switch($form_type) {
+                case 'contact':
+                    $subject = 'Новый запрос с сайта ИП Рахметов';
+                    $body = "
+                    Новая заявка с сайта ИП Рахметов А.К.
+                    
+                    Форма: Обратная связь
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    Сообщение: $message
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+                    break;
+                    
+                case 'quick':
+                    $subject = 'Быстрая заявка с сайта ИП Рахметов';
+                    $body = "
+                    Быстрая заявка с сайта ИП Рахметов А.К.
+                    
+                    Форма: Быстрая консультация
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+                    break;
+                    
+                case 'product_order':
+                    $product_name = htmlspecialchars($_POST['product_name'] ?? '');
+                    $product_price = htmlspecialchars($_POST['product_price'] ?? '');
+                    $subject = 'Заказ товара с сайта ИП Рахметов';
+                    $body = "
+                    Заказ товара с сайта ИП Рахметов А.К.
+                    
+                    Товар: $product_name
+                    Цена: $product_price
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    Сообщение: $message
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+                    break;
+                    
+                default:
+                    $subject = 'Новый запрос с сайта ИП Рахметов';
+                    $body = "
+                    Новый запрос с сайта ИП Рахметов А.К.
+                    
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    Сообщение: $message
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+            }
+            
+            // Заголовки
+            $headers = [
+                'From' => 'noreply@rahmetov-orenburg.ru',
+                'Reply-To' => 'noreply@rahmetov-orenburg.ru',
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Content-Type' => 'text/plain; charset=utf-8'
+            ];
+            
+            // Отправка письма
+            $mail_sent = mail($to, $subject, $body, $headers);
+            
+            // Возвращаем JSON ответ для AJAX
+            if ($mail_sent) {
+                echo json_encode(['success' => true, 'message' => 'Сообщение отправлено успешно!']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Ошибка при отправке сообщения. Попробуйте позвонить нам.']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Пожалуйста, заполните обязательные поля.', 'errors' => $errors]);
+        }
+    }
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -41,6 +145,11 @@
             font-family: 'Inter', sans-serif;
         }
         
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+        
         body {
             color: var(--dark);
             line-height: 1.6;
@@ -82,8 +191,22 @@
             box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
         }
         
+        .btn:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
         section {
             padding: 80px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         h2 {
@@ -137,6 +260,11 @@
             top: 0;
             z-index: 1000;
             transition: var(--transition);
+            transform: translateY(0);
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
         }
         
         header.scrolled {
@@ -213,6 +341,15 @@
             align-items: center;
         }
         
+        .phone a {
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .phone a:hover {
+            color: var(--primary);
+        }
+        
         .phone i {
             margin-right: 8px;
             color: var(--primary);
@@ -263,17 +400,27 @@
         
         /* Герой секция */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Водоснабжение+и+отопление') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1600585154340-6f67677f6777?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
             margin-top: 70px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .hero.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 1s ease, transform 1s ease;
         }
         
         .hero h1 {
             font-size: 52px;
             margin-bottom: 20px;
             font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
         }
         
         .hero p {
@@ -282,6 +429,33 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .hero .btn {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .hero.animate h1,
+        .hero.animate p,
+        .hero.animate .btn {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .hero.animate h1 {
+            transition-delay: 0.2s;
+        }
+        
+        .hero.animate p {
+            transition-delay: 0.4s;
+        }
+        
+        .hero.animate .btn {
+            transition-delay: 0.6s;
         }
         
         /* Услуги */
@@ -301,6 +475,14 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .service-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
         }
         
         .service-card:hover {
@@ -381,6 +563,14 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
         }
         
         .product-card:hover {
@@ -637,12 +827,20 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateX(-30px);
             background-color: #f8f9fa;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--primary);
             font-size: 64px;
+        }
+        
+        .about-img.animate {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
         .about-img img {
@@ -654,6 +852,14 @@
         
         .about-content {
             flex: 1;
+            opacity: 0;
+            transform: translateX(30px);
+        }
+        
+        .about-content.animate {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
         .about-content h2 {
@@ -673,6 +879,14 @@
         
         .stat-item {
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .stat-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
         .stat-number {
@@ -698,6 +912,14 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .contact-info.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
         .contact-info h3 {
@@ -719,6 +941,14 @@
             font-size: 18px;
         }
         
+        .contact-item a {
+            transition: var(--transition);
+        }
+        
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+        
         .form-group {
             margin-bottom: 20px;
         }
@@ -736,6 +966,28 @@
             border-radius: 8px;
             font-size: 16px;
             transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-error {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-error.show {
+            display: block;
         }
         
         /* Подвал */
@@ -790,6 +1042,11 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -860,10 +1117,19 @@
             transform: translateX(150%);
             transition: transform 0.3s;
             z-index: 1000;
+            max-width: 400px;
         }
         
         .notification.show {
             transform: translateX(0);
+        }
+        
+        .notification.error {
+            background: #dc3545;
+        }
+        
+        .notification.success {
+            background: var(--secondary);
         }
         
         /* Анимация загрузки */
@@ -962,6 +1228,10 @@
                 flex-direction: column;
                 gap: 20px;
             }
+            
+            html {
+                scroll-padding-top: 120px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -983,6 +1253,10 @@
             
             .services-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .product-modal-actions {
+                flex-direction: column;
             }
         }
     </style>
@@ -1009,23 +1283,23 @@
                 </button>
                 <nav class="desktop-nav">
                     <ul>
-                        <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог</a></li>
-                        <li><a href="#about">О компании</a></li>
-                        <li><a href="#contacts">Контакты</a></li>
+                        <li><a href="#services" class="nav-link">Услуги</a></li>
+                        <li><a href="#catalog" class="nav-link">Каталог</a></li>
+                        <li><a href="#about" class="nav-link">О компании</a></li>
+                        <li><a href="#contacts" class="nav-link">Контакты</a></li>
                     </ul>
                 </nav>
                 <div class="phone">
                     <i class="fas fa-phone"></i>
-                    +7 (3532) 123-45-67
+                    <a href="tel:+735321234567">+7 (3532) 123-45-67</a>
                 </div>
             </div>
             <nav class="mobile-nav" id="mobileNav">
                 <ul>
-                    <li><a href="#services">Услуги</a></li>
-                    <li><a href="#catalog">Каталог</a></li>
-                    <li><a href="#about">О компании</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#services" class="nav-link">Услуги</a></li>
+                    <li><a href="#catalog" class="nav-link">Каталог</a></li>
+                    <li><a href="#about" class="nav-link">О компании</a></li>
+                    <li><a href="#contacts" class="nav-link">Контакты</a></li>
                 </ul>
             </nav>
         </div>
@@ -1173,11 +1447,11 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <div>+7 (3532) 123-45-67</div>
+                        <div><a href="tel:+735321234567">+7 (3532) 123-45-67</a></div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
-                        <div>info@rahmetov-orenburg.ru</div>
+                        <div><a href="mailto:info@rahmetov-orenburg.ru">info@rahmetov-orenburg.ru</a></div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-clock"></i>
@@ -1197,23 +1471,26 @@
                 <div class="contact-info">
                     <h3>Форма обратной связи</h3>
                     <form id="contact-form">
+                        <input type="hidden" name="form_type" value="contact">
                         <div class="form-group">
-                            <label for="name">Ваше имя</label>
-                            <input type="text" id="name" class="form-control" required>
+                            <label for="name">Ваше имя *</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                            <div class="form-error" id="name-error">Пожалуйста, введите ваше имя</div>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Ваш телефон</label>
-                            <input type="tel" id="phone" class="form-control" required>
+                            <label for="phone">Ваш телефон *</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                            <div class="form-error" id="phone-error">Пожалуйста, введите ваш телефон</div>
                         </div>
                         <div class="form-group">
                             <label for="location">Ваш населенный пункт</label>
-                            <input type="text" id="location" class="form-control" placeholder="Оренбург или область">
+                            <input type="text" id="location" name="location" class="form-control" placeholder="Оренбург или область">
                         </div>
                         <div class="form-group">
                             <label for="message">Сообщение</label>
-                            <textarea id="message" class="form-control" rows="4"></textarea>
+                            <textarea id="message" name="message" class="form-control" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="btn">Отправить</button>
+                        <button type="submit" class="btn" id="contactSubmitBtn">Отправить</button>
                     </form>
                 </div>
             </div>
@@ -1227,19 +1504,19 @@
                 <div class="footer-column">
                     <h3>Компания</h3>
                     <ul>
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог</a></li>
-                        <li><a href="#contacts">Контакты</a></li>
+                        <li><a href="#about" class="nav-link">О нас</a></li>
+                        <li><a href="#services" class="nav-link">Услуги</a></li>
+                        <li><a href="#catalog" class="nav-link">Каталог</a></li>
+                        <li><a href="#contacts" class="nav-link">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Услуги</h3>
                     <ul>
-                        <li><a href="#">Водоснабжение</a></li>
-                        <li><a href="#">Отопление</a></li>
-                        <li><a href="#">Канализация</a></li>
-                        <li><a href="#">Криология</a></li>
+                        <li><a href="#services" class="nav-link">Водоснабжение</a></li>
+                        <li><a href="#services" class="nav-link">Отопление</a></li>
+                        <li><a href="#services" class="nav-link">Канализация</a></li>
+                        <li><a href="#catalog" class="nav-link">Криология</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1247,8 +1524,8 @@
                     <ul>
                         <li><strong>ИП Рахметов А.К.</strong></li>
                         <li>ИНН: 561902398552</li>
-                        <li>+7 (3532) 123-45-67</li>
-                        <li>info@rahmetov-orenburg.ru</li>
+                        <li><a href="tel:+735321234567">+7 (3532) 123-45-67</a></li>
+                        <li><a href="mailto:info@rahmetov-orenburg.ru">info@rahmetov-orenburg.ru</a></li>
                         <li>г. Оренбург, ул. Примерная, д. 123</li>
                         <li>Работаем по Оренбургу и области</li>
                     </ul>
@@ -1271,19 +1548,22 @@
             <button class="close-modal" id="closeModal" aria-label="Закрыть">&times;</button>
             <h3>Быстрая консультация</h3>
             <form id="quick-form">
+                <input type="hidden" name="form_type" value="quick">
                 <div class="form-group">
-                    <label for="quick-name">Ваше имя</label>
-                    <input type="text" id="quick-name" class="form-control" required>
+                    <label for="quick-name">Ваше имя *</label>
+                    <input type="text" id="quick-name" name="name" class="form-control" required>
+                    <div class="form-error" id="quick-name-error">Пожалуйста, введите ваше имя</div>
                 </div>
                 <div class="form-group">
-                    <label for="quick-phone">Ваш телефон</label>
-                    <input type="tel" id="quick-phone" class="form-control" required>
+                    <label for="quick-phone">Ваш телефон *</label>
+                    <input type="tel" id="quick-phone" name="phone" class="form-control" required>
+                    <div class="form-error" id="quick-phone-error">Пожалуйста, введите ваш телефон</div>
                 </div>
                 <div class="form-group">
                     <label for="quick-location">Ваш населенный пункт</label>
-                    <input type="text" id="quick-location" class="form-control" placeholder="Оренбург или область">
+                    <input type="text" id="quick-location" name="location" class="form-control" placeholder="Оренбург или область">
                 </div>
-                <button type="submit" class="btn">Позвоните мне</button>
+                <button type="submit" class="btn" id="quickSubmitBtn">Позвоните мне</button>
             </form>
         </div>
     </div>
@@ -1527,158 +1807,188 @@
             }
         ];
 
-        // Инициализация GSAP анимаций
-        function initAnimations() {
-            // Инициализация ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
+        // Основная функция инициализации навигации
+        function initNavigation() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
             
-            // Анимация появления секций при скролле
-            gsap.utils.toArray('section').forEach(section => {
-                gsap.fromTo(section, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                        end: "bottom 20%",
-                        toggleActions: "play none none reverse"
+            // Мобильное меню
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileNav.classList.toggle('active');
+                    
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileNav.classList.contains('active')) {
+                        icon.className = 'fas fa-times';
+                    } else {
+                        icon.className = 'fas fa-bars';
+                    }
+                });
+            }
+            
+            // Плавная прокрутка для всех навигационных ссылок
+            document.querySelectorAll('.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (!targetId || !targetId.startsWith('#')) return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Рассчитываем позицию с учетом фиксированного хедера
+                        const headerHeight = document.getElementById('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+                        
+                        // Плавная прокрутка
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Закрытие мобильного меню после клика
+                        if (mobileNav) {
+                            mobileNav.classList.remove('active');
+                            if (mobileMenuBtn) {
+                                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                            }
+                        }
                     }
                 });
             });
             
-            // Анимация карточек услуг
-            gsap.utils.toArray('.service-card').forEach((card, i) => {
-                gsap.fromTo(card, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
+            // Обработка скролла для шапки
+            let lastScrollY = window.scrollY;
+            const header = document.getElementById('header');
             
-            // Анимация карточек товаров
-            gsap.utils.toArray('.product-card').forEach((card, i) => {
-                gsap.fromTo(card, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.1,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-            
-            // Анимация элементов "О компании"
-            gsap.fromTo('.about-img', {
-                opacity: 0,
-                x: -50
-            }, {
-                opacity: 1,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: '.about',
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
                 }
-            });
-            
-            gsap.fromTo('.about-content', {
-                opacity: 0,
-                x: 50
-            }, {
-                opacity: 1,
-                x: 0,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: '.about',
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
+                
+                // Скрытие/показ шапки при скролле
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
                 }
-            });
-            
-            // Анимация статистики
-            gsap.utils.toArray('.stat-item').forEach((item, i) => {
-                gsap.fromTo(item, {
-                    opacity: 0,
-                    y: 30
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: '.stats',
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
-            });
-            
-            // Анимация контактных блоков
-            gsap.utils.toArray('.contact-info').forEach((info, i) => {
-                gsap.fromTo(info, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: i * 0.2,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: '.contacts-grid',
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    }
-                });
+                
+                lastScrollY = window.scrollY;
             });
         }
 
-        // Улучшенная функция для анимации счетчика с GSAP
+        // Инициализация GSAP анимаций
+        function initAnimations() {
+            // Инициализация ScrollTrigger
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Анимация появления секций при скролле
+                gsap.utils.toArray('section').forEach(section => {
+                    gsap.fromTo(section, {
+                        opacity: 0,
+                        y: 50
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 80%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none reverse"
+                        }
+                    });
+                });
+                
+                // Анимация карточек услуг
+                gsap.utils.toArray('.service-card').forEach((card, i) => {
+                    gsap.fromTo(card, {
+                        opacity: 0,
+                        y: 50
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        delay: i * 0.1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    });
+                });
+                
+                // Анимация карточек товаров
+                gsap.utils.toArray('.product-card').forEach((card, i) => {
+                    gsap.fromTo(card, {
+                        opacity: 0,
+                        y: 50
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        delay: i * 0.1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse"
+                        }
+                    });
+                });
+            } else {
+                // Fallback если GSAP не загрузился
+                document.querySelectorAll('section, .service-card, .product-card').forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            }
+        }
+
+        // Функция для анимации счетчиков
         function animateCounter(element, start, end, duration) {
-            const obj = { value: start };
-            gsap.to(obj, {
-                value: end,
-                duration: duration / 1000,
-                ease: "power2.out",
-                onUpdate: function() {
-                    if (element.id === 'clientsCounter') {
-                        element.textContent = Math.floor(obj.value) + '%';
-                    } else {
-                        element.textContent = Math.floor(obj.value).toLocaleString();
+            if (typeof gsap !== 'undefined') {
+                const obj = { value: start };
+                gsap.to(obj, {
+                    value: end,
+                    duration: duration / 1000,
+                    ease: "power2.out",
+                    onUpdate: function() {
+                        if (element.id === 'clientsCounter') {
+                            element.textContent = Math.floor(obj.value) + '%';
+                        } else {
+                            element.textContent = Math.floor(obj.value).toLocaleString();
+                        }
+                    },
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
                     }
-                },
-                scrollTrigger: {
-                    trigger: element,
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                }
-            });
+                });
+            } else {
+                // Fallback анимация
+                let current = start;
+                const increment = (end - start) / (duration / 16);
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= end) {
+                        current = end;
+                        clearInterval(timer);
+                    }
+                    if (element.id === 'clientsCounter') {
+                        element.textContent = Math.floor(current) + '%';
+                    } else {
+                        element.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 16);
+            }
         }
 
         // Функция для запуска счетчиков
@@ -1691,6 +2001,64 @@
                 animateCounter(yearsCounter, 0, 15, 2000);
                 animateCounter(projectsCounter, 0, 1200, 2500);
                 animateCounter(clientsCounter, 0, 98, 1800);
+            }
+        }
+
+        // Анимация появления героя
+        function initHeroAnimation() {
+            const hero = document.getElementById('hero');
+            if (hero) {
+                hero.classList.add('animate');
+                
+                if (typeof gsap !== 'undefined') {
+                    // Анимация элементов героя с GSAP
+                    gsap.fromTo(hero.querySelector('h1'), {
+                        opacity: 0,
+                        y: 30
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        delay: 0.2,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.fromTo(hero.querySelector('p'), {
+                        opacity: 0,
+                        y: 30
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        delay: 0.4,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.fromTo(hero.querySelector('.btn'), {
+                        opacity: 0,
+                        y: 30
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        delay: 0.6,
+                        ease: "power2.out"
+                    });
+                } else {
+                    // Fallback анимация
+                    setTimeout(() => {
+                        hero.querySelector('h1').style.opacity = '1';
+                        hero.querySelector('h1').style.transform = 'translateY(0)';
+                    }, 200);
+                    setTimeout(() => {
+                        hero.querySelector('p').style.opacity = '1';
+                        hero.querySelector('p').style.transform = 'translateY(0)';
+                    }, 400);
+                    setTimeout(() => {
+                        hero.querySelector('.btn').style.opacity = '1';
+                        hero.querySelector('.btn').style.transform = 'translateY(0)';
+                    }, 600);
+                }
             }
         }
 
@@ -1762,26 +2130,39 @@
                 if (filter === 'all' || card.getAttribute('data-category') === filter) {
                     card.style.display = 'block';
                     // Анимация появления отфильтрованных карточек
-                    gsap.fromTo(card, {
-                        opacity: 0,
-                        scale: 0.8
-                    }, {
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.5,
-                        ease: "power2.out"
-                    });
+                    if (typeof gsap !== 'undefined') {
+                        gsap.fromTo(card, {
+                            opacity: 0,
+                            scale: 0.8
+                        }, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: "power2.out"
+                        });
+                    } else {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }
                 } else {
                     // Анимация скрытия карточек
-                    gsap.to(card, {
-                        opacity: 0,
-                        scale: 0.8,
-                        duration: 0.3,
-                        ease: "power2.out",
-                        onComplete: () => {
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(card, {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.3,
+                            ease: "power2.out",
+                            onComplete: () => {
+                                card.style.display = 'none';
+                            }
+                        });
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
                             card.style.display = 'none';
-                        }
-                    });
+                        }, 300);
+                    }
                 }
             });
         }
@@ -1848,15 +2229,20 @@
                 document.body.style.overflow = 'hidden';
                 
                 // Анимация появления контента в модальном окне
-                gsap.fromTo('.product-modal-content', {
-                    scale: 0.8,
-                    opacity: 0
-                }, {
-                    scale: 1,
-                    opacity: 1,
-                    duration: 0.3,
-                    ease: "back.out(1.7)"
-                });
+                if (typeof gsap !== 'undefined') {
+                    gsap.fromTo('.product-modal-content', {
+                        scale: 0.8,
+                        opacity: 0
+                    }, {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.3,
+                        ease: "back.out(1.7)"
+                    });
+                } else {
+                    document.querySelector('.product-modal-content').style.transform = 'scale(1)';
+                    document.querySelector('.product-modal-content').style.opacity = '1';
+                }
             }
         }
         
@@ -1866,7 +2252,32 @@
             if (product) {
                 // Открытие модального окна заказа
                 openModal();
-                // В реальном приложении здесь можно добавить логику для предзаполнения формы
+                
+                // Заполнение данных о товаре в форме
+                setTimeout(() => {
+                    const quickName = document.getElementById('quick-name');
+                    const quickPhone = document.getElementById('quick-phone');
+                    
+                    if (quickName && quickPhone) {
+                        // Добавляем информацию о товаре в сообщение
+                        const message = `Заинтересовал товар: ${product.name} (${product.price})`;
+                        document.querySelector('input[name="form_type"]').value = 'product_order';
+                        document.querySelector('input[name="product_name"]')?.remove();
+                        document.querySelector('input[name="product_price"]')?.remove();
+                        
+                        const productNameInput = document.createElement('input');
+                        productNameInput.type = 'hidden';
+                        productNameInput.name = 'product_name';
+                        productNameInput.value = product.name;
+                        document.getElementById('quick-form').appendChild(productNameInput);
+                        
+                        const productPriceInput = document.createElement('input');
+                        productPriceInput.type = 'hidden';
+                        productPriceInput.name = 'product_price';
+                        productPriceInput.value = product.price;
+                        document.getElementById('quick-form').appendChild(productPriceInput);
+                    }
+                }, 100);
             }
         }
         
@@ -1887,7 +2298,7 @@
             // Заказ товара из модального окна
             orderButton.addEventListener('click', () => {
                 closeProductModal();
-                openModal();
+                orderProductFromModal();
             });
             
             // Консультация по товару
@@ -1911,148 +2322,40 @@
             });
         }
         
+        // Заказ товара из модального окна
+        function orderProductFromModal() {
+            const productName = document.getElementById('modalProductName').textContent;
+            const productPrice = document.getElementById('modalProductPrice').textContent;
+            
+            openModal();
+            
+            // Заполнение данных о товаре в форме
+            setTimeout(() => {
+                document.querySelector('input[name="form_type"]').value = 'product_order';
+                document.querySelector('input[name="product_name"]')?.remove();
+                document.querySelector('input[name="product_price"]')?.remove();
+                
+                const productNameInput = document.createElement('input');
+                productNameInput.type = 'hidden';
+                productNameInput.name = 'product_name';
+                productNameInput.value = productName;
+                document.getElementById('quick-form').appendChild(productNameInput);
+                
+                const productPriceInput = document.createElement('input');
+                productPriceInput.type = 'hidden';
+                productPriceInput.name = 'product_price';
+                productPriceInput.value = productPrice;
+                document.getElementById('quick-form').appendChild(productPriceInput);
+            }, 100);
+        }
+        
         // Закрытие модального окна товара
         function closeProductModal() {
             const modal = document.getElementById('productModal');
             if (modal) {
                 // Анимация закрытия модального окна
-                gsap.to('.product-modal-content', {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.2,
-                    ease: "power2.in",
-                    onComplete: () => {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
-                });
-            }
-        }
-        
-        // Базовая функциональность
-        function initBaseFunctionality() {
-            // Скрытие анимации загрузки
-            const loadingAnimation = document.getElementById('loadingAnimation');
-            if (loadingAnimation) {
-                setTimeout(() => {
-                    loadingAnimation.classList.add('hidden');
-                }, 1000);
-            }
-            
-            // Мобильное меню
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileNav = document.getElementById('mobileNav');
-            
-            if (mobileMenuBtn && mobileNav) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileNav.classList.toggle('active');
-                    
-                    // Анимация иконки меню
-                    const icon = mobileMenuBtn.querySelector('i');
-                    if (mobileNav.classList.contains('active')) {
-                        icon.className = 'fas fa-times';
-                        gsap.fromTo(mobileNav, {
-                            opacity: 0,
-                            y: -20
-                        }, {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.3,
-                            ease: "power2.out"
-                        });
-                    } else {
-                        icon.className = 'fas fa-bars';
-                    }
-                });
-            }
-            
-            // Плавная прокрутка
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        // Нативная плавная прокрутка
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 70;
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Закрытие мобильного меню после клика
-                        if (mobileNav) {
-                            mobileNav.classList.remove('active');
-                            mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
-                        }
-                    }
-                });
-            });
-            
-            // Переключение темы
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            let isDarkTheme = localStorage.getItem('darkTheme') === 'true';
-            
-            function applyTheme() {
-                if (isDarkTheme) {
-                    document.body.classList.add('dark-theme');
-                    themeIcon.className = 'fas fa-sun';
-                } else {
-                    document.body.classList.remove('dark-theme');
-                    themeIcon.className = 'fas fa-moon';
-                }
-            }
-            
-            function toggleTheme() {
-                isDarkTheme = !isDarkTheme;
-                localStorage.setItem('darkTheme', isDarkTheme);
-                applyTheme();
-                
-                // Анимация переключателя темы
-                gsap.fromTo(themeToggle, {
-                    scale: 1
-                }, {
-                    scale: 1.2,
-                    duration: 0.2,
-                    yoyo: true,
-                    repeat: 1
-                });
-            }
-            
-            if (themeToggle && themeIcon) {
-                themeToggle.addEventListener('click', toggleTheme);
-                applyTheme();
-            }
-            
-            // Модальное окно
-            const modal = document.getElementById('modal');
-            const contactBtn = document.getElementById('contactBtn');
-            const closeModal = document.getElementById('closeModal');
-            
-            function openModal() {
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Анимация открытия модального окна
-                    gsap.fromTo('.modal-content', {
-                        scale: 0.8,
-                        opacity: 0
-                    }, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.3,
-                        ease: "back.out(1.7)"
-                    });
-                }
-            }
-            
-            function closeModalFunc() {
-                if (modal) {
-                    // Анимация закрытия модального окна
-                    gsap.to('.modal-content', {
+                if (typeof gsap !== 'undefined') {
+                    gsap.to('.product-modal-content', {
                         scale: 0.8,
                         opacity: 0,
                         duration: 0.2,
@@ -2062,6 +2365,72 @@
                             document.body.style.overflow = 'auto';
                         }
                     });
+                } else {
+                    document.querySelector('.product-modal-content').style.transform = 'scale(0.8)';
+                    document.querySelector('.product-modal-content').style.opacity = '0';
+                    setTimeout(() => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }, 200);
+                }
+            }
+        }
+
+        // Инициализация модальных окон и форм
+        function initModals() {
+            const modal = document.getElementById('modal');
+            const contactBtn = document.getElementById('contactBtn');
+            const closeModal = document.getElementById('closeModal');
+            
+            function openModal() {
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Сброс формы
+                    document.getElementById('quick-form').reset();
+                    document.querySelectorAll('.form-error').forEach(error => error.classList.remove('show'));
+                    
+                    // Анимация открытия модального окна
+                    if (typeof gsap !== 'undefined') {
+                        gsap.fromTo('.modal-content', {
+                            scale: 0.8,
+                            opacity: 0
+                        }, {
+                            scale: 1,
+                            opacity: 1,
+                            duration: 0.3,
+                            ease: "back.out(1.7)"
+                        });
+                    } else {
+                        document.querySelector('.modal-content').style.transform = 'scale(1)';
+                        document.querySelector('.modal-content').style.opacity = '1';
+                    }
+                }
+            }
+            
+            function closeModalFunc() {
+                if (modal) {
+                    // Анимация закрытия модального окна
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to('.modal-content', {
+                            scale: 0.8,
+                            opacity: 0,
+                            duration: 0.2,
+                            ease: "power2.in",
+                            onComplete: () => {
+                                modal.classList.remove('active');
+                                document.body.style.overflow = 'auto';
+                            }
+                        });
+                    } else {
+                        document.querySelector('.modal-content').style.transform = 'scale(0.8)';
+                        document.querySelector('.modal-content').style.opacity = '0';
+                        setTimeout(() => {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }, 200);
+                    }
                 }
             }
             
@@ -2088,56 +2457,192 @@
             const quickForm = document.getElementById('quick-form');
             const notification = document.getElementById('notification');
             
-            function showNotification() {
+            // Функция отправки формы
+            function submitForm(form, submitBtn) {
+                const formData = new FormData(form);
+                
+                // Валидация полей
+                let isValid = true;
+                const requiredFields = form.querySelectorAll('[required]');
+                requiredFields.forEach(field => {
+                    const errorElement = document.getElementById(field.id + '-error');
+                    if (!field.value.trim()) {
+                        if (errorElement) errorElement.classList.add('show');
+                        isValid = false;
+                    } else {
+                        if (errorElement) errorElement.classList.remove('show');
+                    }
+                });
+                
+                if (!isValid) return;
+                
+                // Блокировка кнопки отправки
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Отправка...';
+                }
+                
+                // Отправка AJAX запроса
+                fetch('', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showNotification(data.message, 'success');
+                        form.reset();
+                        
+                        // Закрытие модального окна если это быстрая форма
+                        if (form.id === 'quick-form') {
+                            closeModalFunc();
+                        }
+                    } else {
+                        showNotification(data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showNotification('Произошла ошибка при отправке. Попробуйте позвонить нам.', 'error');
+                })
+                .finally(() => {
+                    // Разблокировка кнопки отправки
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        if (form.id === 'contact-form') {
+                            submitBtn.textContent = 'Отправить';
+                        } else {
+                            submitBtn.textContent = 'Позвоните мне';
+                        }
+                    }
+                });
+            }
+            
+            function showNotification(message, type = 'success') {
                 if (notification) {
-                    notification.classList.add('show');
+                    notification.textContent = message;
+                    notification.className = 'notification';
+                    notification.classList.add(type, 'show');
                     
                     // Анимация появления уведомления
-                    gsap.fromTo(notification, {
-                        x: 150
-                    }, {
-                        x: 0,
-                        duration: 0.5,
-                        ease: "back.out(1.7)"
-                    });
+                    if (typeof gsap !== 'undefined') {
+                        gsap.fromTo(notification, {
+                            x: 150
+                        }, {
+                            x: 0,
+                            duration: 0.5,
+                            ease: "back.out(1.7)"
+                        });
+                    } else {
+                        notification.style.transform = 'translateX(0)';
+                    }
                     
                     setTimeout(() => {
                         // Анимация скрытия уведомления
-                        gsap.to(notification, {
-                            x: 150,
-                            duration: 0.3,
-                            ease: "power2.in",
-                            onComplete: () => {
+                        if (typeof gsap !== 'undefined') {
+                            gsap.to(notification, {
+                                x: 150,
+                                duration: 0.3,
+                                ease: "power2.in",
+                                onComplete: () => {
+                                    notification.classList.remove('show');
+                                }
+                            });
+                        } else {
+                            notification.style.transform = 'translateX(150%)';
+                            setTimeout(() => {
                                 notification.classList.remove('show');
-                            }
-                        });
-                    }, 3000);
+                            }, 300);
+                        }
+                    }, 5000);
                 }
             }
             
             if (contactForm) {
+                const contactSubmitBtn = document.getElementById('contactSubmitBtn');
                 contactForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    setTimeout(() => {
-                        contactForm.reset();
-                        showNotification();
-                    }, 500);
+                    submitForm(contactForm, contactSubmitBtn);
                 });
             }
             
             if (quickForm) {
+                const quickSubmitBtn = document.getElementById('quickSubmitBtn');
                 quickForm.addEventListener('submit', (e) => {
                     e.preventDefault();
-                    setTimeout(() => {
-                        quickForm.reset();
-                        closeModalFunc();
-                        showNotification();
-                    }, 500);
+                    submitForm(quickForm, quickSubmitBtn);
                 });
             }
+        }
+
+        // Переключение темы
+        function initThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            let isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+            
+            function applyTheme() {
+                if (isDarkTheme) {
+                    document.body.classList.add('dark-theme');
+                    themeIcon.className = 'fas fa-sun';
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    themeIcon.className = 'fas fa-moon';
+                }
+            }
+            
+            function toggleTheme() {
+                isDarkTheme = !isDarkTheme;
+                localStorage.setItem('darkTheme', isDarkTheme);
+                applyTheme();
+                
+                // Анимация переключателя темы
+                if (typeof gsap !== 'undefined') {
+                    gsap.fromTo(themeToggle, {
+                        scale: 1
+                    }, {
+                        scale: 1.2,
+                        duration: 0.2,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                }
+            }
+            
+            if (themeToggle && themeIcon) {
+                themeToggle.addEventListener('click', toggleTheme);
+                applyTheme();
+            }
+        }
+
+        // Основная функция инициализации
+        function init() {
+            // Скрытие анимации загрузки
+            const loadingAnimation = document.getElementById('loadingAnimation');
+            if (loadingAnimation) {
+                setTimeout(() => {
+                    loadingAnimation.classList.add('hidden');
+                }, 1000);
+            }
+            
+            // Инициализация всех компонентов
+            initNavigation();
+            initCatalog();
+            initHeroAnimation();
+            initModals();
+            initThemeToggle();
+            
+            // Инициализация анимаций после загрузки
+            setTimeout(() => {
+                initAnimations();
+                initCounters();
+            }, 100);
             
             // Закрытие мобильного меню при ресайзе
             window.addEventListener('resize', () => {
+                const mobileNav = document.getElementById('mobileNav');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                
                 if (window.innerWidth > 768 && mobileNav) {
                     mobileNav.classList.remove('active');
                     if (mobileMenuBtn) {
@@ -2145,34 +2650,10 @@
                     }
                 }
             });
-
-            // Обработка скролла для шапки
-            const header = document.getElementById('header');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
         }
-        
+
         // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                initBaseFunctionality();
-                initCatalog();
-                
-                // Инициализация анимаций после небольшой задержки
-                setTimeout(() => {
-                    initAnimations();
-                    initCounters();
-                }, 100);
-            } catch (error) {
-                console.error('Ошибка инициализации:', error);
-            }
-        });
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
