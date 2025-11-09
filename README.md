@@ -1,3 +1,7 @@
+Сайт
+в
+Разработке
+2.0
 <!DOCTYPE html>
 <html lang="ru">
 <head>
