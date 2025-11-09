@@ -1,107 +1,3 @@
-<?php
-// Обработка отправки форм
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = 'erlan56region@gmail.com';
-    
-    // Определяем какая форма отправлена
-    if (isset($_POST['form_type'])) {
-        $form_type = $_POST['form_type'];
-        
-        // Общие данные
-        $name = htmlspecialchars($_POST['name'] ?? '');
-        $phone = htmlspecialchars($_POST['phone'] ?? '');
-        $location = htmlspecialchars($_POST['location'] ?? 'Оренбург');
-        $message = htmlspecialchars($_POST['message'] ?? '');
-        
-        // Валидация
-        $errors = [];
-        if (empty($name)) $errors[] = "Имя обязательно";
-        if (empty($phone)) $errors[] = "Телефон обязателен";
-        
-        if (empty($errors)) {
-            // Формируем тему и тело письма в зависимости от типа формы
-            switch($form_type) {
-                case 'contact':
-                    $subject = 'Новый запрос с сайта ИП Рахметов';
-                    $body = "
-                    Новая заявка с сайта ИП Рахметов А.К.
-                    
-                    Форма: Обратная связь
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    Сообщение: $message
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-                    break;
-                    
-                case 'quick':
-                    $subject = 'Быстрая заявка с сайта ИП Рахметов';
-                    $body = "
-                    Быстрая заявка с сайта ИП Рахметов А.К.
-                    
-                    Форма: Быстрая консультация
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-                    break;
-                    
-                case 'product_order':
-                    $product_name = htmlspecialchars($_POST['product_name'] ?? '');
-                    $product_price = htmlspecialchars($_POST['product_price'] ?? '');
-                    $subject = 'Заказ товара с сайта ИП Рахметов';
-                    $body = "
-                    Заказ товара с сайта ИП Рахметов А.К.
-                    
-                    Товар: $product_name
-                    Цена: $product_price
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    Сообщение: $message
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-                    break;
-                    
-                default:
-                    $subject = 'Новый запрос с сайта ИП Рахметов';
-                    $body = "
-                    Новый запрос с сайта ИП Рахметов А.К.
-                    
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    Сообщение: $message
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-            }
-            
-            // Заголовки
-            $headers = [
-                'From' => 'noreply@rahmetov-orenburg.ru',
-                'Reply-To' => 'noreply@rahmetov-orenburg.ru',
-                'X-Mailer' => 'PHP/' . phpversion(),
-                'Content-Type' => 'text/plain; charset=utf-8'
-            ];
-            
-            // Отправка письма
-            $mail_sent = mail($to, $subject, $body, $headers);
-            
-            // Возвращаем JSON ответ для AJAX
-            if ($mail_sent) {
-                echo json_encode(['success' => true, 'message' => 'Сообщение отправлено успешно!']);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Ошибка при отправке сообщения. Попробуйте позвонить нам.']);
-            }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Пожалуйста, заполните обязательные поля.', 'errors' => $errors]);
-        }
-    }
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -2656,4 +2552,108 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
+<?php
+// Обработка отправки форм
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $to = 'erlan56region@gmail.com';
+    
+    // Определяем какая форма отправлена
+    if (isset($_POST['form_type'])) {
+        $form_type = $_POST['form_type'];
+        
+        // Общие данные
+        $name = htmlspecialchars($_POST['name'] ?? '');
+        $phone = htmlspecialchars($_POST['phone'] ?? '');
+        $location = htmlspecialchars($_POST['location'] ?? 'Оренбург');
+        $message = htmlspecialchars($_POST['message'] ?? '');
+        
+        // Валидация
+        $errors = [];
+        if (empty($name)) $errors[] = "Имя обязательно";
+        if (empty($phone)) $errors[] = "Телефон обязателен";
+        
+        if (empty($errors)) {
+            // Формируем тему и тело письма в зависимости от типа формы
+            switch($form_type) {
+                case 'contact':
+                    $subject = 'Новый запрос с сайта ИП Рахметов';
+                    $body = "
+                    Новая заявка с сайта ИП Рахметов А.К.
+                    
+                    Форма: Обратная связь
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    Сообщение: $message
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+                    break;
+                    
+                case 'quick':
+                    $subject = 'Быстрая заявка с сайта ИП Рахметов';
+                    $body = "
+                    Быстрая заявка с сайта ИП Рахметов А.К.
+                    
+                    Форма: Быстрая консультация
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+                    break;
+                    
+                case 'product_order':
+                    $product_name = htmlspecialchars($_POST['product_name'] ?? '');
+                    $product_price = htmlspecialchars($_POST['product_price'] ?? '');
+                    $subject = 'Заказ товара с сайта ИП Рахметов';
+                    $body = "
+                    Заказ товара с сайта ИП Рахметов А.К.
+                    
+                    Товар: $product_name
+                    Цена: $product_price
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    Сообщение: $message
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+                    break;
+                    
+                default:
+                    $subject = 'Новый запрос с сайта ИП Рахметов';
+                    $body = "
+                    Новый запрос с сайта ИП Рахметов А.К.
+                    
+                    Имя: $name
+                    Телефон: $phone
+                    Населенный пункт: $location
+                    Сообщение: $message
+                    
+                    Дата: " . date('d.m.Y H:i:s');
+            }
+            
+            // Заголовки
+            $headers = [
+                'From' => 'noreply@rahmetov-orenburg.ru',
+                'Reply-To' => 'noreply@rahmetov-orenburg.ru',
+                'X-Mailer' => 'PHP/' . phpversion(),
+                'Content-Type' => 'text/plain; charset=utf-8'
+            ];
+            
+            // Отправка письма
+            $mail_sent = mail($to, $subject, $body, $headers);
+            
+            // Возвращаем JSON ответ для AJAX
+            if ($mail_sent) {
+                echo json_encode(['success' => true, 'message' => 'Сообщение отправлено успешно!']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Ошибка при отправке сообщения. Попробуйте позвонить нам.']);
+            }
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Пожалуйста, заполните обязательные поля.', 'errors' => $errors]);
+        }
+    }
+    exit;
+}
+?>
 </html>
