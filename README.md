@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +21,6 @@
             --transition: all 0.3s ease;
         }
         
-        /* Темная тема */
         .dark-theme {
             --primary: #4dabf7;
             --primary-dark: #339af0;
@@ -95,14 +93,6 @@
         
         section {
             padding: 80px 0;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
         
         h2 {
@@ -124,7 +114,6 @@
             border-radius: 2px;
         }
         
-        /* Переключатель темы */
         .theme-toggle {
             position: fixed;
             bottom: 20px;
@@ -147,7 +136,6 @@
             transform: scale(1.1);
         }
         
-        /* Шапка */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -260,7 +248,6 @@
             color: var(--primary);
         }
         
-        /* Мобильная навигация */
         .mobile-nav {
             display: none;
             width: 100%;
@@ -294,29 +281,18 @@
             color: var(--primary);
         }
         
-        /* Герой секция */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1600585154340-6f67677f6777?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
             margin-top: 70px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .hero.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 1s ease, transform 1s ease;
         }
         
         .hero h1 {
             font-size: 52px;
             margin-bottom: 20px;
             font-weight: 700;
-            opacity: 0;
-            transform: translateY(20px);
         }
         
         .hero p {
@@ -325,36 +301,8 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            opacity: 0;
-            transform: translateY(20px);
         }
         
-        .hero .btn {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .hero.animate h1,
-        .hero.animate p,
-        .hero.animate .btn {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .hero.animate h1 {
-            transition-delay: 0.2s;
-        }
-        
-        .hero.animate p {
-            transition-delay: 0.4s;
-        }
-        
-        .hero.animate .btn {
-            transition-delay: 0.6s;
-        }
-        
-        /* Услуги */
         .services {
             background-color: var(--light);
         }
@@ -371,14 +319,6 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .service-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
         }
         
         .service-card:hover {
@@ -396,17 +336,6 @@
             font-size: 48px;
         }
         
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-img img {
-            transform: scale(1.1);
-        }
-        
         .service-content {
             padding: 25px;
         }
@@ -416,7 +345,6 @@
             font-size: 22px;
         }
         
-        /* Каталог */
         .catalog-section {
             padding: 80px 0;
             background-color: var(--white);
@@ -459,14 +387,6 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .product-card.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
         }
         
         .product-card:hover {
@@ -484,17 +404,6 @@
             justify-content: center;
             color: var(--primary);
             font-size: 48px;
-        }
-        
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .product-card:hover .product-img img {
-            transform: scale(1.1);
         }
         
         .product-badge {
@@ -570,7 +479,6 @@
             color: var(--white);
         }
         
-        /* Модальное окно товара */
         .product-modal {
             display: none;
             position: fixed;
@@ -583,13 +491,10 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
         
         .product-modal.active {
             display: flex;
-            opacity: 1;
         }
         
         .product-modal-content {
@@ -600,12 +505,6 @@
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        
-        .product-modal.active .product-modal-content {
-            transform: scale(1);
         }
         
         .product-modal-close {
@@ -635,13 +534,6 @@
             justify-content: center;
             color: var(--primary);
             font-size: 64px;
-        }
-        
-        .product-modal-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px 0 0 12px;
         }
         
         .product-modal-info {
@@ -706,7 +598,6 @@
             flex: 1;
         }
         
-        /* О компании */
         .about-section {
             padding: 80px 0;
         }
@@ -723,8 +614,6 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateX(-30px);
             background-color: #f8f9fa;
             display: flex;
             align-items: center;
@@ -733,29 +622,8 @@
             font-size: 64px;
         }
         
-        .about-img.animate {
-            opacity: 1;
-            transform: translateX(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .about-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
         .about-content {
             flex: 1;
-            opacity: 0;
-            transform: translateX(30px);
-        }
-        
-        .about-content.animate {
-            opacity: 1;
-            transform: translateX(0);
-            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
         .about-content h2 {
@@ -775,14 +643,6 @@
         
         .stat-item {
             text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        
-        .stat-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
         .stat-number {
@@ -792,7 +652,6 @@
             display: block;
         }
         
-        /* Контакты */
         .contacts {
             background-color: var(--light);
         }
@@ -808,14 +667,6 @@
             padding: 30px;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .contact-info.animate {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.6s ease, transform 0.6s ease;
         }
         
         .contact-info h3 {
@@ -886,7 +737,6 @@
             display: block;
         }
         
-        /* Подвал */
         footer {
             background-color: var(--dark);
             color: var(--white);
@@ -953,7 +803,6 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
-        /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -966,13 +815,10 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
         
         .modal.active {
             display: flex;
-            opacity: 1;
         }
         
         .modal-content {
@@ -982,12 +828,6 @@
             max-width: 500px;
             width: 90%;
             position: relative;
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        
-        .modal.active .modal-content {
-            transform: scale(1);
         }
         
         .close-modal {
@@ -1028,7 +868,6 @@
             background: var(--secondary);
         }
         
-        /* Анимация загрузки */
         .loading-animation {
             position: fixed;
             top: 0;
@@ -1061,7 +900,6 @@
             to { transform: rotate(360deg); }
         }
         
-        /* Адаптивность */
         @media (max-width: 992px) {
             .about {
                 flex-direction: column;
@@ -1116,10 +954,6 @@
                 height: 250px;
             }
             
-            .product-modal-img img {
-                border-radius: 12px 12px 0 0;
-            }
-            
             .stats {
                 flex-direction: column;
                 gap: 20px;
@@ -1158,12 +992,10 @@
     </style>
 </head>
 <body>
-    <!-- Анимация загрузки -->
     <div class="loading-animation" id="loadingAnimation">
         <div class="loader"></div>
     </div>
 
-    <!-- Шапка -->
     <header id="header">
         <div class="container">
             <div class="header-inner">
@@ -1201,7 +1033,6 @@
         </div>
     </header>
 
-    <!-- Герой секция -->
     <section class="hero" id="hero">
         <div class="container">
             <h1>Водоснабжение и отопление</h1>
@@ -1210,7 +1041,6 @@
         </div>
     </section>
 
-    <!-- Услуги -->
     <section id="services" class="services">
         <div class="container">
             <h2>Наши услуги</h2>
@@ -1246,7 +1076,6 @@
         </div>
     </section>
 
-    <!-- Каталог -->
     <section id="catalog" class="catalog-section">
         <div class="container">
             <h2>Каталог товаров</h2>
@@ -1259,13 +1088,10 @@
                 <button class="catalog-filter-btn" data-filter="water-heaters">Водонагреватели</button>
                 <button class="catalog-filter-btn" data-filter="cryology">Криология</button>
             </div>
-            <div class="catalog-grid" id="catalogGrid">
-                <!-- Товары будут загружены через JavaScript -->
-            </div>
+            <div class="catalog-grid" id="catalogGrid"></div>
         </div>
     </section>
 
-    <!-- Модальное окно товара -->
     <div class="product-modal" id="productModal">
         <div class="product-modal-content">
             <button class="product-modal-close" id="productModalClose" aria-label="Закрыть">&times;</button>
@@ -1279,9 +1105,7 @@
                     <div class="product-modal-description" id="modalProductDescription"></div>
                     <div class="product-modal-specs">
                         <h4>Характеристики</h4>
-                        <ul class="specs-list" id="modalProductSpecs">
-                            <!-- Спецификации будут добавлены через JavaScript -->
-                        </ul>
+                        <ul class="specs-list" id="modalProductSpecs"></ul>
                     </div>
                     <div class="product-modal-actions">
                         <button class="btn" id="modalProductOrder">Заказать</button>
@@ -1292,7 +1116,6 @@
         </div>
     </div>
 
-    <!-- О компании -->
     <section id="about" class="about-section">
         <div class="container">
             <div class="about">
@@ -1322,7 +1145,6 @@
         </div>
     </section>
 
-    <!-- Контакты -->
     <section id="contacts" class="contacts">
         <div class="container">
             <h2>Контакты</h2>
@@ -1393,7 +1215,6 @@
         </div>
     </section>
 
-    <!-- Подвал -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1433,12 +1254,10 @@
         </div>
     </footer>
 
-    <!-- Переключатель темы -->
     <div class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
         <i class="fas fa-moon" id="themeIcon"></i>
     </div>
 
-    <!-- Модальное окно -->
     <div class="modal" id="modal">
         <div class="modal-content">
             <button class="close-modal" id="closeModal" aria-label="Закрыть">&times;</button>
@@ -1464,13 +1283,11 @@
         </div>
     </div>
 
-    <!-- Уведомление -->
     <div class="notification" id="notification">
         Сообщение отправлено успешно!
     </div>
 
     <script>
-        // Данные товаров с иконками вместо изображений
         const products = [
             {
                 id: 1,
@@ -1586,7 +1403,6 @@
                     { name: "Уровень шума", value: "< 45 дБ" }
                 ]
             },
-            // Товары криологии
             {
                 id: 7,
                 name: "Чиллер Trane CGAM 60",
@@ -1624,126 +1440,37 @@
                     { name: "Габариты", value: "840x840x300 мм" },
                     { name: "Вес", value: "32 кг" }
                 ]
-            },
-            {
-                id: 9,
-                name: "Холодильная машина York YCIV 120",
-                description: "Промышленная холодильная машина с винтовыми компрессорами",
-                price: "1 250 000 ₽",
-                icon: "fas fa-industry",
-                features: ["Мощность 120 кВт", "Винтовые компрессоры", "Полная автоматизация"],
-                category: "cryology",
-                badge: "Профессиональный",
-                fullDescription: "Холодильная машина York YCIV 120 с винтовыми компрессорами предназначена для промышленного применения. Обеспечивает высокую надежность и энергоэффективность в системах охлаждения.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "120 кВт" },
-                    { name: "Потребляемая мощность", value: "32 кВт" },
-                    { name: "Тип хладагента", value: "R134a" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "2500x1200x1800 мм" },
-                    { name: "Вес", value: "980 кг" }
-                ]
-            },
-            {
-                id: 10,
-                name: "Система холодоснабжения Daikin EWAD-B200",
-                description: "Модульная система холодоснабжения для коммерческих объектов",
-                price: "680 000 ₽",
-                icon: "fas fa-cogs",
-                features: ["Модульная конструкция", "Мощность 200 кВт", "Инверторное управление"],
-                category: "cryology",
-                badge: "Энергоэффективный",
-                fullDescription: "Система холодоснабжения Daikin EWAD-B200 с модульной конструкцией и инверторным управлением обеспечивает высокую энергоэффективность и гибкость в применении для коммерческих объектов.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "200 кВт" },
-                    { name: "Потребляемая мощность", value: "55 кВт" },
-                    { name: "Тип хладагента", value: "R410A" },
-                    { name: "Количество модулей", value: "2" },
-                    { name: "Габариты", value: "3200x1500x1800 мм" },
-                    { name: "Вес", value: "1250 кг" }
-                ]
-            },
-            {
-                id: 11,
-                name: "Охладитель жидкости GEA Grasso RC 35",
-                description: "Промышленный охладитель жидкости для технологических процессов",
-                price: "420 000 ₽",
-                icon: "fas fa-tint",
-                features: ["Мощность 35 кВт", "Поршневые компрессоры", "Защита от коррозии"],
-                category: "cryology",
-                badge: "Промышленный",
-                fullDescription: "Охладитель жидкости GEA Grasso RC 35 с поршневыми компрессорами предназначен для промышленного применения в системах охлаждения технологических процессов.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "35 кВт" },
-                    { name: "Потребляемая мощность", value: "11 кВт" },
-                    { name: "Тип хладагента", value: "R407C" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "1500x800x1200 мм" },
-                    { name: "Вес", value: "320 кг" }
-                ]
-            },
-            {
-                id: 12,
-                name: "Абсорбционная холодильная машина Broad BDH 80",
-                description: "Абсорбционная холодильная машина на горячей воде",
-                price: "1 850 000 ₽",
-                icon: "fas fa-recycle",
-                features: ["Мощность 80 кВт", "Абсорбционный цикл", "Работа на горячей воде"],
-                category: "cryology",
-                badge: "Экологичный",
-                fullDescription: "Абсорбционная холодильная машина Broad BDH 80 использует тепло горячей воды для производства холода. Экологичное решение для объектов с избыточным теплом.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "80 кВт" },
-                    { name: "Температура горячей воды", value: "85-95°C" },
-                    { name: "Температура охлажденной воды", value: "7°C" },
-                    { name: "Потребление горячей воды", value: "12 м³/ч" },
-                    { name: "Габариты", value: "2800x1400x1800 мм" },
-                    { name: "Вес", value: "1800 кг" }
-                ]
             }
         ];
 
-        // Основная функция инициализации навигации
         function initNavigation() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileNav = document.getElementById('mobileNav');
             
-            // Мобильное меню
             if (mobileMenuBtn && mobileNav) {
                 mobileMenuBtn.addEventListener('click', () => {
                     mobileNav.classList.toggle('active');
-                    
                     const icon = mobileMenuBtn.querySelector('i');
-                    if (mobileNav.classList.contains('active')) {
-                        icon.className = 'fas fa-times';
-                    } else {
-                        icon.className = 'fas fa-bars';
-                    }
+                    icon.className = mobileNav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
                 });
             }
             
-            // Плавная прокрутка для всех навигационных ссылок
             document.querySelectorAll('.nav-link').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     const targetId = this.getAttribute('href');
                     if (!targetId || !targetId.startsWith('#')) return;
                     
                     const targetElement = document.querySelector(targetId);
-                    
                     if (targetElement) {
-                        // Рассчитываем позицию с учетом фиксированного хедера
                         const headerHeight = document.getElementById('header').offsetHeight;
                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
                         
-                        // Плавная прокрутка
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
                         });
                         
-                        // Закрытие мобильного меню после клика
                         if (mobileNav) {
                             mobileNav.classList.remove('active');
                             if (mobileMenuBtn) {
@@ -1754,7 +1481,6 @@
                 });
             });
             
-            // Обработка скролла для шапки
             let lastScrollY = window.scrollY;
             const header = document.getElementById('header');
             
@@ -1765,7 +1491,6 @@
                     header.classList.remove('scrolled');
                 }
                 
-                // Скрытие/показ шапки при скролле
                 if (window.scrollY > lastScrollY && window.scrollY > 100) {
                     header.classList.add('hidden');
                 } else {
@@ -1776,13 +1501,10 @@
             });
         }
 
-        // Инициализация GSAP анимаций
         function initAnimations() {
-            // Инициализация ScrollTrigger
             if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
                 
-                // Анимация появления секций при скролле
                 gsap.utils.toArray('section').forEach(section => {
                     gsap.fromTo(section, {
                         opacity: 0,
@@ -1800,54 +1522,9 @@
                         }
                     });
                 });
-                
-                // Анимация карточек услуг
-                gsap.utils.toArray('.service-card').forEach((card, i) => {
-                    gsap.fromTo(card, {
-                        opacity: 0,
-                        y: 50
-                    }, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        delay: i * 0.1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse"
-                        }
-                    });
-                });
-                
-                // Анимация карточек товаров
-                gsap.utils.toArray('.product-card').forEach((card, i) => {
-                    gsap.fromTo(card, {
-                        opacity: 0,
-                        y: 50
-                    }, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        delay: i * 0.1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top 85%",
-                            toggleActions: "play none none reverse"
-                        }
-                    });
-                });
-            } else {
-                // Fallback если GSAP не загрузился
-                document.querySelectorAll('section, .service-card, .product-card').forEach(el => {
-                    el.style.opacity = '1';
-                    el.style.transform = 'none';
-                });
             }
         }
 
-        // Функция для анимации счетчиков
         function animateCounter(element, start, end, duration) {
             if (typeof gsap !== 'undefined') {
                 const obj = { value: start };
@@ -1868,26 +1545,9 @@
                         toggleActions: "play none none reverse"
                     }
                 });
-            } else {
-                // Fallback анимация
-                let current = start;
-                const increment = (end - start) / (duration / 16);
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= end) {
-                        current = end;
-                        clearInterval(timer);
-                    }
-                    if (element.id === 'clientsCounter') {
-                        element.textContent = Math.floor(current) + '%';
-                    } else {
-                        element.textContent = Math.floor(current).toLocaleString();
-                    }
-                }, 16);
             }
         }
 
-        // Функция для запуска счетчиков
         function initCounters() {
             const yearsCounter = document.getElementById('yearsCounter');
             const projectsCounter = document.getElementById('projectsCounter');
@@ -1900,74 +1560,12 @@
             }
         }
 
-        // Анимация появления героя
-        function initHeroAnimation() {
-            const hero = document.getElementById('hero');
-            if (hero) {
-                hero.classList.add('animate');
-                
-                if (typeof gsap !== 'undefined') {
-                    // Анимация элементов героя с GSAP
-                    gsap.fromTo(hero.querySelector('h1'), {
-                        opacity: 0,
-                        y: 30
-                    }, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        delay: 0.2,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.fromTo(hero.querySelector('p'), {
-                        opacity: 0,
-                        y: 30
-                    }, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        delay: 0.4,
-                        ease: "power2.out"
-                    });
-                    
-                    gsap.fromTo(hero.querySelector('.btn'), {
-                        opacity: 0,
-                        y: 30
-                    }, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 1,
-                        delay: 0.6,
-                        ease: "power2.out"
-                    });
-                } else {
-                    // Fallback анимация
-                    setTimeout(() => {
-                        hero.querySelector('h1').style.opacity = '1';
-                        hero.querySelector('h1').style.transform = 'translateY(0)';
-                    }, 200);
-                    setTimeout(() => {
-                        hero.querySelector('p').style.opacity = '1';
-                        hero.querySelector('p').style.transform = 'translateY(0)';
-                    }, 400);
-                    setTimeout(() => {
-                        hero.querySelector('.btn').style.opacity = '1';
-                        hero.querySelector('.btn').style.transform = 'translateY(0)';
-                    }, 600);
-                }
-            }
-        }
-
-        // Инициализация каталога
         function initCatalog() {
             const catalogGrid = document.getElementById('catalogGrid');
-            
             if (!catalogGrid) return;
             
-            // Очистка контейнера
             catalogGrid.innerHTML = '';
             
-            // Создание карточек товаров
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -1993,96 +1591,49 @@
                 catalogGrid.appendChild(productCard);
             });
             
-            // Инициализация фильтров каталога
             initCatalogFilters();
-            
-            // Инициализация обработчиков событий для кнопок товаров
             initProductButtons();
-            
-            // Инициализация модального окна товара
             initProductModal();
         }
         
-        // Инициализация фильтров каталога
         function initCatalogFilters() {
             const filterButtons = document.querySelectorAll('.catalog-filter-btn');
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    // Убираем активный класс у всех кнопок
                     filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Добавляем активный класс текущей кнопке
                     button.classList.add('active');
-                    
                     const filter = button.getAttribute('data-filter');
                     filterCatalog(filter);
                 });
             });
         }
         
-        // Фильтрация каталога
         function filterCatalog(filter) {
             const productCards = document.querySelectorAll('.product-card');
             productCards.forEach(card => {
                 if (filter === 'all' || card.getAttribute('data-category') === filter) {
                     card.style.display = 'block';
-                    // Анимация появления отфильтрованных карточек
-                    if (typeof gsap !== 'undefined') {
-                        gsap.fromTo(card, {
-                            opacity: 0,
-                            scale: 0.8
-                        }, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.5,
-                            ease: "power2.out"
-                        });
-                    } else {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }
                 } else {
-                    // Анимация скрытия карточек
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to(card, {
-                            opacity: 0,
-                            scale: 0.8,
-                            duration: 0.3,
-                            ease: "power2.out",
-                            onComplete: () => {
-                                card.style.display = 'none';
-                            }
-                        });
-                    } else {
-                        card.style.opacity = '0';
-                        card.style.transform = 'scale(0.8)';
-                        setTimeout(() => {
-                            card.style.display = 'none';
-                        }, 300);
-                    }
+                    card.style.display = 'none';
                 }
             });
         }
         
-        // Инициализация обработчиков событий для кнопок товаров
         function initProductButtons() {
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
+            document.querySelectorAll('.product-card').forEach(card => {
                 const buttons = card.querySelectorAll('.btn');
                 buttons.forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.stopPropagation();
                         const productId = button.getAttribute('data-product-id');
                         if (button.classList.contains('btn-outline')) {
-                            // Заказ товара
                             orderProduct(productId);
                         } else {
-                            // Просмотр подробной информации
                             viewProductDetails(productId);
                         }
                     });
                 });
                 
-                // Клик по карточке товара
                 card.addEventListener('click', () => {
                     const productId = card.querySelector('.btn').getAttribute('data-product-id');
                     viewProductDetails(productId);
@@ -2090,7 +1641,6 @@
             });
         }
         
-        // Просмотр детальной информации о товаре
         function viewProductDetails(productId) {
             const product = products.find(p => p.id == productId);
             if (product) {
@@ -2103,13 +1653,11 @@
                 
                 if (!modal || !modalIcon || !modalName || !modalPrice || !modalDescription || !modalSpecs) return;
                 
-                // Заполнение модального окна данными товара
                 modalIcon.className = product.icon;
                 modalName.textContent = product.name;
                 modalPrice.textContent = product.price;
                 modalDescription.textContent = product.fullDescription;
                 
-                // Очистка и заполнение спецификаций
                 modalSpecs.innerHTML = '';
                 product.specifications.forEach(spec => {
                     const li = document.createElement('li');
@@ -2120,64 +1668,18 @@
                     modalSpecs.appendChild(li);
                 });
                 
-                // Анимация открытия модального окна
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                
-                // Анимация появления контента в модальном окне
-                if (typeof gsap !== 'undefined') {
-                    gsap.fromTo('.product-modal-content', {
-                        scale: 0.8,
-                        opacity: 0
-                    }, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.3,
-                        ease: "back.out(1.7)"
-                    });
-                } else {
-                    document.querySelector('.product-modal-content').style.transform = 'scale(1)';
-                    document.querySelector('.product-modal-content').style.opacity = '1';
-                }
             }
         }
         
-        // Заказ товара
         function orderProduct(productId) {
             const product = products.find(p => p.id == productId);
             if (product) {
-                // Открытие модального окна заказа
                 openModal();
-                
-                // Заполнение данных о товаре в форме
-                setTimeout(() => {
-                    const quickName = document.getElementById('quick-name');
-                    const quickPhone = document.getElementById('quick-phone');
-                    
-                    if (quickName && quickPhone) {
-                        // Добавляем информацию о товаре в сообщение
-                        const message = `Заинтересовал товар: ${product.name} (${product.price})`;
-                        document.querySelector('input[name="form_type"]').value = 'product_order';
-                        document.querySelector('input[name="product_name"]')?.remove();
-                        document.querySelector('input[name="product_price"]')?.remove();
-                        
-                        const productNameInput = document.createElement('input');
-                        productNameInput.type = 'hidden';
-                        productNameInput.name = 'product_name';
-                        productNameInput.value = product.name;
-                        document.getElementById('quick-form').appendChild(productNameInput);
-                        
-                        const productPriceInput = document.createElement('input');
-                        productPriceInput.type = 'hidden';
-                        productPriceInput.name = 'product_price';
-                        productPriceInput.value = product.price;
-                        document.getElementById('quick-form').appendChild(productPriceInput);
-                    }
-                }, 100);
             }
         }
         
-        // Инициализация модального окна товара
         function initProductModal() {
             const modal = document.getElementById('productModal');
             const closeButton = document.getElementById('productModalClose');
@@ -2186,31 +1688,28 @@
             
             if (!modal || !closeButton || !orderButton || !consultButton) return;
             
-            // Закрытие модального окна
             closeButton.addEventListener('click', () => {
                 closeProductModal();
             });
             
-            // Заказ товара из модального окна
             orderButton.addEventListener('click', () => {
                 closeProductModal();
-                orderProductFromModal();
+                const productName = document.getElementById('modalProductName').textContent;
+                const productPrice = document.getElementById('modalProductPrice').textContent;
+                openModal();
             });
             
-            // Консультация по товару
             consultButton.addEventListener('click', () => {
                 closeProductModal();
                 openModal();
             });
             
-            // Закрытие по клику вне модального окна
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeProductModal();
                 }
             });
             
-            // Закрытие по клавише Escape
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('active')) {
                     closeProductModal();
@@ -2218,115 +1717,32 @@
             });
         }
         
-        // Заказ товара из модального окна
-        function orderProductFromModal() {
-            const productName = document.getElementById('modalProductName').textContent;
-            const productPrice = document.getElementById('modalProductPrice').textContent;
-            
-            openModal();
-            
-            // Заполнение данных о товаре в форме
-            setTimeout(() => {
-                document.querySelector('input[name="form_type"]').value = 'product_order';
-                document.querySelector('input[name="product_name"]')?.remove();
-                document.querySelector('input[name="product_price"]')?.remove();
-                
-                const productNameInput = document.createElement('input');
-                productNameInput.type = 'hidden';
-                productNameInput.name = 'product_name';
-                productNameInput.value = productName;
-                document.getElementById('quick-form').appendChild(productNameInput);
-                
-                const productPriceInput = document.createElement('input');
-                productPriceInput.type = 'hidden';
-                productPriceInput.name = 'product_price';
-                productPriceInput.value = productPrice;
-                document.getElementById('quick-form').appendChild(productPriceInput);
-            }, 100);
-        }
-        
-        // Закрытие модального окна товара
         function closeProductModal() {
             const modal = document.getElementById('productModal');
             if (modal) {
-                // Анимация закрытия модального окна
-                if (typeof gsap !== 'undefined') {
-                    gsap.to('.product-modal-content', {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.2,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    });
-                } else {
-                    document.querySelector('.product-modal-content').style.transform = 'scale(0.8)';
-                    document.querySelector('.product-modal-content').style.opacity = '0';
-                    setTimeout(() => {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }, 200);
-                }
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         }
 
-        // Инициализация модальных окон и форм
         function initModals() {
             const modal = document.getElementById('modal');
             const contactBtn = document.getElementById('contactBtn');
             const closeModal = document.getElementById('closeModal');
             
-            function openModal() {
+            window.openModal = function() {
                 if (modal) {
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
-                    
-                    // Сброс формы
                     document.getElementById('quick-form').reset();
                     document.querySelectorAll('.form-error').forEach(error => error.classList.remove('show'));
-                    
-                    // Анимация открытия модального окна
-                    if (typeof gsap !== 'undefined') {
-                        gsap.fromTo('.modal-content', {
-                            scale: 0.8,
-                            opacity: 0
-                        }, {
-                            scale: 1,
-                            opacity: 1,
-                            duration: 0.3,
-                            ease: "back.out(1.7)"
-                        });
-                    } else {
-                        document.querySelector('.modal-content').style.transform = 'scale(1)';
-                        document.querySelector('.modal-content').style.opacity = '1';
-                    }
                 }
             }
             
             function closeModalFunc() {
                 if (modal) {
-                    // Анимация закрытия модального окна
-                    if (typeof gsap !== 'undefined') {
-                        gsap.to('.modal-content', {
-                            scale: 0.8,
-                            opacity: 0,
-                            duration: 0.2,
-                            ease: "power2.in",
-                            onComplete: () => {
-                                modal.classList.remove('active');
-                                document.body.style.overflow = 'auto';
-                            }
-                        });
-                    } else {
-                        document.querySelector('.modal-content').style.transform = 'scale(0.8)';
-                        document.querySelector('.modal-content').style.opacity = '0';
-                        setTimeout(() => {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }, 200);
-                    }
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             }
             
@@ -2341,25 +1757,21 @@
                 closeModal.addEventListener('click', closeModalFunc);
             }
             
-            // Закрытие по клику вне модального окна
             window.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeModalFunc();
                 }
             });
             
-            // Формы
             const contactForm = document.getElementById('contact-form');
             const quickForm = document.getElementById('quick-form');
             const notification = document.getElementById('notification');
             
-            // Функция отправки формы
             function submitForm(form, submitBtn) {
                 const formData = new FormData(form);
-                
-                // Валидация полей
                 let isValid = true;
                 const requiredFields = form.querySelectorAll('[required]');
+                
                 requiredFields.forEach(field => {
                     const errorElement = document.getElementById(field.id + '-error');
                     if (!field.value.trim()) {
@@ -2372,37 +1784,20 @@
                 
                 if (!isValid) return;
                 
-                // Блокировка кнопки отправки
                 if (submitBtn) {
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Отправка...';
                 }
                 
-                // Отправка AJAX запроса
-                fetch('', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        showNotification(data.message, 'success');
-                        form.reset();
-                        
-                        // Закрытие модального окна если это быстрая форма
-                        if (form.id === 'quick-form') {
-                            closeModalFunc();
-                        }
-                    } else {
-                        showNotification(data.message, 'error');
+                // Имитация отправки формы
+                setTimeout(() => {
+                    showNotification('Сообщение отправлено успешно! Мы свяжемся с вами в ближайшее время.', 'success');
+                    form.reset();
+                    
+                    if (form.id === 'quick-form') {
+                        closeModalFunc();
                     }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showNotification('Произошла ошибка при отправке. Попробуйте позвонить нам.', 'error');
-                })
-                .finally(() => {
-                    // Разблокировка кнопки отправки
+                    
                     if (submitBtn) {
                         submitBtn.disabled = false;
                         if (form.id === 'contact-form') {
@@ -2411,7 +1806,7 @@
                             submitBtn.textContent = 'Позвоните мне';
                         }
                     }
-                });
+                }, 1500);
             }
             
             function showNotification(message, type = 'success') {
@@ -2420,36 +1815,8 @@
                     notification.className = 'notification';
                     notification.classList.add(type, 'show');
                     
-                    // Анимация появления уведомления
-                    if (typeof gsap !== 'undefined') {
-                        gsap.fromTo(notification, {
-                            x: 150
-                        }, {
-                            x: 0,
-                            duration: 0.5,
-                            ease: "back.out(1.7)"
-                        });
-                    } else {
-                        notification.style.transform = 'translateX(0)';
-                    }
-                    
                     setTimeout(() => {
-                        // Анимация скрытия уведомления
-                        if (typeof gsap !== 'undefined') {
-                            gsap.to(notification, {
-                                x: 150,
-                                duration: 0.3,
-                                ease: "power2.in",
-                                onComplete: () => {
-                                    notification.classList.remove('show');
-                                }
-                            });
-                        } else {
-                            notification.style.transform = 'translateX(150%)';
-                            setTimeout(() => {
-                                notification.classList.remove('show');
-                            }, 300);
-                        }
+                        notification.classList.remove('show');
                     }, 5000);
                 }
             }
@@ -2471,7 +1838,6 @@
             }
         }
 
-        // Переключение темы
         function initThemeToggle() {
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
@@ -2491,18 +1857,6 @@
                 isDarkTheme = !isDarkTheme;
                 localStorage.setItem('darkTheme', isDarkTheme);
                 applyTheme();
-                
-                // Анимация переключателя темы
-                if (typeof gsap !== 'undefined') {
-                    gsap.fromTo(themeToggle, {
-                        scale: 1
-                    }, {
-                        scale: 1.2,
-                        duration: 0.2,
-                        yoyo: true,
-                        repeat: 1
-                    });
-                }
             }
             
             if (themeToggle && themeIcon) {
@@ -2511,9 +1865,7 @@
             }
         }
 
-        // Основная функция инициализации
         function init() {
-            // Скрытие анимации загрузки
             const loadingAnimation = document.getElementById('loadingAnimation');
             if (loadingAnimation) {
                 setTimeout(() => {
@@ -2521,20 +1873,16 @@
                 }, 1000);
             }
             
-            // Инициализация всех компонентов
             initNavigation();
             initCatalog();
-            initHeroAnimation();
             initModals();
             initThemeToggle();
             
-            // Инициализация анимаций после загрузки
             setTimeout(() => {
                 initAnimations();
                 initCounters();
             }, 100);
             
-            // Закрытие мобильного меню при ресайзе
             window.addEventListener('resize', () => {
                 const mobileNav = document.getElementById('mobileNav');
                 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -2548,111 +1896,7 @@
             });
         }
 
-        // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
-<?php
-// Обработка отправки форм
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $to = 'erlan56region@gmail.com';
-    
-    // Определяем какая форма отправлена
-    if (isset($_POST['form_type'])) {
-        $form_type = $_POST['form_type'];
-        
-        // Общие данные
-        $name = htmlspecialchars($_POST['name'] ?? '');
-        $phone = htmlspecialchars($_POST['phone'] ?? '');
-        $location = htmlspecialchars($_POST['location'] ?? 'Оренбург');
-        $message = htmlspecialchars($_POST['message'] ?? '');
-        
-        // Валидация
-        $errors = [];
-        if (empty($name)) $errors[] = "Имя обязательно";
-        if (empty($phone)) $errors[] = "Телефон обязателен";
-        
-        if (empty($errors)) {
-            // Формируем тему и тело письма в зависимости от типа формы
-            switch($form_type) {
-                case 'contact':
-                    $subject = 'Новый запрос с сайта ИП Рахметов';
-                    $body = "
-                    Новая заявка с сайта ИП Рахметов А.К.
-                    
-                    Форма: Обратная связь
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    Сообщение: $message
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-                    break;
-                    
-                case 'quick':
-                    $subject = 'Быстрая заявка с сайта ИП Рахметов';
-                    $body = "
-                    Быстрая заявка с сайта ИП Рахметов А.К.
-                    
-                    Форма: Быстрая консультация
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-                    break;
-                    
-                case 'product_order':
-                    $product_name = htmlspecialchars($_POST['product_name'] ?? '');
-                    $product_price = htmlspecialchars($_POST['product_price'] ?? '');
-                    $subject = 'Заказ товара с сайта ИП Рахметов';
-                    $body = "
-                    Заказ товара с сайта ИП Рахметов А.К.
-                    
-                    Товар: $product_name
-                    Цена: $product_price
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    Сообщение: $message
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-                    break;
-                    
-                default:
-                    $subject = 'Новый запрос с сайта ИП Рахметов';
-                    $body = "
-                    Новый запрос с сайта ИП Рахметов А.К.
-                    
-                    Имя: $name
-                    Телефон: $phone
-                    Населенный пункт: $location
-                    Сообщение: $message
-                    
-                    Дата: " . date('d.m.Y H:i:s');
-            }
-            
-            // Заголовки
-            $headers = [
-                'From' => 'noreply@rahmetov-orenburg.ru',
-                'Reply-To' => 'noreply@rahmetov-orenburg.ru',
-                'X-Mailer' => 'PHP/' . phpversion(),
-                'Content-Type' => 'text/plain; charset=utf-8'
-            ];
-            
-            // Отправка письма
-            $mail_sent = mail($to, $subject, $body, $headers);
-            
-            // Возвращаем JSON ответ для AJAX
-            if ($mail_sent) {
-                echo json_encode(['success' => true, 'message' => 'Сообщение отправлено успешно!']);
-            } else {
-                echo json_encode(['success' => false, 'message' => 'Ошибка при отправке сообщения. Попробуйте позвонить нам.']);
-            }
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Пожалуйста, заполните обязательные поля.', 'errors' => $errors]);
-        }
-    }
-    exit;
-}
 </html>
