@@ -1,14 +1,15 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<style>
-:root {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
             --primary: #0056b3;
             --primary-dark: #003d82;
             --secondary: #00b894;
@@ -275,7 +276,7 @@
         
         /* Герой секция */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Водоснабжение+и+отопление') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
@@ -311,12 +312,6 @@
         .hero .btn {
             opacity: 0;
             transform: translateY(20px);
-            background-color: var(--white);
-            color: var(--primary);
-        }
-        
-        .hero .btn:hover {
-            background-color: rgba(255, 255, 255, 0.9);
         }
         
         .hero.animate h1,
@@ -379,6 +374,17 @@
             justify-content: center;
             color: var(--primary);
             font-size: 48px;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
         }
         
         .service-content {
@@ -458,6 +464,17 @@
             justify-content: center;
             color: var(--primary);
             font-size: 48px;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
         }
         
         .product-badge {
@@ -600,6 +617,13 @@
             font-size: 64px;
         }
         
+        .product-modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px 0 0 12px;
+        }
+        
         .product-modal-info {
             flex: 1;
             min-width: 300px;
@@ -693,6 +717,13 @@
             opacity: 1;
             transform: translateX(0);
             transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
         
         .about-content {
@@ -1019,6 +1050,10 @@
             
             .product-modal-img {
                 height: 250px;
+            }
+            
+            .product-modal-img img {
+                border-radius: 12px 12px 0 0;
             }
             
             .stats {
@@ -1427,7 +1462,7 @@
                 badge: "Скидка",
                 fullDescription: "Полипропиленовые трубы Valtec PP-R предназначены для систем холодного и горячего водоснабжения, а также отопления. Не подвержены коррозии и имеют длительный срок службы.",
                 specifications: [
-                    { name: "Наружный диаметер", value: "20 мм" },
+                    { name: "Наружный диаметр", value: "20 мм" },
                     { name: "Толщина стенки", value: "2,8 мм" },
                     { name: "Рабочая температура", value: "95°C" },
                     { name: "Рабочее давление", value: "25 бар" },
@@ -1590,206 +1625,156 @@
             }
         ];
 
-        // Fallback для GSAP
-        if (typeof gsap === 'undefined') {
-            console.warn('GSAP not loaded, using fallback');
-            // Простой fallback для анимаций
-            window.gsap = {
-                to: function(el, config) {
-                    if (config.onComplete) setTimeout(config.onComplete, config.duration * 1000 || 0);
-                },
-                fromTo: function(el, from, to) {
-                    if (to.onComplete) setTimeout(to.onComplete, to.duration * 1000 || 0);
-                },
-                utils: {
-                    toArray: function(selector) {
-                        return document.querySelectorAll(selector);
-                    }
-                },
-                registerPlugin: function() {} // Пустая функция для ScrollTrigger
-            };
-            
-            // Простой ScrollTrigger fallback
-            window.ScrollTrigger = {
-                create: function() {}
-            };
-        }
-
-        // Безопасная функция анимации
-        function safeGsapAnimation(element, animationConfig) {
-            try {
-                if (element && element.nodeType === 1) {
-                    if (animationConfig.from && animationConfig.to) {
-                        gsap.fromTo(element, animationConfig.from, animationConfig.to);
-                    } else if (animationConfig.to) {
-                        gsap.to(element, animationConfig.to);
-                    }
-                }
-            } catch (error) {
-                console.warn('GSAP animation error:', error);
-            }
-        }
-
         // Инициализация GSAP анимаций
         function initAnimations() {
-            try {
-                // Инициализация ScrollTrigger
-                if (typeof ScrollTrigger !== 'undefined') {
-                    gsap.registerPlugin(ScrollTrigger);
+            // Инициализация ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Анимация появления секций при скролле
+            gsap.utils.toArray('section').forEach(section => {
+                gsap.fromTo(section, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация карточек услуг
+            gsap.utils.toArray('.service-card').forEach((card, i) => {
+                gsap.fromTo(card, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация карточек товаров
+            gsap.utils.toArray('.product-card').forEach((card, i) => {
+                gsap.fromTo(card, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация элементов "О компании"
+            gsap.fromTo('.about-img', {
+                opacity: 0,
+                x: -50
+            }, {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.about',
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
                 }
-                
-                // Анимация появления секций при скролле
-                gsap.utils.toArray('section').forEach(section => {
-                    safeGsapAnimation(section, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: section,
-                                start: "top 80%",
-                                end: "bottom 20%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация карточек услуг
-                gsap.utils.toArray('.service-card').forEach((card, i) => {
-                    safeGsapAnimation(card, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.1,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация карточек товаров
-                gsap.utils.toArray('.product-card').forEach((card, i) => {
-                    safeGsapAnimation(card, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.1,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация элементов "О компании"
-                safeGsapAnimation(document.querySelector('.about-img'), {
-                    from: { opacity: 0, x: -50 },
-                    to: {
-                        opacity: 1,
-                        x: 0,
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: '.about',
-                            start: "top 80%",
-                            toggleActions: "play none none reverse"
-                        }
+            });
+            
+            gsap.fromTo('.about-content', {
+                opacity: 0,
+                x: 50
+            }, {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.about',
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // Анимация статистики
+            gsap.utils.toArray('.stat-item').forEach((item, i) => {
+                gsap.fromTo(item, {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: '.stats',
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
                     }
                 });
-                
-                safeGsapAnimation(document.querySelector('.about-content'), {
-                    from: { opacity: 0, x: 50 },
-                    to: {
-                        opacity: 1,
-                        x: 0,
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: '.about',
-                            start: "top 80%",
-                            toggleActions: "play none none reverse"
-                        }
+            });
+            
+            // Анимация контактных блоков
+            gsap.utils.toArray('.contact-info').forEach((info, i) => {
+                gsap.fromTo(info, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: '.contacts-grid',
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
                     }
                 });
-                
-                // Анимация статистики
-                gsap.utils.toArray('.stat-item').forEach((item, i) => {
-                    safeGsapAnimation(item, {
-                        from: { opacity: 0, y: 30 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.2,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: '.stats',
-                                start: "top 80%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация контактных блоков
-                gsap.utils.toArray('.contact-info').forEach((info, i) => {
-                    safeGsapAnimation(info, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.2,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: '.contacts-grid',
-                                start: "top 80%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-            } catch (error) {
-                console.error('Animation initialization error:', error);
-            }
+            });
         }
 
         // Улучшенная функция для анимации счетчика с GSAP
         function animateCounter(element, start, end, duration) {
-            if (!element) return;
-            
             const obj = { value: start };
-            safeGsapAnimation(null, {
-                to: {
-                    value: end,
-                    duration: duration / 1000,
-                    ease: "power2.out",
-                    onUpdate: function() {
-                        if (element.id === 'clientsCounter') {
-                            element.textContent = Math.floor(obj.value) + '%';
-                        } else {
-                            element.textContent = Math.floor(obj.value).toLocaleString();
-                        }
-                    },
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
+            gsap.to(obj, {
+                value: end,
+                duration: duration / 1000,
+                ease: "power2.out",
+                onUpdate: function() {
+                    if (element.id === 'clientsCounter') {
+                        element.textContent = Math.floor(obj.value) + '%';
+                    } else {
+                        element.textContent = Math.floor(obj.value).toLocaleString();
                     }
+                },
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
                 }
             });
         }
@@ -1814,30 +1799,38 @@
                 hero.classList.add('animate');
                 
                 // Анимация элементов героя с GSAP
-                const h1 = hero.querySelector('h1');
-                const p = hero.querySelector('p');
-                const btn = hero.querySelector('.btn');
+                gsap.fromTo(hero.querySelector('h1'), {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    delay: 0.2,
+                    ease: "power2.out"
+                });
                 
-                if (h1) {
-                    safeGsapAnimation(h1, {
-                        from: { opacity: 0, y: 30 },
-                        to: { opacity: 1, y: 0, duration: 1, delay: 0.2, ease: "power2.out" }
-                    });
-                }
+                gsap.fromTo(hero.querySelector('p'), {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    delay: 0.4,
+                    ease: "power2.out"
+                });
                 
-                if (p) {
-                    safeGsapAnimation(p, {
-                        from: { opacity: 0, y: 30 },
-                        to: { opacity: 1, y: 0, duration: 1, delay: 0.4, ease: "power2.out" }
-                    });
-                }
-                
-                if (btn) {
-                    safeGsapAnimation(btn, {
-                        from: { opacity: 0, y: 30 },
-                        to: { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: "power2.out" }
-                    });
-                }
+                gsap.fromTo(hero.querySelector('.btn'), {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    delay: 0.6,
+                    ease: "power2.out"
+                });
             }
         }
 
@@ -1889,8 +1882,6 @@
         // Инициализация фильтров каталога
         function initCatalogFilters() {
             const filterButtons = document.querySelectorAll('.catalog-filter-btn');
-            if (filterButtons.length === 0) return;
-            
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     // Убираем активный класс у всех кнопок
@@ -1907,37 +1898,28 @@
         // Фильтрация каталога
         function filterCatalog(filter) {
             const productCards = document.querySelectorAll('.product-card');
-            if (productCards.length === 0) return;
-            
             productCards.forEach(card => {
-                const shouldShow = filter === 'all' || card.getAttribute('data-category') === filter;
-                
-                if (shouldShow && card.style.display === 'none') {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
                     card.style.display = 'block';
-                    // Используем requestAnimationFrame для гарантии что элемент в DOM
-                    requestAnimationFrame(() => {
-                        safeGsapAnimation(card, {
-                            from: { opacity: 0, scale: 0.8 },
-                            to: {
-                                opacity: 1,
-                                scale: 1,
-                                duration: 0.5,
-                                ease: "power2.out"
-                            }
-                        });
+                    // Анимация появления отфильтрованных карточек
+                    gsap.fromTo(card, {
+                        opacity: 0,
+                        scale: 0.8
+                    }, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power2.out"
                     });
-                } else if (!shouldShow && card.style.display !== 'none') {
-                    safeGsapAnimation(card, {
-                        to: {
-                            opacity: 0,
-                            scale: 0.8,
-                            duration: 0.3,
-                            ease: "power2.out",
-                            onComplete: () => {
-                                card.style.display = 'none';
-                                // Сбрасываем стили после анимации
-                                gsap.set(card, { opacity: 1, scale: 1 });
-                            }
+                } else {
+                    // Анимация скрытия карточек
+                    gsap.to(card, {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            card.style.display = 'none';
                         }
                     });
                 }
@@ -1947,8 +1929,6 @@
         // Инициализация обработчиков событий для кнопок товаров
         function initProductButtons() {
             const productCards = document.querySelectorAll('.product-card');
-            if (productCards.length === 0) return;
-            
             productCards.forEach(card => {
                 const buttons = card.querySelectorAll('.btn');
                 buttons.forEach(button => {
@@ -2008,14 +1988,14 @@
                 document.body.style.overflow = 'hidden';
                 
                 // Анимация появления контента в модальном окне
-                safeGsapAnimation(document.querySelector('.product-modal-content'), {
-                    from: { scale: 0.8, opacity: 0 },
-                    to: {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.3,
-                        ease: "back.out(1.7)"
-                    }
+                gsap.fromTo('.product-modal-content', {
+                    scale: 0.8,
+                    opacity: 0
+                }, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.3,
+                    ease: "back.out(1.7)"
                 });
             }
         }
@@ -2076,16 +2056,14 @@
             const modal = document.getElementById('productModal');
             if (modal) {
                 // Анимация закрытия модального окна
-                safeGsapAnimation(document.querySelector('.product-modal-content'), {
-                    to: {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.2,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
+                gsap.to('.product-modal-content', {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
                     }
                 });
             }
@@ -2113,9 +2091,14 @@
                     const icon = mobileMenuBtn.querySelector('i');
                     if (mobileNav.classList.contains('active')) {
                         icon.className = 'fas fa-times';
-                        safeGsapAnimation(mobileNav, {
-                            from: { opacity: 0, y: -20 },
-                            to: { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
+                        gsap.fromTo(mobileNav, {
+                            opacity: 0,
+                            y: -20
+                        }, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.3,
+                            ease: "power2.out"
                         });
                     } else {
                         icon.className = 'fas fa-bars';
@@ -2132,26 +2115,19 @@
                     
                     if (targetElement) {
                         // Анимация прокрутки с GSAP
-                        if (typeof gsap !== 'undefined') {
-                            gsap.to(window, {
-                                duration: 1,
-                                scrollTo: {
-                                    y: targetElement,
-                                    offsetY: 70
-                                },
-                                ease: "power2.inOut"
-                            });
-                        } else {
-                            // Fallback для прокрутки
-                            targetElement.scrollIntoView({ behavior: 'smooth' });
-                        }
+                        gsap.to(window, {
+                            duration: 1,
+                            scrollTo: {
+                                y: targetElement,
+                                offsetY: 70
+                            },
+                            ease: "power2.inOut"
+                        });
                         
                         // Закрытие мобильного меню после клика
                         if (mobileNav) {
                             mobileNav.classList.remove('active');
-                            if (mobileMenuBtn) {
-                                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
-                            }
+                            mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
                         }
                     }
                 });
@@ -2165,10 +2141,17 @@
             function applyTheme() {
                 if (isDarkTheme) {
                     document.body.classList.add('dark-theme');
-                    if (themeIcon) themeIcon.className = 'fas fa-sun';
+                    themeIcon.className = 'fas fa-sun';
+                    // Анимация переключения темы
+                    gsap.to('body', {
+                        backgroundColor: getComputedStyle(document.body).getPropertyValue('--white'),
+                        color: getComputedStyle(document.body).getPropertyValue('--dark'),
+                        duration: 0.5,
+                        ease: "power2.inOut"
+                    });
                 } else {
                     document.body.classList.remove('dark-theme');
-                    if (themeIcon) themeIcon.className = 'fas fa-moon';
+                    themeIcon.className = 'fas fa-moon';
                 }
             }
             
@@ -2178,16 +2161,14 @@
                 applyTheme();
                 
                 // Анимация переключателя темы
-                if (themeToggle) {
-                    safeGsapAnimation(themeToggle, {
-                        to: {
-                            scale: 1.2,
-                            duration: 0.2,
-                            yoyo: true,
-                            repeat: 1
-                        }
-                    });
-                }
+                gsap.fromTo(themeToggle, {
+                    scale: 1
+                }, {
+                    scale: 1.2,
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 1
+                });
             }
             
             if (themeToggle && themeIcon) {
@@ -2206,14 +2187,14 @@
                     document.body.style.overflow = 'hidden';
                     
                     // Анимация открытия модального окна
-                    safeGsapAnimation(document.querySelector('.modal-content'), {
-                        from: { scale: 0.8, opacity: 0 },
-                        to: {
-                            scale: 1,
-                            opacity: 1,
-                            duration: 0.3,
-                            ease: "back.out(1.7)"
-                        }
+                    gsap.fromTo('.modal-content', {
+                        scale: 0.8,
+                        opacity: 0
+                    }, {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.3,
+                        ease: "back.out(1.7)"
                     });
                 }
             }
@@ -2221,16 +2202,14 @@
             function closeModalFunc() {
                 if (modal) {
                     // Анимация закрытия модального окна
-                    safeGsapAnimation(document.querySelector('.modal-content'), {
-                        to: {
-                            scale: 0.8,
-                            opacity: 0,
-                            duration: 0.2,
-                            ease: "power2.in",
-                            onComplete: () => {
-                                modal.classList.remove('active');
-                                document.body.style.overflow = 'auto';
-                            }
+                    gsap.to('.modal-content', {
+                        scale: 0.8,
+                        opacity: 0,
+                        duration: 0.2,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
                         }
                     });
                 }
@@ -2264,25 +2243,22 @@
                     notification.classList.add('show');
                     
                     // Анимация появления уведомления
-                    safeGsapAnimation(notification, {
-                        from: { x: 150 },
-                        to: {
-                            x: 0,
-                            duration: 0.5,
-                            ease: "back.out(1.7)"
-                        }
+                    gsap.fromTo(notification, {
+                        x: 150
+                    }, {
+                        x: 0,
+                        duration: 0.5,
+                        ease: "back.out(1.7)"
                     });
                     
                     setTimeout(() => {
                         // Анимация скрытия уведомления
-                        safeGsapAnimation(notification, {
-                            to: {
-                                x: 150,
-                                duration: 0.3,
-                                ease: "power2.in",
-                                onComplete: () => {
-                                    notification.classList.remove('show');
-                                }
+                        gsap.to(notification, {
+                            x: 150,
+                            duration: 0.3,
+                            ease: "power2.in",
+                            onComplete: () => {
+                                notification.classList.remove('show');
                             }
                         });
                     }, 3000);
@@ -2324,24 +2300,22 @@
             let lastScrollY = window.scrollY;
             const header = document.getElementById('header');
             
-            if (header) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                    
-                    // Скрытие/показ шапки при скролле
-                    if (window.scrollY > lastScrollY && window.scrollY > 100) {
-                        header.classList.add('hidden');
-                    } else {
-                        header.classList.remove('hidden');
-                    }
-                    
-                    lastScrollY = window.scrollY;
-                });
-            }
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                
+                // Скрытие/показ шапки при скролле
+                if (window.scrollY > lastScrollY && window.scrollY > 100) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                
+                lastScrollY = window.scrollY;
+            });
         }
         
         // Инициализация при загрузке страницы
@@ -2362,52 +2336,4 @@
         });
     </script>
 </body>
-/* Добавьте в существующие медиа-запросы или в конец стилей */
-@media (max-width: 768px) {
-    .btn, .catalog-filter-btn, .mobile-menu-btn {
-        min-height: 44px; /* Минимальный размер для касания */
-        padding: 12px 16px;
-    }
-    
-    .form-control {
-        font-size: 16px; /* Предотвращает масштабирование в iOS */
-    }
-    
-    .product-actions {
-        flex-direction: column;
-    }
-    
-    .product-actions .btn {
-        margin-bottom: 10px;
-    }
-}
-
-/* Улучшение скролла на iOS */
-html {
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Предотвращение выделения при касании */
-button, a {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-button:focus, a:focus {
-    outline: none;
-}
-// Добавьте в раздел JavaScript
-// Определение типа устройства
-function isTouchDevice() {
-    return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-}
-
-// Оптимизация для touch-устройств
-if (isTouchDevice()) {
-    document.body.classList.add('touch-device');
-} else {
-    document.body.classList.add('no-touch-device');
-}
 </html>
