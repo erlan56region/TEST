@@ -1,1208 +1,1142 @@
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<style>
-:root {
-    --primary: #0056b3;
-    --primary-dark: #003d82;
-    --secondary: #00b894;
-    --dark: #343a40;
-    --light: #f8f9fa;
-    --gray: #6c757d;
-    --white: #ffffff;
-    --black: #0a0a0a;
-    --shadow: 0 5px 15px rgba(0,0,0,0.08);
-    --transition: all 0.3s ease;
-    --header-height: 80px;
-}
-
-/* Темная тема */
-.dark-theme {
-    --primary: #4dabf7;
-    --primary-dark: #339af0;
-    --secondary: #00d9a5;
-    --dark: #1a1a1a;
-    --light: #2d2d2d;
-    --gray: #a0a0a0;
-    --white: #e0e0e0;
-    --black: #f5f5f5;
-    --shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body {
-    color: var(--dark);
-    line-height: 1.6;
-    overflow-x: hidden;
-    background-color: var(--white);
-    transition: background-color 0.5s ease, color 0.5s ease;
-}
-
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.btn {
-    display: inline-block;
-    background-color: var(--primary);
-    color: var(--white);
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
-}
-
-section {
-    padding: 80px 0;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-h2 {
-    font-size: 36px;
-    margin-bottom: 40px;
-    text-align: center;
-    position: relative;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background: var(--primary);
-    border-radius: 2px;
-}
-
-/* Переключатель темы */
-.theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-}
-
-.theme-toggle:hover {
-    transform: scale(1.1);
-}
-
-/* Шапка - ИСПРАВЛЕНА */
-header {
-    background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    transition: var(--transition);
-    transform: translateY(0);
-}
-
-header.hidden {
-    transform: translateY(-100%);
-}
-
-header.scrolled {
-    padding: 5px 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    transition: var(--transition);
-    min-height: var(--header-height);
-    flex-wrap: wrap;
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--primary);
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.logo i {
-    margin-right: 10px;
-    font-size: 28px;
-}
-
-.logo-subtitle {
-    font-size: 12px;
-    color: var(--gray);
-    margin-top: 2px;
-}
-
-.desktop-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-.desktop-nav ul li {
-    margin-left: 25px;
-    position: relative;
-}
-
-.desktop-nav ul li a {
-    font-weight: 500;
-    transition: var(--transition);
-    padding: 5px 0;
-}
-
-.desktop-nav ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: var(--transition);
-}
-
-.desktop-nav ul li a:hover::after {
-    width: 100%;
-}
-
-.desktop-nav ul li a:hover {
-    color: var(--primary);
-}
-
-.phone {
-    font-weight: 700;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.phone i {
-    margin-right: 8px;
-    color: var(--primary);
-}
-
-.mobile-menu-btn {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--primary);
-    width: 44px;
-    height: 44px;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Мобильная навигация - ИСПРАВЛЕНА */
-.mobile-nav {
-    display: none;
-    width: 100%;
-    text-align: center;
-    background: var(--white);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 999;
-}
-
-.mobile-nav.active {
-    display: block;
-}
-
-.mobile-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.mobile-nav ul li {
-    margin: 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.mobile-nav ul li a {
-    font-weight: 500;
-    padding: 15px 0;
-    display: block;
-    transition: var(--transition);
-    color: var(--dark);
-}
-
-.mobile-nav ul li a:hover {
-    color: var(--primary);
-    background-color: rgba(0,0,0,0.02);
-}
-
-/* Герой секция */
-.hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: var(--white);
-    text-align: center;
-    padding: 200px 0 120px;
-    margin-top: var(--header-height);
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.hero.animate {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 1s ease, transform 1s ease;
-}
-
-.hero h1 {
-    font-size: 52px;
-    margin-bottom: 20px;
-    font-weight: 700;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.hero p {
-    font-size: 20px;
-    margin-bottom: 40px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.hero .btn {
-    opacity: 0;
-    transform: translateY(20px);
-    background-color: var(--white);
-    color: var(--primary);
-}
-
-.hero .btn:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-.hero.animate h1,
-.hero.animate p,
-.hero.animate .btn {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.hero.animate h1 {
-    transition-delay: 0.2s;
-}
-
-.hero.animate p {
-    transition-delay: 0.4s;
-}
-
-.hero.animate .btn {
-    transition-delay: 0.6s;
-}
-
-/* Услуги */
-.services {
-    background-color: var(--light);
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.service-card {
-    background-color: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.service-card.animate {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-}
-
-.service-img {
-    height: 200px;
-    overflow: hidden;
-    background-color: var(--light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 48px;
-}
-
-.service-content {
-    padding: 25px;
-}
-
-.service-content h3 {
-    margin-bottom: 15px;
-    font-size: 22px;
-    color: var(--dark);
-}
-
-.service-content p {
-    color: var(--gray);
-}
-
-/* Каталог */
-.catalog-section {
-    padding: 80px 0;
-    background-color: var(--white);
-}
-
-.catalog-filters {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 40px;
-}
-
-.catalog-filter-btn {
-    padding: 8px 20px;
-    background: var(--white);
-    border: 1px solid #ddd;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: var(--transition);
-    font-weight: 500;
-    color: var(--dark);
-}
-
-.catalog-filter-btn:hover, .catalog-filter-btn.active {
-    background: var(--primary);
-    color: var(--white);
-    border-color: var(--primary);
-}
-
-.catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.product-card {
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    position: relative;
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.product-card.animate {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.product-img {
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-    background-color: var(--light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 48px;
-}
-
-.product-badge {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--primary);
-    color: var(--white);
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.product-content {
-    padding: 20px;
-}
-
-.product-content h3 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: var(--dark);
-}
-
-.product-content p {
-    color: var(--gray);
-    font-size: 14px;
-    margin-bottom: 15px;
-    min-height: 60px;
-}
-
-.product-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 15px;
-}
-
-.product-feature {
-    background: var(--light);
-    padding: 4px 10px;
-    border-radius: 15px;
-    font-size: 12px;
-    color: var(--dark);
-}
-
-.product-price {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-.product-actions {
-    display: flex;
-    gap: 10px;
-}
-
-.product-actions .btn {
-    flex: 1;
-    padding: 10px;
-    font-size: 14px;
-}
-
-.product-actions .btn-outline {
-    background: transparent;
-    border: 2px solid var(--primary);
-    color: var(--primary);
-}
-
-.product-actions .btn-outline:hover {
-    background: var(--primary);
-    color: var(--white);
-}
-
-/* Модальное окно товара */
-.product-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.product-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-.product-modal-content {
-    background: var(--white);
-    border-radius: 12px;
-    max-width: 900px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.product-modal.active .product-modal-content {
-    transform: scale(1);
-}
-
-.product-modal-close {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--gray);
-    z-index: 10;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.product-modal-body {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.product-modal-img {
-    flex: 1;
-    min-width: 300px;
-    height: 400px;
-    background-color: var(--light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 64px;
-}
-
-.product-modal-info {
-    flex: 1;
-    min-width: 300px;
-    padding: 30px;
-}
-
-.product-modal-info h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: var(--dark);
-}
-
-.product-modal-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-
-.product-modal-description {
-    margin-bottom: 20px;
-    color: var(--gray);
-}
-
-.product-modal-specs {
-    margin-bottom: 25px;
-}
-
-.product-modal-specs h4 {
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: var(--dark);
-}
-
-.specs-list {
-    list-style: none;
-}
-
-.specs-list li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-}
-
-.spec-name {
-    font-weight: 500;
-    color: var(--dark);
-}
-
-.spec-value {
-    color: var(--gray);
-}
-
-.product-modal-actions {
-    display: flex;
-    gap: 15px;
-}
-
-.product-modal-actions .btn {
-    flex: 1;
-}
-
-/* О компании */
-.about-section {
-    padding: 80px 0;
-}
-
-.about {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-}
-
-.about-img {
-    flex: 1;
-    height: 450px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    opacity: 0;
-    transform: translateX(-30px);
-    background-color: var(--light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 64px;
-}
-
-.about-img.animate {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.about-content {
-    flex: 1;
-    opacity: 0;
-    transform: translateX(30px);
-}
-
-.about-content.animate {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.about-content h2 {
-    text-align: left;
-}
-
-.about-content h2::after {
-    left: 0;
-    transform: none;
-}
-
-.stats {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-.stat-item {
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.stat-item.animate {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.stat-number {
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--primary);
-    display: block;
-}
-
-.stat-text {
-    color: var(--gray);
-}
-
-/* Контакты */
-.contacts {
-    background-color: var(--light);
-}
-
-.contacts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.contact-info {
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.contact-info.animate {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.contact-info h3 {
-    margin-bottom: 20px;
-    color: var(--primary);
-}
-
-.contact-item {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: flex-start;
-}
-
-.contact-item i {
-    margin-right: 10px;
-    color: var(--primary);
-    width: 20px;
-    text-align: center;
-    font-size: 18px;
-}
-
-.contact-item div {
-    color: var(--dark);
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: var(--dark);
-}
-
-.form-control {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: var(--transition);
-    background-color: var(--white);
-    color: var(--dark);
-}
-
-.form-control:focus {
-    border-color: var(--primary);
-    outline: none;
-}
-
-/* Подвал */
-footer {
-    background-color: var(--dark);
-    color: var(--white);
-    padding: 60px 0 20px;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.footer-column {
-    flex: 1;
-    min-width: 200px;
-}
-
-.footer-column h3 {
-    margin-bottom: 20px;
-    font-size: 18px;
-    position: relative;
-    padding-bottom: 10px;
-    color: var(--white);
-}
-
-.footer-column h3::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 30px;
-    height: 2px;
-    background: var(--primary);
-}
-
-.footer-column ul {
-    list-style: none;
-}
-
-.footer-column ul li {
-    margin-bottom: 10px;
-}
-
-.footer-column ul li a {
-    color: rgba(255, 255, 255, 0.7);
-    transition: var(--transition);
-}
-
-.footer-column ul li a:hover {
-    color: var(--primary);
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    transition: var(--transition);
-    color: var(--white);
-}
-
-.social-links a:hover {
-    background: var(--primary);
-    transform: translateY(-3px);
-}
-
-.copyright {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-/* Модальное окно */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-.modal-content {
-    background: var(--white);
-    border-radius: 12px;
-    padding: 30px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.modal.active .modal-content {
-    transform: scale(1);
-}
-
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--gray);
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content h3 {
-    color: var(--dark);
-    margin-bottom: 20px;
-}
-
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    background: var(--primary);
-    color: var(--white);
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-    transform: translateX(150%);
-    transition: transform 0.3s;
-    z-index: 1000;
-}
-
-.notification.show {
-    transform: translateX(0);
-}
-
-/* Анимация загрузки */
-.loading-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.loading-animation.hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(0, 86, 179, 0.2);
-    border-radius: 50%;
-    border-top-color: var(--primary);
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Адаптивность */
-@media (max-width: 992px) {
-    .about {
-        flex-direction: column;
-    }
-    
-    .about-content h2 {
-        text-align: center;
-    }
-    
-    .about-content h2::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .stats {
-        justify-content: space-around;
-    }
-}
-
-@media (max-width: 768px) {
-    .desktop-nav {
-        display: none;
-    }
-    
-    .mobile-menu-btn {
-        display: flex;
-    }
-    
-    .header-inner {
-        flex-wrap: wrap;
-    }
-    
-    .phone {
-        margin-top: 10px;
-        width: 100%;
-        justify-content: center;
-        order: 3;
-    }
-    
-    .hero h1 {
-        font-size: 36px;
-    }
-    
-    .hero p {
-        font-size: 18px;
-    }
-    
-    .product-modal-body {
-        flex-direction: column;
-    }
-    
-    .product-modal-img {
-        height: 250px;
-    }
-    
-    .stats {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    /* Улучшения для мобильных устройств */
-    .btn, .catalog-filter-btn, .mobile-menu-btn {
-        min-height: 44px;
-        padding: 12px 16px;
-    }
-    
-    .form-control {
-        font-size: 16px;
-    }
-    
-    .product-actions {
-        flex-direction: column;
-    }
-    
-    .product-actions .btn {
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 576px) {
-    section {
-        padding: 60px 0;
-    }
-    
-    h2 {
-        font-size: 28px;
-    }
-    
-    .hero {
-        padding: 150px 0 80px;
-    }
-    
-    .catalog-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .header-inner {
-        padding: 10px 0;
-    }
-    
-    .logo {
-        font-size: 18px;
-    }
-    
-    .logo i {
-        font-size: 24px;
-    }
-}
-
-/* Улучшение скролла на iOS */
-html {
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Предотвращение выделения при касании */
-button, a {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-button:focus, a:focus {
-    outline: none;
-}
-
-/* Улучшения для темной темы */
-.dark-theme .form-control {
-    background-color: var(--light);
-    border-color: #444;
-    color: var(--white);
-}
-
-.dark-theme .catalog-filter-btn {
-    background-color: var(--light);
-    border-color: #444;
-    color: var(--white);
-}
-
-.dark-theme .catalog-filter-btn.active {
-    background: var(--primary);
-    color: var(--white);
-}
-
-.dark-theme .product-feature {
-    background-color: #3a3a3a;
-    color: var(--white);
-}
-
-.dark-theme .specs-list li {
-    border-bottom-color: #444;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-dark: #003d82;
+            --secondary: #00b894;
+            --dark: #343a40;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --black: #0a0a0a;
+            --shadow: 0 5px 15px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        .dark-theme {
+            --primary: #4dabf7;
+            --primary-dark: #339af0;
+            --secondary: #00d9a5;
+            --dark: #1a1a1a;
+            --light: #2d2d2d;
+            --gray: #a0a0a0;
+            --white: #e0e0e0;
+            --shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--white);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+            transform: translateY(0);
+        }
+        
+        header.hidden {
+            transform: translateY(-100%);
+        }
+        
+        header.scrolled {
+            padding: 5px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .logo-subtitle {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+        
+        .desktop-nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .desktop-nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+        
+        .desktop-nav ul li a {
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 0;
+        }
+        
+        .desktop-nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .desktop-nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .desktop-nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .phone {
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .phone i {
+            margin-right: 8px;
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+            padding: 5px;
+        }
+        
+        .mobile-nav {
+            display: none;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            background: var(--white);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-nav.active {
+            display: block;
+        }
+        
+        .mobile-nav ul {
+            flex-direction: column;
+            list-style: none;
+        }
+        
+        .mobile-nav ul li {
+            margin: 10px 0;
+        }
+        
+        .mobile-nav ul li a {
+            font-weight: 500;
+            padding: 10px 0;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 200px 0 120px;
+            margin-top: 70px;
+        }
+        
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero .btn {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        .hero .btn:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .services {
+            background-color: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 48px;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .catalog-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .catalog-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .catalog-filter-btn {
+            padding: 8px 20px;
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .catalog-filter-btn:hover, .catalog-filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 48px;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .product-content {
+            padding: 20px;
+        }
+        
+        .product-content h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        
+        .product-content p {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+            min-height: 60px;
+        }
+        
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .product-feature {
+            background: var(--light);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--dark);
+        }
+        
+        .product-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .product-actions .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+        }
+        
+        .product-actions .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .product-actions .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .septics-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .septics-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .septics-header h2 {
+            margin-bottom: 20px;
+        }
+        
+        .septics-description {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .septics-consultation {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .septics-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .septic-type {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .septic-type:hover {
+            transform: translateY(-5px);
+        }
+        
+        .septic-type-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .septic-type h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .septics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .septic-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .septic-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .septic-card-header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .septic-card-body {
+            padding: 20px;
+        }
+        
+        .septic-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .septic-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .septic-feature-name {
+            font-weight: 500;
+        }
+        
+        .septic-feature-value {
+            color: var(--gray);
+        }
+        
+        .septic-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .product-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .product-modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-modal.active .product-modal-content {
+            transform: scale(1);
+        }
+        
+        .product-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+            z-index: 10;
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-modal-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .product-modal-img {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 64px;
+        }
+        
+        .product-modal-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 30px;
+        }
+        
+        .product-modal-info h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .product-modal-price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .product-modal-description {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .product-modal-specs {
+            margin-bottom: 25px;
+        }
+        
+        .product-modal-specs h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        
+        .specs-list {
+            list-style: none;
+        }
+        
+        .specs-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .spec-name {
+            font-weight: 500;
+        }
+        
+        .spec-value {
+            color: var(--gray);
+        }
+        
+        .product-modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .product-modal-actions .btn {
+            flex: 1;
+        }
+        
+        .about-section {
+            padding: 80px 0;
+        }
+        
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 64px;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            text-align: left;
+        }
+        
+        .about-content h2::after {
+            left: 0;
+            transform: none;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+        
+        .contacts {
+            background-color: var(--light);
+        }
+        
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .contact-info {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-item i {
+            margin-right: 10px;
+            color: var(--primary);
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+            padding: 5px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .loading-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-animation.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 86, 179, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 992px) {
+            .about {
+                flex-direction: column;
+            }
+            
+            .about-content h2 {
+                text-align: center;
+            }
+            
+            .about-content h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .stats {
+                justify-content: space-around;
+            }
+            
+            .product-modal-body {
+                flex-direction: column;
+            }
+            
+            .product-modal-img {
+                height: 250px;
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-inner {
+                flex-wrap: wrap;
+            }
+            
+            .phone {
+                margin-top: 10px;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+            
+            .product-modal-info {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .catalog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .septics-types {
+                grid-template-columns: 1fr;
+            }
+            
+            .septics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-modal-actions {
+                flex-direction: column;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .catalog-filters {
+                gap: 5px;
+            }
+            
+            .catalog-filter-btn {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Анимация загрузки -->
@@ -1210,7 +1144,7 @@ button:focus, a:focus {
         <div class="loader"></div>
     </div>
 
-    <!-- Шапка - ИСПРАВЛЕНА -->
+    <!-- Шапка -->
     <header id="header">
         <div class="container">
             <div class="header-inner">
@@ -1228,6 +1162,7 @@ button:focus, a:focus {
                     <ul>
                         <li><a href="#services">Услуги</a></li>
                         <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#septics">Септики Аквалос</a></li>
                         <li><a href="#about">О компании</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
@@ -1241,6 +1176,7 @@ button:focus, a:focus {
                 <ul>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#septics">Септики Аквалос</a></li>
                     <li><a href="#about">О компании</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
@@ -1248,7 +1184,6 @@ button:focus, a:focus {
         </div>
     </header>
 
-    <!-- Остальной код остается без изменений -->
     <!-- Герой секция -->
     <section class="hero" id="hero">
         <div class="container">
@@ -1309,6 +1244,57 @@ button:focus, a:focus {
             </div>
             <div class="catalog-grid" id="catalogGrid">
                 <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Септики Аквалос -->
+    <section id="septics" class="septics-section">
+        <div class="container">
+            <div class="septics-header">
+                <h2>Купить септик, автономную канализацию Аквалос</h2>
+                <p class="septics-description">Не знаете какую станцию выбрать? Оставьте заявку или позвоните нам!</p>
+                <div class="septics-consultation">
+                    <h3>Бесплатная консультация по подбору септика</h3>
+                    <p>Наши специалисты помогут выбрать оптимальное решение для вашего дома</p>
+                    <a href="#contacts" class="btn" style="background: var(--white); color: var(--primary); margin-top: 15px;">Получить консультацию</a>
+                </div>
+            </div>
+            
+            <div class="septics-types">
+                <div class="septic-type">
+                    <div class="septic-type-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>До 10 человек</h3>
+                    <p>Компактные решения для частных домов и дач</p>
+                </div>
+                <div class="septic-type">
+                    <div class="septic-type-icon">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                    <h3>Горизонтальные станции</h3>
+                    <p>Для участков с высоким уровнем грунтовых вод</p>
+                </div>
+                <div class="septic-type">
+                    <div class="septic-type-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Более 10 человек</h3>
+                    <p>Мощные системы для коттеджей и небольших предприятий</p>
+                </div>
+                <div class="septic-type">
+                    <div class="septic-type-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3>Промышленные</h3>
+                    <p>Для предприятий, гостиниц, ресторанов и других коммерческих объектов</p>
+                </div>
+            </div>
+            
+            <h2 style="margin-bottom: 30px;">Популярные модели септиков Аквалос</h2>
+            <div class="septics-grid" id="septicsGrid">
+                <!-- Септики будут загружены через JavaScript -->
             </div>
         </div>
     </section>
@@ -1448,6 +1434,7 @@ button:focus, a:focus {
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#services">Услуги</a></li>
                         <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#septics">Септики Аквалос</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -1457,7 +1444,7 @@ button:focus, a:focus {
                         <li><a href="#">Водоснабжение</a></li>
                         <li><a href="#">Отопление</a></li>
                         <li><a href="#">Канализация</a></li>
-                        <li><a href="#">Криология</a></li>
+                        <li><a href="#">Септики Аквалос</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1512,7 +1499,24 @@ button:focus, a:focus {
     </div>
 
     <script>
-        // Данные товаров с иконками вместо изображений
+        // Упрощенный код без сложных анимаций для стабильности
+        document.addEventListener('DOMContentLoaded', function() {
+            // Скрытие анимации загрузки
+            const loadingAnimation = document.getElementById('loadingAnimation');
+            if (loadingAnimation) {
+                setTimeout(() => {
+                    loadingAnimation.classList.add('hidden');
+                }, 1000);
+            }
+            
+            // Инициализация базовой функциональности
+            initBaseFunctionality();
+            initCatalog();
+            initSeptics();
+            initCounters();
+        });
+
+        // Данные товаров
         const products = [
             {
                 id: 1,
@@ -1570,693 +1574,53 @@ button:focus, a:focus {
                     { name: "Объем секции", value: "0,19 л" },
                     { name: "Вес секции", value: "2,15 кг" }
                 ]
-            },
+            }
+        ];
+
+        // Данные септиков Аквалос
+        const septics = [
             {
-                id: 4,
-                name: "Трубы полипропиленовые Valtec PP-R 20мм",
-                description: "Полипропиленовые трубы для систем отопления и водоснабжения",
-                price: "85 ₽/м",
-                icon: "fas fa-pipe",
-                features: ["Полипропилен", "Диаметр 20 мм", "Рабочая t: 95°C"],
-                category: "pipes",
-                badge: "Скидка",
-                fullDescription: "Полипропиленовые трубы Valtec PP-R предназначены для систем холодного и горячего водоснабжения, а также отопления. Не подвержены коррозии и имеют длительный срок службы.",
-                specifications: [
-                    { name: "Наружный диаметер", value: "20 мм" },
-                    { name: "Толщина стенки", value: "2,8 мм" },
-                    { name: "Рабочая температура", value: "95°C" },
-                    { name: "Рабочее давление", value: "25 бар" },
-                    { name: "Коэффициент линейного расширения", value: "0,15 мм/м°C" },
-                    { name: "Теплопроводность", value: "0,24 Вт/м°C" }
-                ]
-            },
-            {
-                id: 5,
-                name: "Водонагреватель Thermex Champion Silverheat 100",
-                description: "Накопительный водонагреватель для обеспечения ГВС",
-                price: "18 900 ₽",
-                icon: "fas fa-water",
-                features: ["Объем 100 л", "Мощность 1,5 кВт", "Вертикальный"],
-                category: "water-heaters",
-                badge: "Новинка",
-                fullDescription: "Накопительный водонагреватель Thermex Champion Silverheat 100 обеспечивает стабильное горячее водоснабжение для семьи из 3-4 человек. Оснащен системой защиты от коррозии.",
-                specifications: [
-                    { name: "Объем", value: "100 л" },
-                    { name: "Мощность", value: "1,5 кВт" },
-                    { name: "Нагрев до 60°C", value: "3 ч 15 мин" },
-                    { name: "Максимальная температура", value: "75°C" },
-                    { name: "Рабочее давление", value: "0,7-6 бар" },
-                    { name: "Габариты", value: "493x970 мм" }
-                ]
-            },
-            {
-                id: 6,
-                name: "Циркуляционный насос Wilo Star-RS 25/4",
-                description: "Циркуляционный насос для систем отопления",
-                price: "6 800 ₽",
-                icon: "fas fa-pump",
-                features: ["Три скорости", "Напор 4 м", "Производительность 3 м³/ч"],
-                category: "pumps",
-                badge: "",
-                fullDescription: "Циркуляционный насос Wilo Star-RS 25/4 предназначен для циркуляции теплоносителя в системах отопления. Имеет три скорости работы и низкий уровень шума.",
-                specifications: [
-                    { name: "Производительность", value: "3 м³/ч" },
-                    { name: "Напор", value: "4 м" },
-                    { name: "Мощность", value: "48 Вт" },
-                    { name: "Присоединительный размер", value: "1 дюйм" },
-                    { name: "Максимальная температура", value: "110°C" },
-                    { name: "Уровень шума", value: "< 45 дБ" }
-                ]
-            },
-            // Товары криологии
-            {
-                id: 7,
-                name: "Чиллер Trane CGAM 60",
-                description: "Центральный холодильный агрегат для систем кондиционирования",
-                price: "850 000 ₽",
-                icon: "fas fa-snowflake",
-                features: ["Мощность 60 кВт", "Водяное охлаждение", "Энергоэффективность A++"],
-                category: "cryology",
-                badge: "Профессиональный",
-                fullDescription: "Чиллер Trane CGAM 60 - это центральный холодильный агрегат с водяным охлаждением для систем кондиционирования и промышленного охлаждения. Обеспечивает высокую энергоэффективность и надежность.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "60 кВт" },
-                    { name: "Потребляемая мощность", value: "18,5 кВт" },
-                    { name: "Тип хладагента", value: "R410A" },
-                    { name: "Уровень шума", value: "65 дБ" },
-                    { name: "Габариты", value: "1800x900x1200 мм" },
-                    { name: "Вес", value: "450 кг" }
-                ]
-            },
-            {
-                id: 8,
-                name: "Фанкойл Carrier 42CQ",
-                description: "Внутренний блок фанкойла для систем чиллер-фанкойл",
-                price: "32 500 ₽",
-                icon: "fas fa-wind",
-                features: ["Кассетный тип", "Расход воздуха 1200 м³/ч", "4-х трубная система"],
-                category: "cryology",
+                id: 101,
+                name: "Аквалос 5",
+                description: "Автономная канализация для семьи до 5 человек",
+                price: "89 000 ₽",
+                icon: "fas fa-home",
+                features: ["До 5 человек", "Компактный", "Энергонезависимый"],
+                category: "до 10 человек",
                 badge: "Популярный",
-                fullDescription: "Фанкойл Carrier 42CQ кассетного типа предназначен для систем чиллер-фанкойл. Обеспечивает эффективное охлаждение и нагрев воздуха в помещениях коммерческого назначения.",
+                fullDescription: "Автономная канализация Аквалос 5 предназначена для загородного дома с постоянным проживанием до 5 человек. Обеспечивает эффективную очистку сточных вод.",
                 specifications: [
-                    { name: "Холодопроизводительность", value: "5,8 кВт" },
-                    { name: "Теплопроизводительность", value: "8,2 кВт" },
-                    { name: "Расход воздуха", value: "1200 м³/ч" },
-                    { name: "Уровень шума", value: "42 дБ" },
-                    { name: "Габариты", value: "840x840x300 мм" },
-                    { name: "Вес", value: "32 кг" }
+                    { name: "Производительность", value: "1 м³/сут" },
+                    { name: "Объем", value: "2500 л" },
+                    { name: "Количество пользователей", value: "5 человек" },
+                    { name: "Габариты", value: "2300x1200x1700 мм" },
+                    { name: "Вес", value: "120 кг" },
+                    { name: "Степень очистки", value: "98%" }
                 ]
             },
             {
-                id: 9,
-                name: "Холодильная машина York YCIV 120",
-                description: "Промышленная холодильная машина с винтовыми компрессорами",
-                price: "1 250 000 ₽",
-                icon: "fas fa-industry",
-                features: ["Мощность 120 кВт", "Винтовые компрессоры", "Полная автоматизация"],
-                category: "cryology",
-                badge: "Профессиональный",
-                fullDescription: "Холодильная машина York YCIV 120 с винтовыми компрессорами предназначена для промышленного применения. Обеспечивает высокую надежность и энергоэффективность в системах охлаждения.",
+                id: 102,
+                name: "Аквалос 8",
+                description: "Автономная канализация для семьи до 8 человек",
+                price: "112 000 ₽",
+                icon: "fas fa-users",
+                features: ["До 8 человек", "Высокая степень очистки", "Надежность"],
+                category: "до 10 человек",
+                badge: "Хит",
+                fullDescription: "Автономная канализация Аквалос 8 предназначена для загородного дома с постоянным проживанием до 8 человек. Идеальное решение для средней семьи.",
                 specifications: [
-                    { name: "Холодопроизводительность", value: "120 кВт" },
-                    { name: "Потребляемая мощность", value: "32 кВт" },
-                    { name: "Тип хладагента", value: "R134a" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "2500x1200x1800 мм" },
-                    { name: "Вес", value: "980 кг" }
-                ]
-            },
-            {
-                id: 10,
-                name: "Система холодоснабжения Daikin EWAD-B200",
-                description: "Модульная система холодоснабжения для коммерческих объектов",
-                price: "680 000 ₽",
-                icon: "fas fa-cogs",
-                features: ["Модульная конструкция", "Мощность 200 кВт", "Инверторное управление"],
-                category: "cryology",
-                badge: "Энергоэффективный",
-                fullDescription: "Система холодоснабжения Daikin EWAD-B200 с модульной конструкцией и инверторным управлением обеспечивает высокую энергоэффективность и гибкость в применении для коммерческих объектов.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "200 кВт" },
-                    { name: "Потребляемая мощность", value: "55 кВт" },
-                    { name: "Тип хладагента", value: "R410A" },
-                    { name: "Количество модулей", value: "2" },
-                    { name: "Габариты", value: "3200x1500x1800 мм" },
-                    { name: "Вес", value: "1250 кг" }
-                ]
-            },
-            {
-                id: 11,
-                name: "Охладитель жидкости GEA Grasso RC 35",
-                description: "Промышленный охладитель жидкости для технологических процессов",
-                price: "420 000 ₽",
-                icon: "fas fa-tint",
-                features: ["Мощность 35 кВт", "Поршневые компрессоры", "Защита от коррозии"],
-                category: "cryology",
-                badge: "Промышленный",
-                fullDescription: "Охладитель жидкости GEA Grasso RC 35 с поршневыми компрессорами предназначен для промышленного применения в системах охлаждения технологических процессов.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "35 кВт" },
-                    { name: "Потребляемая мощность", value: "11 кВт" },
-                    { name: "Тип хладагента", value: "R407C" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "1500x800x1200 мм" },
-                    { name: "Вес", value: "320 кг" }
-                ]
-            },
-            {
-                id: 12,
-                name: "Абсорбционная холодильная машина Broad BDH 80",
-                description: "Абсорбционная холодильная машина на горячей воде",
-                price: "1 850 000 ₽",
-                icon: "fas fa-recycle",
-                features: ["Мощность 80 кВт", "Абсорбционный цикл", "Работа на горячей воде"],
-                category: "cryology",
-                badge: "Экологичный",
-                fullDescription: "Абсорбционная холодильная машина Broad BDH 80 использует тепло горячей воды для производства холода. Экологичное решение для объектов с избыточным теплом.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "80 кВт" },
-                    { name: "Температура горячей воды", value: "85-95°C" },
-                    { name: "Температура охлажденной воды", value: "7°C" },
-                    { name: "Потребление горячей воды", value: "12 м³/ч" },
-                    { name: "Габариты", value: "2800x1400x1800 мм" },
-                    { name: "Вес", value: "1800 кг" }
+                    { name: "Производительность", value: "1,6 м³/сут" },
+                    { name: "Объем", value: "3000 л" },
+                    { name: "Количество пользователей", value: "8 человек" },
+                    { name: "Габариты", value: "2500x1200x1700 мм" },
+                    { name: "Вес", value: "150 кг" },
+                    { name: "Степень очистки", value: "98%" }
                 ]
             }
         ];
 
-        // Fallback для GSAP
-        if (typeof gsap === 'undefined') {
-            console.warn('GSAP not loaded, using fallback');
-            // Простой fallback для анимаций
-            window.gsap = {
-                to: function(el, config) {
-                    if (config.onComplete) setTimeout(config.onComplete, config.duration * 1000 || 0);
-                },
-                fromTo: function(el, from, to) {
-                    if (to.onComplete) setTimeout(to.onComplete, to.duration * 1000 || 0);
-                },
-                utils: {
-                    toArray: function(selector) {
-                        return document.querySelectorAll(selector);
-                    }
-                },
-                registerPlugin: function() {} // Пустая функция для ScrollTrigger
-            };
-            
-            // Простой ScrollTrigger fallback
-            window.ScrollTrigger = {
-                create: function() {}
-            };
-        }
-
-        // Безопасная функция анимации
-        function safeGsapAnimation(element, animationConfig) {
-            try {
-                if (element && element.nodeType === 1) {
-                    if (animationConfig.from && animationConfig.to) {
-                        gsap.fromTo(element, animationConfig.from, animationConfig.to);
-                    } else if (animationConfig.to) {
-                        gsap.to(element, animationConfig.to);
-                    }
-                }
-            } catch (error) {
-                console.warn('GSAP animation error:', error);
-            }
-        }
-
-        // Инициализация GSAP анимаций
-        function initAnimations() {
-            try {
-                // Инициализация ScrollTrigger
-                if (typeof ScrollTrigger !== 'undefined') {
-                    gsap.registerPlugin(ScrollTrigger);
-                }
-                
-                // Анимация появления секций при скролле
-                gsap.utils.toArray('section').forEach(section => {
-                    safeGsapAnimation(section, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: section,
-                                start: "top 80%",
-                                end: "bottom 20%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация карточек услуг
-                gsap.utils.toArray('.service-card').forEach((card, i) => {
-                    safeGsapAnimation(card, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.1,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация карточек товаров
-                gsap.utils.toArray('.product-card').forEach((card, i) => {
-                    safeGsapAnimation(card, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.1,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: card,
-                                start: "top 85%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация элементов "О компании"
-                safeGsapAnimation(document.querySelector('.about-img'), {
-                    from: { opacity: 0, x: -50 },
-                    to: {
-                        opacity: 1,
-                        x: 0,
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: '.about',
-                            start: "top 80%",
-                            toggleActions: "play none none reverse"
-                        }
-                    }
-                });
-                
-                safeGsapAnimation(document.querySelector('.about-content'), {
-                    from: { opacity: 0, x: 50 },
-                    to: {
-                        opacity: 1,
-                        x: 0,
-                        duration: 1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: '.about',
-                            start: "top 80%",
-                            toggleActions: "play none none reverse"
-                        }
-                    }
-                });
-                
-                // Анимация статистики
-                gsap.utils.toArray('.stat-item').forEach((item, i) => {
-                    safeGsapAnimation(item, {
-                        from: { opacity: 0, y: 30 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.2,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: '.stats',
-                                start: "top 80%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-                
-                // Анимация контактных блоков
-                gsap.utils.toArray('.contact-info').forEach((info, i) => {
-                    safeGsapAnimation(info, {
-                        from: { opacity: 0, y: 50 },
-                        to: {
-                            opacity: 1,
-                            y: 0,
-                            duration: 0.8,
-                            delay: i * 0.2,
-                            ease: "power2.out",
-                            scrollTrigger: {
-                                trigger: '.contacts-grid',
-                                start: "top 80%",
-                                toggleActions: "play none none reverse"
-                            }
-                        }
-                    });
-                });
-            } catch (error) {
-                console.error('Animation initialization error:', error);
-            }
-        }
-
-        // Улучшенная функция для анимации счетчика с GSAP
-        function animateCounter(element, start, end, duration) {
-            if (!element) return;
-            
-            const obj = { value: start };
-            safeGsapAnimation(null, {
-                to: {
-                    value: end,
-                    duration: duration / 1000,
-                    ease: "power2.out",
-                    onUpdate: function() {
-                        if (element.id === 'clientsCounter') {
-                            element.textContent = Math.floor(obj.value) + '%';
-                        } else {
-                            element.textContent = Math.floor(obj.value).toLocaleString();
-                        }
-                    },
-                    scrollTrigger: {
-                        trigger: element,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            });
-        }
-
-        // Функция для запуска счетчиков
-        function initCounters() {
-            const yearsCounter = document.getElementById('yearsCounter');
-            const projectsCounter = document.getElementById('projectsCounter');
-            const clientsCounter = document.getElementById('clientsCounter');
-            
-            if (yearsCounter && projectsCounter && clientsCounter) {
-                animateCounter(yearsCounter, 0, 15, 2000);
-                animateCounter(projectsCounter, 0, 1200, 2500);
-                animateCounter(clientsCounter, 0, 98, 1800);
-            }
-        }
-
-        // Анимация появления героя
-        function initHeroAnimation() {
-            const hero = document.getElementById('hero');
-            if (hero) {
-                hero.classList.add('animate');
-                
-                // Анимация элементов героя с GSAP
-                const h1 = hero.querySelector('h1');
-                const p = hero.querySelector('p');
-                const btn = hero.querySelector('.btn');
-                
-                if (h1) {
-                    safeGsapAnimation(h1, {
-                        from: { opacity: 0, y: 30 },
-                        to: { opacity: 1, y: 0, duration: 1, delay: 0.2, ease: "power2.out" }
-                    });
-                }
-                
-                if (p) {
-                    safeGsapAnimation(p, {
-                        from: { opacity: 0, y: 30 },
-                        to: { opacity: 1, y: 0, duration: 1, delay: 0.4, ease: "power2.out" }
-                    });
-                }
-                
-                if (btn) {
-                    safeGsapAnimation(btn, {
-                        from: { opacity: 0, y: 30 },
-                        to: { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: "power2.out" }
-                    });
-                }
-            }
-        }
-
-        // Инициализация каталога
-        function initCatalog() {
-            const catalogGrid = document.getElementById('catalogGrid');
-            
-            if (!catalogGrid) return;
-            
-            // Очистка контейнера
-            catalogGrid.innerHTML = '';
-            
-            // Создание карточек товаров
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.setAttribute('data-category', product.category);
-                productCard.innerHTML = `
-                    <div class="product-img">
-                        <i class="${product.icon}"></i>
-                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
-                    </div>
-                    <div class="product-content">
-                        <h3>${product.name}</h3>
-                        <p>${product.description}</p>
-                        <div class="product-features">
-                            ${product.features.map(feature => `<span class="product-feature">${feature}</span>`).join('')}
-                        </div>
-                        <div class="product-price">${product.price}</div>
-                        <div class="product-actions">
-                            <button class="btn" data-product-id="${product.id}">Подробнее</button>
-                            <button class="btn btn-outline" data-product-id="${product.id}">Заказать</button>
-                        </div>
-                    </div>
-                `;
-                catalogGrid.appendChild(productCard);
-            });
-            
-            // Инициализация фильтров каталога
-            initCatalogFilters();
-            
-            // Инициализация обработчиков событий для кнопок товаров
-            initProductButtons();
-            
-            // Инициализация модального окна товара
-            initProductModal();
-        }
-        
-        // Инициализация фильтров каталога
-        function initCatalogFilters() {
-            const filterButtons = document.querySelectorAll('.catalog-filter-btn');
-            if (filterButtons.length === 0) return;
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Убираем активный класс у всех кнопок
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Добавляем активный класс текущей кнопке
-                    button.classList.add('active');
-                    
-                    const filter = button.getAttribute('data-filter');
-                    filterCatalog(filter);
-                });
-            });
-        }
-        
-        // Фильтрация каталога
-        function filterCatalog(filter) {
-            const productCards = document.querySelectorAll('.product-card');
-            if (productCards.length === 0) return;
-            
-            productCards.forEach(card => {
-                const shouldShow = filter === 'all' || card.getAttribute('data-category') === filter;
-                
-                if (shouldShow && card.style.display === 'none') {
-                    card.style.display = 'block';
-                    // Используем requestAnimationFrame для гарантии что элемент в DOM
-                    requestAnimationFrame(() => {
-                        safeGsapAnimation(card, {
-                            from: { opacity: 0, scale: 0.8 },
-                            to: {
-                                opacity: 1,
-                                scale: 1,
-                                duration: 0.5,
-                                ease: "power2.out"
-                            }
-                        });
-                    });
-                } else if (!shouldShow && card.style.display !== 'none') {
-                    safeGsapAnimation(card, {
-                        to: {
-                            opacity: 0,
-                            scale: 0.8,
-                            duration: 0.3,
-                            ease: "power2.out",
-                            onComplete: () => {
-                                card.style.display = 'none';
-                                // Сбрасываем стили после анимации
-                                gsap.set(card, { opacity: 1, scale: 1 });
-                            }
-                        }
-                    });
-                }
-            });
-        }
-        
-        // Инициализация обработчиков событий для кнопок товаров
-        function initProductButtons() {
-            const productCards = document.querySelectorAll('.product-card');
-            if (productCards.length === 0) return;
-            
-            productCards.forEach(card => {
-                const buttons = card.querySelectorAll('.btn');
-                buttons.forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const productId = button.getAttribute('data-product-id');
-                        if (button.classList.contains('btn-outline')) {
-                            // Заказ товара
-                            orderProduct(productId);
-                        } else {
-                            // Просмотр подробной информации
-                            viewProductDetails(productId);
-                        }
-                    });
-                });
-                
-                // Клик по карточке товара
-                card.addEventListener('click', () => {
-                    const productId = card.querySelector('.btn').getAttribute('data-product-id');
-                    viewProductDetails(productId);
-                });
-            });
-        }
-        
-        // Просмотр детальной информации о товаре
-        function viewProductDetails(productId) {
-            const product = products.find(p => p.id == productId);
-            if (product) {
-                const modal = document.getElementById('productModal');
-                const modalIcon = document.getElementById('modalProductIcon');
-                const modalName = document.getElementById('modalProductName');
-                const modalPrice = document.getElementById('modalProductPrice');
-                const modalDescription = document.getElementById('modalProductDescription');
-                const modalSpecs = document.getElementById('modalProductSpecs');
-                
-                if (!modal || !modalIcon || !modalName || !modalPrice || !modalDescription || !modalSpecs) return;
-                
-                // Заполнение модального окна данными товара
-                modalIcon.className = product.icon;
-                modalName.textContent = product.name;
-                modalPrice.textContent = product.price;
-                modalDescription.textContent = product.fullDescription;
-                
-                // Очистка и заполнение спецификаций
-                modalSpecs.innerHTML = '';
-                product.specifications.forEach(spec => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <span class="spec-name">${spec.name}</span>
-                        <span class="spec-value">${spec.value}</span>
-                    `;
-                    modalSpecs.appendChild(li);
-                });
-                
-                // Анимация открытия модального окна
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Анимация появления контента в модальном окне
-                safeGsapAnimation(document.querySelector('.product-modal-content'), {
-                    from: { scale: 0.8, opacity: 0 },
-                    to: {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.3,
-                        ease: "back.out(1.7)"
-                    }
-                });
-            }
-        }
-        
-        // Заказ товара
-        function orderProduct(productId) {
-            const product = products.find(p => p.id == productId);
-            if (product) {
-                // Открытие модального окна заказа
-                openModal();
-                // В реальном приложении здесь можно добавить логику для предзаполнения формы
-            }
-        }
-        
-        // Инициализация модального окна товара
-        function initProductModal() {
-            const modal = document.getElementById('productModal');
-            const closeButton = document.getElementById('productModalClose');
-            const orderButton = document.getElementById('modalProductOrder');
-            const consultButton = document.getElementById('modalProductConsult');
-            
-            if (!modal || !closeButton || !orderButton || !consultButton) return;
-            
-            // Закрытие модального окна
-            closeButton.addEventListener('click', () => {
-                closeProductModal();
-            });
-            
-            // Заказ товара из модального окна
-            orderButton.addEventListener('click', () => {
-                closeProductModal();
-                openModal();
-            });
-            
-            // Консультация по товару
-            consultButton.addEventListener('click', () => {
-                closeProductModal();
-                openModal();
-            });
-            
-            // Закрытие по клику вне модального окна
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeProductModal();
-                }
-            });
-            
-            // Закрытие по клавише Escape
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    closeProductModal();
-                }
-            });
-        }
-        
-        // Закрытие модального окна товара
-        function closeProductModal() {
-            const modal = document.getElementById('productModal');
-            if (modal) {
-                // Анимация закрытия модального окна
-                safeGsapAnimation(document.querySelector('.product-modal-content'), {
-                    to: {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.2,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    }
-                });
-            }
-        }
-        
-        // Базовая функциональность
         function initBaseFunctionality() {
-            // Скрытие анимации загрузки
-            const loadingAnimation = document.getElementById('loadingAnimation');
-            if (loadingAnimation) {
-                setTimeout(() => {
-                    loadingAnimation.classList.add('hidden');
-                }, 1000);
-            }
-            
-            // Мобильное меню - ИСПРАВЛЕНО
+            // Мобильное меню
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileNav = document.getElementById('mobileNav');
             
@@ -2264,14 +1628,9 @@ button:focus, a:focus {
                 mobileMenuBtn.addEventListener('click', () => {
                     mobileNav.classList.toggle('active');
                     
-                    // Анимация иконки меню
                     const icon = mobileMenuBtn.querySelector('i');
                     if (mobileNav.classList.contains('active')) {
                         icon.className = 'fas fa-times';
-                        safeGsapAnimation(mobileNav, {
-                            from: { opacity: 0, y: -20 },
-                            to: { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }
-                        });
                     } else {
                         icon.className = 'fas fa-bars';
                     }
@@ -2286,20 +1645,8 @@ button:focus, a:focus {
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        // Анимация прокрутки с GSAP
-                        if (typeof gsap !== 'undefined') {
-                            gsap.to(window, {
-                                duration: 1,
-                                scrollTo: {
-                                    y: targetElement,
-                                    offsetY: 70
-                                },
-                                ease: "power2.inOut"
-                            });
-                        } else {
-                            // Fallback для прокрутки
-                            targetElement.scrollIntoView({ behavior: 'smooth' });
-                        }
+                        // Простая плавная прокрутка
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
                         
                         // Закрытие мобильного меню после клика
                         if (mobileNav) {
@@ -2331,18 +1678,6 @@ button:focus, a:focus {
                 isDarkTheme = !isDarkTheme;
                 localStorage.setItem('darkTheme', isDarkTheme);
                 applyTheme();
-                
-                // Анимация переключателя темы
-                if (themeToggle) {
-                    safeGsapAnimation(themeToggle, {
-                        to: {
-                            scale: 1.2,
-                            duration: 0.2,
-                            yoyo: true,
-                            repeat: 1
-                        }
-                    });
-                }
             }
             
             if (themeToggle && themeIcon) {
@@ -2359,35 +1694,13 @@ button:focus, a:focus {
                 if (modal) {
                     modal.classList.add('active');
                     document.body.style.overflow = 'hidden';
-                    
-                    // Анимация открытия модального окна
-                    safeGsapAnimation(document.querySelector('.modal-content'), {
-                        from: { scale: 0.8, opacity: 0 },
-                        to: {
-                            scale: 1,
-                            opacity: 1,
-                            duration: 0.3,
-                            ease: "back.out(1.7)"
-                        }
-                    });
                 }
             }
             
             function closeModalFunc() {
                 if (modal) {
-                    // Анимация закрытия модального окна
-                    safeGsapAnimation(document.querySelector('.modal-content'), {
-                        to: {
-                            scale: 0.8,
-                            opacity: 0,
-                            duration: 0.2,
-                            ease: "power2.in",
-                            onComplete: () => {
-                                modal.classList.remove('active');
-                                document.body.style.overflow = 'auto';
-                            }
-                        }
-                    });
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
                 }
             }
             
@@ -2418,28 +1731,8 @@ button:focus, a:focus {
                 if (notification) {
                     notification.classList.add('show');
                     
-                    // Анимация появления уведомления
-                    safeGsapAnimation(notification, {
-                        from: { x: 150 },
-                        to: {
-                            x: 0,
-                            duration: 0.5,
-                            ease: "back.out(1.7)"
-                        }
-                    });
-                    
                     setTimeout(() => {
-                        // Анимация скрытия уведомления
-                        safeGsapAnimation(notification, {
-                            to: {
-                                x: 150,
-                                duration: 0.3,
-                                ease: "power2.in",
-                                onComplete: () => {
-                                    notification.classList.remove('show');
-                                }
-                            }
-                        });
+                        notification.classList.remove('show');
                     }, 3000);
                 }
             }
@@ -2499,22 +1792,269 @@ button:focus, a:focus {
             }
         }
         
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                initBaseFunctionality();
-                initCatalog();
-                initHeroAnimation();
+        function initCatalog() {
+            const catalogGrid = document.getElementById('catalogGrid');
+            
+            if (!catalogGrid) return;
+            
+            catalogGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.setAttribute('data-category', product.category);
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        <i class="${product.icon}"></i>
+                        ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    </div>
+                    <div class="product-content">
+                        <h3>${product.name}</h3>
+                        <p>${product.description}</p>
+                        <div class="product-features">
+                            ${product.features.map(feature => `<span class="product-feature">${feature}</span>`).join('')}
+                        </div>
+                        <div class="product-price">${product.price}</div>
+                        <div class="product-actions">
+                            <button class="btn" data-product-id="${product.id}">Подробнее</button>
+                            <button class="btn btn-outline" data-product-id="${product.id}">Заказать</button>
+                        </div>
+                    </div>
+                `;
+                catalogGrid.appendChild(productCard);
+            });
+            
+            initCatalogFilters();
+            initProductButtons();
+            initProductModal();
+        }
+        
+        function initSeptics() {
+            const septicsGrid = document.getElementById('septicsGrid');
+            
+            if (!septicsGrid) return;
+            
+            septicsGrid.innerHTML = '';
+            
+            septics.forEach(septic => {
+                const septicCard = document.createElement('div');
+                septicCard.className = 'septic-card';
+                septicCard.innerHTML = `
+                    <div class="septic-card-header">
+                        <h3>${septic.name}</h3>
+                        <p>${septic.description}</p>
+                    </div>
+                    <div class="septic-card-body">
+                        <div class="septic-price">${septic.price}</div>
+                        <ul class="septic-features">
+                            ${septic.specifications.map(spec => `
+                                <li>
+                                    <span class="septic-feature-name">${spec.name}</span>
+                                    <span class="septic-feature-value">${spec.value}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <div class="product-actions">
+                            <button class="btn" data-product-id="${septic.id}" data-septic="true">Подробнее</button>
+                            <button class="btn btn-outline" data-product-id="${septic.id}" data-septic="true">Заказать</button>
+                        </div>
+                    </div>
+                `;
+                septicsGrid.appendChild(septicCard);
+            });
+            
+            // Добавляем обработчики событий для кнопок септиков
+            document.querySelectorAll('.septic-card .btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const productId = button.getAttribute('data-product-id');
+                    const isSeptic = button.getAttribute('data-septic') === 'true';
+                    
+                    if (button.classList.contains('btn-outline')) {
+                        orderProduct(productId, isSeptic);
+                    } else {
+                        viewProductDetails(productId, isSeptic);
+                    }
+                });
+            });
+        }
+        
+        function initCatalogFilters() {
+            const filterButtons = document.querySelectorAll('.catalog-filter-btn');
+            if (filterButtons.length === 0) return;
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    filterCatalog(filter);
+                });
+            });
+        }
+        
+        function filterCatalog(filter) {
+            const productCards = document.querySelectorAll('.product-card');
+            if (productCards.length === 0) return;
+            
+            productCards.forEach(card => {
+                const shouldShow = filter === 'all' || card.getAttribute('data-category') === filter;
+                card.style.display = shouldShow ? 'block' : 'none';
+            });
+        }
+        
+        function initProductButtons() {
+            const productCards = document.querySelectorAll('.product-card');
+            if (productCards.length === 0) return;
+            
+            productCards.forEach(card => {
+                const buttons = card.querySelectorAll('.btn');
+                buttons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const productId = button.getAttribute('data-product-id');
+                        if (button.classList.contains('btn-outline')) {
+                            orderProduct(productId, false);
+                        } else {
+                            viewProductDetails(productId, false);
+                        }
+                    });
+                });
                 
-                // Инициализация анимаций после небольшой задержки
-                setTimeout(() => {
-                    initAnimations();
-                    initCounters();
-                }, 100);
-            } catch (error) {
-                console.error('Ошибка инициализации:', error);
+                card.addEventListener('click', () => {
+                    const productId = card.querySelector('.btn').getAttribute('data-product-id');
+                    viewProductDetails(productId, false);
+                });
+            });
+        }
+        
+        function viewProductDetails(productId, isSeptic = false) {
+            const product = isSeptic ? 
+                septics.find(p => p.id == productId) : 
+                products.find(p => p.id == productId);
+                
+            if (product) {
+                const modal = document.getElementById('productModal');
+                const modalIcon = document.getElementById('modalProductIcon');
+                const modalName = document.getElementById('modalProductName');
+                const modalPrice = document.getElementById('modalProductPrice');
+                const modalDescription = document.getElementById('modalProductDescription');
+                const modalSpecs = document.getElementById('modalProductSpecs');
+                
+                if (!modal || !modalIcon || !modalName || !modalPrice || !modalDescription || !modalSpecs) return;
+                
+                modalIcon.className = product.icon;
+                modalName.textContent = product.name;
+                modalPrice.textContent = product.price;
+                modalDescription.textContent = product.fullDescription;
+                
+                modalSpecs.innerHTML = '';
+                product.specifications.forEach(spec => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span class="spec-name">${spec.name}</span>
+                        <span class="spec-value">${spec.value}</span>
+                    `;
+                    modalSpecs.appendChild(li);
+                });
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
-        });
+        }
+        
+        function orderProduct(productId, isSeptic = false) {
+            const product = isSeptic ? 
+                septics.find(p => p.id == productId) : 
+                products.find(p => p.id == productId);
+                
+            if (product) {
+                openModal();
+            }
+        }
+        
+        function initProductModal() {
+            const modal = document.getElementById('productModal');
+            const closeButton = document.getElementById('productModalClose');
+            const orderButton = document.getElementById('modalProductOrder');
+            const consultButton = document.getElementById('modalProductConsult');
+            
+            if (!modal || !closeButton || !orderButton || !consultButton) return;
+            
+            closeButton.addEventListener('click', () => {
+                closeProductModal();
+            });
+            
+            orderButton.addEventListener('click', () => {
+                closeProductModal();
+                openModal();
+            });
+            
+            consultButton.addEventListener('click', () => {
+                closeProductModal();
+                openModal();
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeProductModal();
+                }
+            });
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeProductModal();
+                }
+            });
+        }
+        
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        function initCounters() {
+            const yearsCounter = document.getElementById('yearsCounter');
+            const projectsCounter = document.getElementById('projectsCounter');
+            const clientsCounter = document.getElementById('clientsCounter');
+            
+            if (yearsCounter && projectsCounter && clientsCounter) {
+                // Простая анимация счетчиков
+                let years = 0;
+                let projects = 0;
+                let clients = 0;
+                
+                const yearsInterval = setInterval(() => {
+                    years++;
+                    yearsCounter.textContent = years;
+                    if (years >= 15) clearInterval(yearsInterval);
+                }, 100);
+                
+                const projectsInterval = setInterval(() => {
+                    projects += 50;
+                    projectsCounter.textContent = projects;
+                    if (projects >= 1200) clearInterval(projectsInterval);
+                }, 10);
+                
+                const clientsInterval = setInterval(() => {
+                    clients += 2;
+                    clientsCounter.textContent = clients + '%';
+                    if (clients >= 98) clearInterval(clientsInterval);
+                }, 20);
+            }
+        }
+
+        function openModal() {
+            const modal = document.getElementById('modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
     </script>
 </body>
 </html>
