@@ -1499,23 +1499,6 @@
     </div>
 
     <script>
-        // Упрощенный код без сложных анимаций для стабильности
-        document.addEventListener('DOMContentLoaded', function() {
-            // Скрытие анимации загрузки
-            const loadingAnimation = document.getElementById('loadingAnimation');
-            if (loadingAnimation) {
-                setTimeout(() => {
-                    loadingAnimation.classList.add('hidden');
-                }, 1000);
-            }
-            
-            // Инициализация базовой функциональности
-            initBaseFunctionality();
-            initCatalog();
-            initSeptics();
-            initCounters();
-        });
-
         // Данные товаров
         const products = [
             {
@@ -1619,8 +1602,21 @@
             }
         ];
 
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingAnimation = document.getElementById('loadingAnimation');
+            if (loadingAnimation) {
+                setTimeout(() => {
+                    loadingAnimation.classList.add('hidden');
+                }, 1000);
+            }
+            
+            initBaseFunctionality();
+            initCatalog();
+            initSeptics();
+            initCounters();
+        });
+
         function initBaseFunctionality() {
-            // Мобильное меню
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const mobileNav = document.getElementById('mobileNav');
             
@@ -1637,7 +1633,6 @@
                 });
             }
             
-            // Плавная прокрутка
             document.querySelectorAll('nav a').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1645,10 +1640,8 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        // Простая плавная прокрутка
                         targetElement.scrollIntoView({ behavior: 'smooth' });
                         
-                        // Закрытие мобильного меню после клика
                         if (mobileNav) {
                             mobileNav.classList.remove('active');
                             if (mobileMenuBtn) {
@@ -1659,7 +1652,6 @@
                 });
             });
             
-            // Переключение темы
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             let isDarkTheme = localStorage.getItem('darkTheme') === 'true';
@@ -1685,7 +1677,6 @@
                 applyTheme();
             }
             
-            // Модальное окно
             const modal = document.getElementById('modal');
             const contactBtn = document.getElementById('contactBtn');
             const closeModal = document.getElementById('closeModal');
@@ -1715,14 +1706,12 @@
                 closeModal.addEventListener('click', closeModalFunc);
             }
             
-            // Закрытие по клику вне модального окна
             window.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeModalFunc();
                 }
             });
             
-            // Формы
             const contactForm = document.getElementById('contact-form');
             const quickForm = document.getElementById('quick-form');
             const notification = document.getElementById('notification');
@@ -1758,7 +1747,6 @@
                 });
             }
             
-            // Закрытие мобильного меню при ресайзе
             window.addEventListener('resize', () => {
                 if (window.innerWidth > 768 && mobileNav) {
                     mobileNav.classList.remove('active');
@@ -1768,7 +1756,6 @@
                 }
             });
 
-            // Обработка скролла для шапки
             let lastScrollY = window.scrollY;
             const header = document.getElementById('header');
             
@@ -1780,7 +1767,6 @@
                         header.classList.remove('scrolled');
                     }
                     
-                    // Скрытие/показ шапки при скролле
                     if (window.scrollY > lastScrollY && window.scrollY > 100) {
                         header.classList.add('hidden');
                     } else {
@@ -1863,7 +1849,6 @@
                 septicsGrid.appendChild(septicCard);
             });
             
-            // Добавляем обработчики событий для кнопок септиков
             document.querySelectorAll('.septic-card .btn').forEach(button => {
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2023,7 +2008,6 @@
             const clientsCounter = document.getElementById('clientsCounter');
             
             if (yearsCounter && projectsCounter && clientsCounter) {
-                // Простая анимация счетчиков
                 let years = 0;
                 let projects = 0;
                 let clients = 0;
