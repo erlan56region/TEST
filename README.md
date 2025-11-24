@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
+    <title>ИП Рахметов А.К. - Насосные станции АКВАЛОС</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -263,7 +262,7 @@
         
         /* Герой секция */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Водоснабжение+и+отопление') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Насосные+станции+АКВАЛОС') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
@@ -342,30 +341,6 @@
         .catalog-section {
             padding: 80px 0;
             background-color: var(--white);
-        }
-        
-        .catalog-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 40px;
-        }
-        
-        .catalog-filter-btn {
-            padding: 8px 20px;
-            background: var(--white);
-            border: 1px solid #ddd;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-        }
-        
-        .catalog-filter-btn:hover, .catalog-filter-btn.active {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
         }
         
         .catalog-grid {
@@ -1010,7 +985,7 @@
                 <nav class="desktop-nav">
                     <ul>
                         <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#catalog">Каталог АКВАЛОС</a></li>
                         <li><a href="#about">О компании</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
@@ -1023,7 +998,7 @@
             <nav class="mobile-nav" id="mobileNav">
                 <ul>
                     <li><a href="#services">Услуги</a></li>
-                    <li><a href="#catalog">Каталог</a></li>
+                    <li><a href="#catalog">Каталог АКВАЛОС</a></li>
                     <li><a href="#about">О компании</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
@@ -1034,9 +1009,9 @@
     <!-- Герой секция -->
     <section class="hero" id="hero">
         <div class="container">
-            <h1>Водоснабжение и отопление</h1>
-            <p>Профессиональные услуги по монтажу и обслуживанию систем водоснабжения и отопления для домов и предприятий в Оренбурге и Оренбургской области</p>
-            <a href="#contacts" class="btn" id="contactBtn">Связаться с нами</a>
+            <h1>Насосные станции АКВАЛОС</h1>
+            <p>Профессиональные автоматические насосные станции для систем водоснабжения домов, дач и предприятий в Оренбурге и Оренбургской области</p>
+            <a href="#catalog" class="btn" id="catalogBtn">Смотреть каталог</a>
         </div>
     </section>
 
@@ -1056,39 +1031,30 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <i class="fas fa-fire"></i>
+                        <i class="fas fa-cogs"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Отопление</h3>
-                        <p>Монтаж и обслуживание систем отопления любого типа: радиаторное, теплые полы, воздушное отопление для Оренбурга и области.</p>
+                        <h3>Обслуживание насосных станций</h3>
+                        <p>Профессиональное обслуживание, ремонт и настройка насосных станций АКВАЛОС и другого оборудования.</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <i class="fas fa-recycle"></i>
+                        <i class="fas fa-tools"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Канализация</h3>
-                        <p>Установка и ремонт канализационных систем, включая локальные очистные сооружения для Оренбурга и Оренбургской области.</p>
+                        <h3>Ремонт и диагностика</h3>
+                        <p>Быстрая диагностика и качественный ремонт насосного оборудования любой сложности для Оренбурга и Оренбургской области.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Каталог -->
+    <!-- Каталог АКВАЛОС -->
     <section id="catalog" class="catalog-section">
         <div class="container">
-            <h2>Каталог товаров</h2>
-            <div class="catalog-filters">
-                <button class="catalog-filter-btn active" data-filter="all">Все товары</button>
-                <button class="catalog-filter-btn" data-filter="pumps">Насосы</button>
-                <button class="catalog-filter-btn" data-filter="boilers">Котлы</button>
-                <button class="catalog-filter-btn" data-filter="radiators">Радиаторы</button>
-                <button class="catalog-filter-btn" data-filter="pipes">Трубы и фитинги</button>
-                <button class="catalog-filter-btn" data-filter="water-heaters">Водонагреватели</button>
-                <button class="catalog-filter-btn" data-filter="cryology">Криология</button>
-            </div>
+            <h2>Каталог насосных станций АКВАЛОС</h2>
             <div class="catalog-grid" id="catalogGrid">
                 <!-- Товары будут загружены через JavaScript -->
             </div>
@@ -1101,7 +1067,7 @@
             <button class="product-modal-close" id="productModalClose" aria-label="Закрыть">&times;</button>
             <div class="product-modal-body">
                 <div class="product-modal-img">
-                    <i class="fas fa-cog" id="modalProductIcon"></i>
+                    <i class="fas fa-water-pump" id="modalProductIcon"></i>
                 </div>
                 <div class="product-modal-info">
                     <h3 id="modalProductName"></h3>
@@ -1131,7 +1097,7 @@
                 </div>
                 <div class="about-content">
                     <h2>О компании</h2>
-                    <p><strong>ИП Рахметов А.К.</strong> (ИНН 561902398552) специализируется на услугах в области водоснабжения и отопления с 2010 года. Мы предлагаем полный комплекс услуг от проектирования до монтажа и обслуживания систем в Оренбурге и Оренбургской области.</p>
+                    <p><strong>ИП Рахметов А.К.</strong> (ИНН 561902398552) специализируется на услугах в области водоснабжения и установке насосных станций с 2010 года. Мы являемся официальными дилерами насосных станций АКВАЛОС в Оренбурге и Оренбургской области.</p>
                     <p>Наша команда состоит из опытных специалистов, которые используют современное оборудование и материалы для обеспечения высокого качества работ.</p>
                     <div class="stats">
                         <div class="stat-item">
@@ -1140,7 +1106,7 @@
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="projectsCounter">0</span>
-                            <span class="stat-text">Выполненных проектов</span>
+                            <span class="stat-text">Установленных станций</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="clientsCounter">0</span>
@@ -1211,7 +1177,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Сообщение</label>
-                            <textarea id="message" class="form-control" rows="4"></textarea>
+                            <textarea id="message" class="form-control" rows="4" placeholder="Интересует насосная станция АКВАЛОС..."></textarea>
                         </div>
                         <button type="submit" class="btn">Отправить</button>
                     </form>
@@ -1229,7 +1195,7 @@
                     <ul>
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#catalog">Каталог АКВАЛОС</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -1237,9 +1203,9 @@
                     <h3>Услуги</h3>
                     <ul>
                         <li><a href="#services">Водоснабжение</a></li>
-                        <li><a href="#services">Отопление</a></li>
-                        <li><a href="#services">Канализация</a></li>
-                        <li><a href="#catalog">Криология</a></li>
+                        <li><a href="#services">Обслуживание станций</a></li>
+                        <li><a href="#services">Ремонт оборудования</a></li>
+                        <li><a href="#services">Консультации</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1294,135 +1260,39 @@
     </div>
 
     <script>
-        // Данные товаров с иконками вместо изображений
+        // Данные товаров АКВАЛОС
         const products = [
             {
                 id: 1,
-                name: "Насосная станция Grundfos JPBasic 3",
-                description: "Автоматическая насосная станция для водоснабжения дома",
-                price: "12 500 ₽",
-                icon: "fas fa-tint",
-                features: ["Автоматика", "Мощность 750 Вт", "Производительность 3 м³/ч"],
-                category: "pumps",
+                name: "АКВАЛОС 1",
+                description: "Автоматическая насосная станция для систем водоснабжения",
+                price: "15 800 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Производительность 1.8 м³/ч", "Напор 40 м", "Мощность 600 Вт"],
                 badge: "Хит",
-                fullDescription: "Насосная станция Grundfos JPBasic 3 предназначена для автоматического водоснабжения загородных домов, дач и других объектов. Оснащена защитой от сухого хода и перегрева.",
+                fullDescription: "Насосная станция АКВАЛОС 1 предназначена для автоматического водоснабжения загородных домов, дач и других объектов. Оснащена защитой от сухого хода и перегрева. Идеальное решение для небольших домовладений.",
                 specifications: [
-                    { name: "Производительность", value: "3 м³/ч" },
+                    { name: "Производительность", value: "1.8 м³/ч" },
                     { name: "Напор", value: "40 м" },
-                    { name: "Мощность", value: "750 Вт" },
+                    { name: "Мощность", value: "600 Вт" },
                     { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "24 л" },
-                    { name: "Материал корпуса", value: "Нержавеющая сталь" }
+                    { name: "Объем гидробака", value: "20 л" },
+                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
+                    { name: "Защита от сухого хода", value: "Да" },
+                    { name: "Защита от перегрева", value: "Да" }
                 ]
             },
             {
                 id: 2,
-                name: "Газовый котел Baxi Eco Four 24F",
-                description: "Настенный двухконтурный газовый котел для отопления и ГВС",
-                price: "45 800 ₽",
-                icon: "fas fa-fire",
-                features: ["Двухконтурный", "КПД 93%", "Мощность 24 кВт"],
-                category: "boilers",
-                badge: "Акция",
-                fullDescription: "Газовый котел Baxi Eco Four 24F - надежное решение для отопления и горячего водоснабжения квартиры или частного дома. Оснащен современной системой управления и защитой.",
-                specifications: [
-                    { name: "Мощность отопления", value: "24 кВт" },
-                    { name: "Мощность ГВС", value: "24 кВт" },
-                    { name: "КПД", value: "93%" },
-                    { name: "Расход газа", value: "2,78 м³/ч" },
-                    { name: "Температура ГВС", value: "35-60°C" },
-                    { name: "Габариты", value: "730x400x299 мм" }
-                ]
-            },
-            {
-                id: 3,
-                name: "Биметаллический радиатор Global Style Plus 500",
-                description: "Секционный биметаллический радиатор для систем отопления",
-                price: "8 200 ₽",
-                icon: "fas fa-temperature-high",
-                features: ["Биметалл", "Высота 500 мм", "Теплоотдача 185 Вт"],
-                category: "radiators",
-                badge: "Популярный",
-                fullDescription: "Биметаллический радиатор Global Style Plus 500 сочетает в себе высокую теплоотдачу и долговечность. Подходит для систем центрального и автономного отопления.",
-                specifications: [
-                    { name: "Теплоотдача секции", value: "185 Вт" },
-                    { name: "Межосевое расстояние", value: "500 мм" },
-                    { name: "Рабочее давление", value: "35 бар" },
-                    { name: "Испытательное давление", value: "52,5 бар" },
-                    { name: "Объем секции", value: "0,19 л" },
-                    { name: "Вес секции", value: "2,15 кг" }
-                ]
-            },
-            {
-                id: 4,
-                name: "Трубы полипропиленовые Valtec PP-R 20мм",
-                description: "Полипропиленовые трубы для систем отопления и водоснабжения",
-                price: "85 ₽/м",
-                icon: "fas fa-pipe",
-                features: ["Полипропилен", "Диаметр 20 мм", "Рабочая t: 95°C"],
-                category: "pipes",
-                badge: "Скидка",
-                fullDescription: "Полипропиленовые трубы Valtec PP-R предназначены для систем холодного и горячего водоснабжения, а также отопления. Не подвержены коррозии и имеют длительный срок службы.",
-                specifications: [
-                    { name: "Наружный диаметр", value: "20 мм" },
-                    { name: "Толщина стенки", value: "2,8 мм" },
-                    { name: "Рабочая температура", value: "95°C" },
-                    { name: "Рабочее давление", value: "25 бар" },
-                    { name: "Коэффициент линейного расширения", value: "0,15 мм/м°C" },
-                    { name: "Теплопроводность", value: "0,24 Вт/м°C" }
-                ]
-            },
-            {
-                id: 5,
-                name: "Водонагреватель Thermex Champion Silverheat 100",
-                description: "Накопительный водонагреватель для обеспечения ГВС",
-                price: "18 900 ₽",
-                icon: "fas fa-water",
-                features: ["Объем 100 л", "Мощность 1,5 кВт", "Вертикальный"],
-                category: "water-heaters",
-                badge: "Новинка",
-                fullDescription: "Накопительный водонагреватель Thermex Champion Silverheat 100 обеспечивает стабильное горячее водоснабжение для семьи из 3-4 человек. Оснащен системой защиты от коррозии.",
-                specifications: [
-                    { name: "Объем", value: "100 л" },
-                    { name: "Мощность", value: "1,5 кВт" },
-                    { name: "Нагрев до 60°C", value: "3 ч 15 мин" },
-                    { name: "Максимальная температура", value: "75°C" },
-                    { name: "Рабочее давление", value: "0,7-6 бар" },
-                    { name: "Габариты", value: "493x970 мм" }
-                ]
-            },
-            {
-                id: 6,
-                name: "Циркуляционный насос Wilo Star-RS 25/4",
-                description: "Циркуляционный насос для систем отопления",
-                price: "6 800 ₽",
-                icon: "fas fa-pump",
-                features: ["Три скорости", "Напор 4 м", "Производительность 3 м³/ч"],
-                category: "pumps",
-                badge: "",
-                fullDescription: "Циркуляционный насос Wilo Star-RS 25/4 предназначен для циркуляции теплоносителя в системах отопления. Имеет три скорости работы и низкий уровень шума.",
-                specifications: [
-                    { name: "Производительность", value: "3 м³/ч" },
-                    { name: "Напор", value: "4 м" },
-                    { name: "Мощность", value: "48 Вт" },
-                    { name: "Присоединительный размер", value: "1 дюйм" },
-                    { name: "Максимальная температура", value: "110°C" },
-                    { name: "Уровень шума", value: "< 45 дБ" }
-                ]
-            },
-            // Добавлен товар АКВАЛОС 2 2U
-            {
-                id: 13,
-                name: "АКВАЛОС 2 2U",
-                description: "Автоматическая насосная станция для систем водоснабжения",
+                name: "АКВАЛОС 2",
+                description: "Автоматическая насосная станция повышенной производительности",
                 price: "18 500 ₽",
                 icon: "fas fa-water-pump",
-                features: ["Производительность 2 м³/ч", "Напор 45 м", "Гидробак 24 л"],
-                category: "pumps",
-                badge: "Новинка",
-                fullDescription: "АКВАЛОС 2 2U - это современная автоматическая насосная станция для систем водоснабжения загородных домов, дач и других объектов. Обеспечивает стабильное давление в системе и автоматическое включение при открытии крана. Оснащена защитой от сухого хода и перегрева.",
+                features: ["Производительность 2.5 м³/ч", "Напор 45 м", "Мощность 750 Вт"],
+                badge: "Популярный",
+                fullDescription: "АКВАЛОС 2 - это современная автоматическая насосная станция для систем водоснабжения загородных домов, дач и других объектов. Обеспечивает стабильное давление в системе и автоматическое включение при открытии крана.",
                 specifications: [
-                    { name: "Производительность", value: "2 м³/ч" },
+                    { name: "Производительность", value: "2.5 м³/ч" },
                     { name: "Напор", value: "45 м" },
                     { name: "Мощность", value: "750 Вт" },
                     { name: "Глубина всасывания", value: "8 м" },
@@ -1432,119 +1302,164 @@
                     { name: "Защита от перегрева", value: "Да" }
                 ]
             },
-            // Товары криологии
+            {
+                id: 3,
+                name: "АКВАЛОС 3",
+                description: "Насосная станция с увеличенным гидробаком",
+                price: "21 300 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Производительность 3 м³/ч", "Напор 50 м", "Гидробак 50 л"],
+                badge: "Выбор профессионалов",
+                fullDescription: "АКВАЛОС 3 оснащена увеличенным гидробаком на 50 литров, что обеспечивает более стабильное давление в системе и уменьшает количество включений/выключений насоса. Идеально подходит для домов с повышенным водопотреблением.",
+                specifications: [
+                    { name: "Производительность", value: "3 м³/ч" },
+                    { name: "Напор", value: "50 м" },
+                    { name: "Мощность", value: "800 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "50 л" },
+                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
+                    { name: "Защита от сухого хода", value: "Да" },
+                    { name: "Защита от перегрева", value: "Да" }
+                ]
+            },
+            {
+                id: 4,
+                name: "АКВАЛОС 4",
+                description: "Мощная насосная станция для больших домов",
+                price: "25 700 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Производительность 3.5 м³/ч", "Напор 55 м", "Мощность 1100 Вт"],
+                badge: "Мощная",
+                fullDescription: "АКВАЛОС 4 - мощная насосная станция, предназначенная для водоснабжения больших домов и коттеджей. Обеспечивает высокую производительность и напор для одновременного использования нескольких точек водозабора.",
+                specifications: [
+                    { name: "Производительность", value: "3.5 м³/ч" },
+                    { name: "Напор", value: "55 м" },
+                    { name: "Мощность", value: "1100 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "24 л" },
+                    { name: "Материал корпуса", value: "Чугун" },
+                    { name: "Защита от сухого хода", value: "Да" },
+                    { name: "Защита от перегрева", value: "Да" }
+                ]
+            },
+            {
+                id: 5,
+                name: "АКВАЛОС 5",
+                description: "Насосная станция с системой плавного пуска",
+                price: "29 200 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Плавный пуск", "Производительность 4 м³/ч", "Напор 60 м"],
+                badge: "Энергоэффективная",
+                fullDescription: "АКВАЛОС 5 оснащена системой плавного пуска, что значительно снижает нагрузку на электрическую сеть и продлевает срок службы оборудования. Рекомендуется для объектов с нестабильным напряжением.",
+                specifications: [
+                    { name: "Производительность", value: "4 м³/ч" },
+                    { name: "Напор", value: "60 м" },
+                    { name: "Мощность", value: "1200 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "24 л" },
+                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
+                    { name: "Плавный пуск", value: "Да" },
+                    { name: "Защита от сухого хода", value: "Да" }
+                ]
+            },
+            {
+                id: 6,
+                name: "АКВАЛОС 6",
+                description: "Профессиональная насосная станция",
+                price: "34 500 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Производительность 4.5 м³/ч", "Напор 65 м", "Гидробак 100 л"],
+                badge: "Профессиональная",
+                fullDescription: "АКВАЛОС 6 - профессиональная насосная станция с увеличенным гидробаком на 100 литров. Предназначена для объектов с высоким водопотреблением и требованием к стабильному давлению в системе.",
+                specifications: [
+                    { name: "Производительность", value: "4.5 м³/ч" },
+                    { name: "Напор", value: "65 м" },
+                    { name: "Мощность", value: "1400 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "100 л" },
+                    { name: "Материал корпуса", value: "Чугун" },
+                    { name: "Защита от сухого хода", value: "Да" },
+                    { name: "Защита от перегрева", value: "Да" }
+                ]
+            },
             {
                 id: 7,
-                name: "Чиллер Trane CGAM 60",
-                description: "Центральный холодильный агрегат для систем кондиционирования",
-                price: "850 000 ₽",
-                icon: "fas fa-snowflake",
-                features: ["Мощность 60 кВт", "Водяное охлаждение", "Энергоэффективность A++"],
-                category: "cryology",
-                badge: "Профессиональный",
-                fullDescription: "Чиллер Trane CGAM 60 - это центральный холодильный агрегат с водяным охлаждением для систем кондиционирования и промышленного охлаждения. Обеспечивает высокую энергоэффективность и надежность.",
+                name: "АКВАЛОС 7",
+                description: "Насосная станция с электронным управлением",
+                price: "39 800 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Электронное управление", "Производительность 5 м³/ч", "Напор 70 м"],
+                badge: "Умная",
+                fullDescription: "АКВАЛОС 7 оснащена современной системой электронного управления, которая обеспечивает точный контроль давления и защиту оборудования. Имеет встроенный дисплей для отображения рабочих параметров.",
                 specifications: [
-                    { name: "Холодопроизводительность", value: "60 кВт" },
-                    { name: "Потребляемая мощность", value: "18,5 кВт" },
-                    { name: "Тип хладагента", value: "R410A" },
-                    { name: "Уровень шума", value: "65 дБ" },
-                    { name: "Габариты", value: "1800x900x1200 мм" },
-                    { name: "Вес", value: "450 кг" }
+                    { name: "Производительность", value: "5 м³/ч" },
+                    { name: "Напор", value: "70 м" },
+                    { name: "Мощность", value: "1500 Вt" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "24 л" },
+                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
+                    { name: "Электронное управление", value: "Да" },
+                    { name: "Дисплей", value: "Да" }
                 ]
             },
             {
                 id: 8,
-                name: "Фанкойл Carrier 42CQ",
-                description: "Внутренний блок фанкойла для систем чиллер-фанкойл",
-                price: "32 500 ₽",
-                icon: "fas fa-wind",
-                features: ["Кассетный тип", "Расход воздуха 1200 м³/ч", "4-х трубная система"],
-                category: "cryology",
-                badge: "Популярный",
-                fullDescription: "Фанкойл Carrier 42CQ кассетного типа предназначен для систем чиллер-фанкойл. Обеспечивает эффективное охлаждение и нагрев воздуха в помещениях коммерческого назначения.",
+                name: "АКВАЛОС 8",
+                description: "Промышленная насосная станция",
+                price: "47 200 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Производительность 6 м³/ч", "Напор 75 м", "Мощность 2000 Вт"],
+                badge: "Промышленная",
+                fullDescription: "АКВАЛОС 8 - промышленная насосная станция, предназначенная для водоснабжения коммерческих объектов, небольших производств и многоэтажных домов. Обеспечивает высокую производительность и надежность.",
                 specifications: [
-                    { name: "Холодопроизводительность", value: "5,8 кВт" },
-                    { name: "Теплопроизводительность", value: "8,2 кВт" },
-                    { name: "Расход воздуха", value: "1200 м³/ч" },
-                    { name: "Уровень шума", value: "42 дБ" },
-                    { name: "Габариты", value: "840x840x300 мм" },
-                    { name: "Вес", value: "32 кг" }
+                    { name: "Производительность", value: "6 м³/ч" },
+                    { name: "Напор", value: "75 м" },
+                    { name: "Мощность", value: "2000 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "100 л" },
+                    { name: "Материал корпуса", value: "Чугун" },
+                    { name: "Защита от сухого хода", value: "Да" },
+                    { name: "Защита от перегрева", value: "Да" }
                 ]
             },
             {
                 id: 9,
-                name: "Холодильная машина York YCIV 120",
-                description: "Промышленная холодильная машина с винтовыми компрессорами",
-                price: "1 250 000 ₽",
-                icon: "fas fa-industry",
-                features: ["Мощность 120 кВт", "Винтовые компрессоры", "Полная автоматизация"],
-                category: "cryology",
-                badge: "Профессиональный",
-                fullDescription: "Холодильная машина York YCIV 120 с винтовыми компрессорами предназначена для промышленного применения. Обеспечивает высокую надежность и энергоэффективность в системах охлаждения.",
+                name: "АКВАЛОС 9",
+                description: "Насосная станция с системой частотного регулирования",
+                price: "58 500 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Частотное регулирование", "Производительность 7 м³/ч", "Напор 80 м"],
+                badge: "Премиум",
+                fullDescription: "АКВАЛОС 9 оснащена системой частотного регулирования, что позволяет точно поддерживать заданное давление в системе независимо от расхода воды. Значительно экономит электроэнергию и продлевает срок службы оборудования.",
                 specifications: [
-                    { name: "Холодопроизводительность", value: "120 кВт" },
-                    { name: "Потребляемая мощность", value: "32 кВт" },
-                    { name: "Тип хладагента", value: "R134a" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "2500x1200x1800 мм" },
-                    { name: "Вес", value: "980 кг" }
+                    { name: "Производительность", value: "7 м³/ч" },
+                    { name: "Напор", value: "80 м" },
+                    { name: "Мощность", value: "2200 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "24 л" },
+                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
+                    { name: "Частотное регулирование", value: "Да" },
+                    { name: "Энергосбережение", value: "Высокое" }
                 ]
             },
             {
                 id: 10,
-                name: "Система холодоснабжения Daikin EWAD-B200",
-                description: "Модульная система холодоснабжения для коммерческих объектов",
-                price: "680 000 ₽",
-                icon: "fas fa-cogs",
-                features: ["Модульная конструкция", "Мощность 200 кВт", "Инверторное управление"],
-                category: "cryology",
-                badge: "Энергоэффективный",
-                fullDescription: "Система холодоснабжения Daikin EWAD-B200 с модульной конструкцией и инверторным управлением обеспечивает высокую энергоэффективность и гибкость в применении для коммерческих объектов.",
+                name: "АКВАЛОС 10",
+                description: "Высокопроизводительная промышленная станция",
+                price: "72 000 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Производительность 8 м³/ч", "Напор 85 м", "Мощность 2500 Вт"],
+                badge: "Экстра",
+                fullDescription: "АКВАЛОС 10 - высокопроизводительная промышленная насосная станция для объектов с экстремально высоким водопотреблением. Обеспечивает бесперебойную работу даже в самых demanding условиях эксплуатации.",
                 specifications: [
-                    { name: "Холодопроизводительность", value: "200 кВт" },
-                    { name: "Потребляемая мощность", value: "55 кВт" },
-                    { name: "Тип хладагента", value: "R410A" },
-                    { name: "Количество модулей", value: "2" },
-                    { name: "Габариты", value: "3200x1500x1800 мм" },
-                    { name: "Вес", value: "1250 кг" }
-                ]
-            },
-            {
-                id: 11,
-                name: "Охладитель жидкости GEA Grasso RC 35",
-                description: "Промышленный охладитель жидкости для технологических процессов",
-                price: "420 000 ₽",
-                icon: "fas fa-tint",
-                features: ["Мощность 35 кВт", "Поршневые компрессоры", "Защита от коррозии"],
-                category: "cryology",
-                badge: "Промышленный",
-                fullDescription: "Охладитель жидкости GEA Grasso RC 35 с поршневыми компрессорами предназначен для промышленного применения в системах охлаждения технологических процессов.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "35 кВт" },
-                    { name: "Потребляемая мощность", value: "11 кВт" },
-                    { name: "Тип хладагента", value: "R407C" },
-                    { name: "Количество компрессоров", value: "2" },
-                    { name: "Габариты", value: "1500x800x1200 мм" },
-                    { name: "Вес", value: "320 кг" }
-                ]
-            },
-            {
-                id: 12,
-                name: "Абсорбционная холодильная машина Broad BDH 80",
-                description: "Абсорбционная холодильная машина на горячей воде",
-                price: "1 850 000 ₽",
-                icon: "fas fa-recycle",
-                features: ["Мощность 80 кВт", "Абсорбционный цикл", "Работа на горячей воде"],
-                category: "cryology",
-                badge: "Экологичный",
-                fullDescription: "Абсорбционная холодильная машина Broad BDH 80 использует тепло горячей воды для производства холода. Экологичное решение для объектов с избыточным теплом.",
-                specifications: [
-                    { name: "Холодопроизводительность", value: "80 кВт" },
-                    { name: "Температура горячей воды", value: "85-95°C" },
-                    { name: "Температура охлажденной воды", value: "7°C" },
-                    { name: "Потребление горячей воды", value: "12 м³/ч" },
-                    { name: "Габариты", value: "2800x1400x1800 мм" },
-                    { name: "Вес", value: "1800 кг" }
+                    { name: "Производительность", value: "8 м³/ч" },
+                    { name: "Напор", value: "85 м" },
+                    { name: "Мощность", value: "2500 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "100 л" },
+                    { name: "Материал корпуса", value: "Чугун" },
+                    { name: "Защита от сухого хода", value: "Да" },
+                    { name: "Защита от перегрева", value: "Да" }
                 ]
             }
         ];
@@ -1729,7 +1644,6 @@
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
-                productCard.setAttribute('data-category', product.category);
                 productCard.innerHTML = `
                     <div class="product-img">
                         <i class="${product.icon}"></i>
@@ -1751,61 +1665,11 @@
                 catalogGrid.appendChild(productCard);
             });
             
-            // Инициализация фильтров каталога
-            initCatalogFilters();
-            
             // Инициализация обработчиков событий для кнопок товаров
             initProductButtons();
             
             // Инициализация модального окна товара
             initProductModal();
-        }
-        
-        // Инициализация фильтров каталога
-        function initCatalogFilters() {
-            const filterButtons = document.querySelectorAll('.catalog-filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Убираем активный класс у всех кнопок
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Добавляем активный класс текущей кнопке
-                    button.classList.add('active');
-                    
-                    const filter = button.getAttribute('data-filter');
-                    filterCatalog(filter);
-                });
-            });
-        }
-        
-        // Фильтрация каталога
-        function filterCatalog(filter) {
-            const productCards = document.querySelectorAll('.product-card');
-            productCards.forEach(card => {
-                if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                    card.style.display = 'block';
-                    // Анимация появления отфильтрованных карточек
-                    gsap.fromTo(card, {
-                        opacity: 0,
-                        scale: 0.8
-                    }, {
-                        opacity: 1,
-                        scale: 1,
-                        duration: 0.5,
-                        ease: "power2.out"
-                    });
-                } else {
-                    // Анимация скрытия карточек
-                    gsap.to(card, {
-                        opacity: 0,
-                        scale: 0.8,
-                        duration: 0.3,
-                        ease: "power2.out",
-                        onComplete: () => {
-                            card.style.display = 'none';
-                        }
-                    });
-                }
-            });
         }
         
         // Инициализация обработчиков событий для кнопок товаров
@@ -2050,7 +1914,7 @@
             
             // Модальное окно
             const modal = document.getElementById('modal');
-            const contactBtn = document.getElementById('contactBtn');
+            const catalogBtn = document.getElementById('catalogBtn');
             const closeModal = document.getElementById('closeModal');
             
             function openModal() {
@@ -2087,8 +1951,8 @@
                 }
             }
             
-            if (contactBtn) {
-                contactBtn.addEventListener('click', (e) => {
+            if (catalogBtn) {
+                catalogBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     openModal();
                 });
