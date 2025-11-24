@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ИП Рахметов А.К. - Насосные станции АКВАЛОС</title>
+    <title>ИП Рахметов А.К. - Водоснабжение и отопление</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -79,6 +80,17 @@
             background-color: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
         }
         
         section {
@@ -262,7 +274,7 @@
         
         /* Герой секция */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Насосные+станции+АКВАЛОС') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Водоснабжение+и+отопление') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
@@ -341,6 +353,30 @@
         .catalog-section {
             padding: 80px 0;
             background-color: var(--white);
+        }
+        
+        .catalog-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .catalog-filter-btn {
+            padding: 8px 16px;
+            background: var(--light);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .catalog-filter-btn.active,
+        .catalog-filter-btn:hover {
+            background: var(--primary);
+            color: var(--white);
         }
         
         .catalog-grid {
@@ -446,17 +482,6 @@
             flex: 1;
             padding: 10px;
             font-size: 14px;
-        }
-        
-        .product-actions .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .product-actions .btn-outline:hover {
-            background: var(--primary);
-            color: var(--white);
         }
         
         /* Модальное окно товара */
@@ -985,7 +1010,7 @@
                 <nav class="desktop-nav">
                     <ul>
                         <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог АКВАЛОС</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
                         <li><a href="#about">О компании</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
@@ -998,7 +1023,7 @@
             <nav class="mobile-nav" id="mobileNav">
                 <ul>
                     <li><a href="#services">Услуги</a></li>
-                    <li><a href="#catalog">Каталог АКВАЛОС</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
                     <li><a href="#about">О компании</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
@@ -1009,9 +1034,9 @@
     <!-- Герой секция -->
     <section class="hero" id="hero">
         <div class="container">
-            <h1>Насосные станции АКВАЛОС</h1>
-            <p>Профессиональные автоматические насосные станции для систем водоснабжения домов, дач и предприятий в Оренбурге и Оренбургской области</p>
-            <a href="#catalog" class="btn" id="catalogBtn">Смотреть каталог</a>
+            <h1>Водоснабжение и отопление</h1>
+            <p>Профессиональные услуги по монтажу и обслуживанию систем водоснабжения и отопления для домов и предприятий в Оренбурге и Оренбургской области</p>
+            <a href="#contacts" class="btn" id="contactBtn">Связаться с нами</a>
         </div>
     </section>
 
@@ -1031,30 +1056,39 @@
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <i class="fas fa-cogs"></i>
+                        <i class="fas fa-fire"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Обслуживание насосных станций</h3>
-                        <p>Профессиональное обслуживание, ремонт и настройка насосных станций АКВАЛОС и другого оборудования.</p>
+                        <h3>Отопление</h3>
+                        <p>Монтаж и обслуживание систем отопления любого типа: радиаторное, теплые полы, воздушное отопление для Оренбурга и области.</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-img">
-                        <i class="fas fa-tools"></i>
+                        <i class="fas fa-recycle"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Ремонт и диагностика</h3>
-                        <p>Быстрая диагностика и качественный ремонт насосного оборудования любой сложности для Оренбурга и Оренбургской области.</p>
+                        <h3>Канализация</h3>
+                        <p>Установка и ремонт канализационных систем, включая локальные очистные сооружения для Оренбурга и Оренбургской области.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Каталог АКВАЛОС -->
+    <!-- Каталог -->
     <section id="catalog" class="catalog-section">
         <div class="container">
-            <h2>Каталог насосных станций АКВАЛОС</h2>
+            <h2>Каталог товаров</h2>
+            <div class="catalog-filters">
+                <button class="catalog-filter-btn active" data-filter="all">Все товары</button>
+                <button class="catalog-filter-btn" data-filter="pumps">Насосы</button>
+                <button class="catalog-filter-btn" data-filter="boilers">Котлы</button>
+                <button class="catalog-filter-btn" data-filter="radiators">Радиаторы</button>
+                <button class="catalog-filter-btn" data-filter="pipes">Трубы и фитинги</button>
+                <button class="catalog-filter-btn" data-filter="water-heaters">Водонагреватели</button>
+                <button class="catalog-filter-btn" data-filter="cryology">Криология</button>
+            </div>
             <div class="catalog-grid" id="catalogGrid">
                 <!-- Товары будут загружены через JavaScript -->
             </div>
@@ -1067,7 +1101,7 @@
             <button class="product-modal-close" id="productModalClose" aria-label="Закрыть">&times;</button>
             <div class="product-modal-body">
                 <div class="product-modal-img">
-                    <i class="fas fa-water-pump" id="modalProductIcon"></i>
+                    <i class="fas fa-cog" id="modalProductIcon"></i>
                 </div>
                 <div class="product-modal-info">
                     <h3 id="modalProductName"></h3>
@@ -1097,7 +1131,7 @@
                 </div>
                 <div class="about-content">
                     <h2>О компании</h2>
-                    <p><strong>ИП Рахметов А.К.</strong> (ИНН 561902398552) специализируется на услугах в области водоснабжения и установке насосных станций с 2010 года. Мы являемся официальными дилерами насосных станций АКВАЛОС в Оренбурге и Оренбургской области.</p>
+                    <p><strong>ИП Рахметов А.К.</strong> (ИНН 561902398552) специализируется на услугах в области водоснабжения и отопления с 2010 года. Мы предлагаем полный комплекс услуг от проектирования до монтажа и обслуживания систем в Оренбурге и Оренбургской области.</p>
                     <p>Наша команда состоит из опытных специалистов, которые используют современное оборудование и материалы для обеспечения высокого качества работ.</p>
                     <div class="stats">
                         <div class="stat-item">
@@ -1106,7 +1140,7 @@
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="projectsCounter">0</span>
-                            <span class="stat-text">Установленных станций</span>
+                            <span class="stat-text">Выполненных проектов</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="clientsCounter">0</span>
@@ -1177,7 +1211,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Сообщение</label>
-                            <textarea id="message" class="form-control" rows="4" placeholder="Интересует насосная станция АКВАЛОС..."></textarea>
+                            <textarea id="message" class="form-control" rows="4"></textarea>
                         </div>
                         <button type="submit" class="btn">Отправить</button>
                     </form>
@@ -1195,7 +1229,7 @@
                     <ul>
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог АКВАЛОС</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
@@ -1203,9 +1237,9 @@
                     <h3>Услуги</h3>
                     <ul>
                         <li><a href="#services">Водоснабжение</a></li>
-                        <li><a href="#services">Обслуживание станций</a></li>
-                        <li><a href="#services">Ремонт оборудования</a></li>
-                        <li><a href="#services">Консультации</a></li>
+                        <li><a href="#services">Отопление</a></li>
+                        <li><a href="#services">Канализация</a></li>
+                        <li><a href="#catalog">Криология</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1260,7 +1294,10 @@
     </div>
 
     <script>
-        // Данные товаров АКВАЛОС
+        // Глобальные переменные для управления модальными окнами
+        let currentModal = null;
+
+        // Данные товаров АКВАЛОС из второго кода
         const products = [
             {
                 id: 1,
@@ -1269,6 +1306,7 @@
                 price: "15 800 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Производительность 1.8 м³/ч", "Напор 40 м", "Мощность 600 Вт"],
+                category: "pumps",
                 badge: "Хит",
                 fullDescription: "Насосная станция АКВАЛОС 1 предназначена для автоматического водоснабжения загородных домов, дач и других объектов. Оснащена защитой от сухого хода и перегрева. Идеальное решение для небольших домовладений.",
                 specifications: [
@@ -1289,6 +1327,7 @@
                 price: "18 500 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Производительность 2.5 м³/ч", "Напор 45 м", "Мощность 750 Вт"],
+                category: "pumps",
                 badge: "Популярный",
                 fullDescription: "АКВАЛОС 2 - это современная автоматическая насосная станция для систем водоснабжения загородных домов, дач и других объектов. Обеспечивает стабильное давление в системе и автоматическое включение при открытии крана.",
                 specifications: [
@@ -1309,6 +1348,7 @@
                 price: "21 300 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Производительность 3 м³/ч", "Напор 50 м", "Гидробак 50 л"],
+                category: "pumps",
                 badge: "Выбор профессионалов",
                 fullDescription: "АКВАЛОС 3 оснащена увеличенным гидробаком на 50 литров, что обеспечивает более стабильное давление в системе и уменьшает количество включений/выключений насоса. Идеально подходит для домов с повышенным водопотреблением.",
                 specifications: [
@@ -1329,6 +1369,7 @@
                 price: "25 700 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Производительность 3.5 м³/ч", "Напор 55 м", "Мощность 1100 Вт"],
+                category: "pumps",
                 badge: "Мощная",
                 fullDescription: "АКВАЛОС 4 - мощная насосная станция, предназначенная для водоснабжения больших домов и коттеджей. Обеспечивает высокую производительность и напор для одновременного использования нескольких точек водозабора.",
                 specifications: [
@@ -1349,6 +1390,7 @@
                 price: "29 200 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Плавный пуск", "Производительность 4 м³/ч", "Напор 60 м"],
+                category: "pumps",
                 badge: "Энергоэффективная",
                 fullDescription: "АКВАЛОС 5 оснащена системой плавного пуска, что значительно снижает нагрузку на электрическую сеть и продлевает срок службы оборудования. Рекомендуется для объектов с нестабильным напряжением.",
                 specifications: [
@@ -1369,6 +1411,7 @@
                 price: "34 500 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Производительность 4.5 м³/ч", "Напор 65 м", "Гидробак 100 л"],
+                category: "pumps",
                 badge: "Профессиональная",
                 fullDescription: "АКВАЛОС 6 - профессиональная насосная станция с увеличенным гидробаком на 100 литров. Предназначена для объектов с высоким водопотреблением и требованием к стабильному давлению в системе.",
                 specifications: [
@@ -1389,12 +1432,13 @@
                 price: "39 800 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Электронное управление", "Производительность 5 м³/ч", "Напор 70 м"],
+                category: "pumps",
                 badge: "Умная",
                 fullDescription: "АКВАЛОС 7 оснащена современной системой электронного управления, которая обеспечивает точный контроль давления и защиту оборудования. Имеет встроенный дисплей для отображения рабочих параметров.",
                 specifications: [
                     { name: "Производительность", value: "5 м³/ч" },
                     { name: "Напор", value: "70 м" },
-                    { name: "Мощность", value: "1500 Вt" },
+                    { name: "Мощность", value: "1500 Вт" },
                     { name: "Глубина всасывания", value: "8 м" },
                     { name: "Объем гидробака", value: "24 л" },
                     { name: "Материал корпуса", value: "Нержавеющая сталь" },
@@ -1409,6 +1453,7 @@
                 price: "47 200 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Производительность 6 м³/ч", "Напор 75 м", "Мощность 2000 Вт"],
+                category: "pumps",
                 badge: "Промышленная",
                 fullDescription: "АКВАЛОС 8 - промышленная насосная станция, предназначенная для водоснабжения коммерческих объектов, небольших производств и многоэтажных домов. Обеспечивает высокую производительность и надежность.",
                 specifications: [
@@ -1429,6 +1474,7 @@
                 price: "58 500 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Частотное регулирование", "Производительность 7 м³/ч", "Напор 80 м"],
+                category: "pumps",
                 badge: "Премиум",
                 fullDescription: "АКВАЛОС 9 оснащена системой частотного регулирования, что позволяет точно поддерживать заданное давление в системе независимо от расхода воды. Значительно экономит электроэнергию и продлевает срок службы оборудования.",
                 specifications: [
@@ -1449,6 +1495,7 @@
                 price: "72 000 ₽",
                 icon: "fas fa-water-pump",
                 features: ["Производительность 8 м³/ч", "Напор 85 м", "Мощность 2500 Вт"],
+                category: "pumps",
                 badge: "Экстра",
                 fullDescription: "АКВАЛОС 10 - высокопроизводительная промышленная насосная станция для объектов с экстремально высоким водопотреблением. Обеспечивает бесперебойную работу даже в самых demanding условиях эксплуатации.",
                 specifications: [
@@ -1464,10 +1511,74 @@
             }
         ];
 
+        // Функции для работы с модальными окнами
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                currentModal = modal;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Анимация открытия модального окна
+                gsap.fromTo(modal.querySelector('.modal-content, .product-modal-content'), {
+                    scale: 0.8,
+                    opacity: 0
+                }, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.3,
+                    ease: "back.out(1.7)"
+                });
+            }
+        }
+
+        function closeCurrentModal() {
+            if (currentModal) {
+                // Анимация закрытия модального окна
+                gsap.to(currentModal.querySelector('.modal-content, .product-modal-content'), {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        currentModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                        currentModal = null;
+                    }
+                });
+            }
+        }
+
+        // Функция для закрытия модального окна товара
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            if (modal) {
+                // Анимация закрытия модального окна
+                gsap.to(modal.querySelector('.product-modal-content'), {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        }
+
         // Инициализация GSAP анимаций
         function initAnimations() {
+            // Проверяем, загружена ли GSAP
+            if (typeof gsap === 'undefined') {
+                console.warn('GSAP не загружен');
+                return;
+            }
+            
             // Инициализация ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
+            if (typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
             
             // Анимация появления секций при скролле
             gsap.utils.toArray('section').forEach(section => {
@@ -1598,6 +1709,8 @@
 
         // Улучшенная функция для анимации счетчика с GSAP
         function animateCounter(element, start, end, duration) {
+            if (!element) return;
+            
             const obj = { value: start };
             gsap.to(obj, {
                 value: end,
@@ -1644,6 +1757,7 @@
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
+                productCard.setAttribute('data-category', product.category);
                 productCard.innerHTML = `
                     <div class="product-img">
                         <i class="${product.icon}"></i>
@@ -1665,11 +1779,61 @@
                 catalogGrid.appendChild(productCard);
             });
             
+            // Инициализация фильтров каталога
+            initCatalogFilters();
+            
             // Инициализация обработчиков событий для кнопок товаров
             initProductButtons();
             
             // Инициализация модального окна товара
             initProductModal();
+        }
+        
+        // Инициализация фильтров каталога
+        function initCatalogFilters() {
+            const filterButtons = document.querySelectorAll('.catalog-filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Убираем активный класс у всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    filterCatalog(filter);
+                });
+            });
+        }
+        
+        // Фильтрация каталога
+        function filterCatalog(filter) {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                    // Анимация появления отфильтрованных карточек
+                    gsap.fromTo(card, {
+                        opacity: 0,
+                        scale: 0.8
+                    }, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power2.out"
+                    });
+                } else {
+                    // Анимация скрытия карточек
+                    gsap.to(card, {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
         }
         
         // Инициализация обработчиков событий для кнопок товаров
@@ -1680,7 +1844,7 @@
                 buttons.forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        const productId = button.getAttribute('data-product-id');
+                        const productId = parseInt(button.getAttribute('data-product-id'));
                         if (button.classList.contains('btn-outline')) {
                             // Заказ товара
                             orderProduct(productId);
@@ -1693,7 +1857,7 @@
                 
                 // Клик по карточке товара
                 card.addEventListener('click', () => {
-                    const productId = card.querySelector('.btn').getAttribute('data-product-id');
+                    const productId = parseInt(card.querySelector('.btn').getAttribute('data-product-id'));
                     viewProductDetails(productId);
                 });
             });
@@ -1701,7 +1865,7 @@
         
         // Просмотр детальной информации о товаре
         function viewProductDetails(productId) {
-            const product = products.find(p => p.id == productId);
+            const product = products.find(p => p.id === productId);
             if (product) {
                 const modal = document.getElementById('productModal');
                 const modalIcon = document.getElementById('modalProductIcon');
@@ -1748,11 +1912,10 @@
         
         // Заказ товара
         function orderProduct(productId) {
-            const product = products.find(p => p.id == productId);
+            const product = products.find(p => p.id === productId);
             if (product) {
                 // Открытие модального окна заказа
-                openModal();
-                // В реальном приложении здесь можно добавить логику для предзаполнения формы
+                openModal('modal');
             }
         }
         
@@ -1773,13 +1936,13 @@
             // Заказ товара из модального окна
             orderButton.addEventListener('click', () => {
                 closeProductModal();
-                openModal();
+                openModal('modal');
             });
             
             // Консультация по товару
             consultButton.addEventListener('click', () => {
                 closeProductModal();
-                openModal();
+                openModal('modal');
             });
             
             // Закрытие по клику вне модального окна
@@ -1796,23 +1959,35 @@
                 }
             });
         }
-        
-        // Закрытие модального окна товара
-        function closeProductModal() {
-            const modal = document.getElementById('productModal');
-            if (modal) {
-                // Анимация закрытия модального окна
-                gsap.to('.product-modal-content', {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.2,
+
+        // Функция показа уведомления
+        function showNotification(message = "Сообщение отправлено успешно!") {
+            const notification = document.getElementById('notification');
+            if (!notification) return;
+            
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            // Анимация появления уведомления
+            gsap.fromTo(notification, {
+                x: 150
+            }, {
+                x: 0,
+                duration: 0.5,
+                ease: "back.out(1.7)"
+            });
+            
+            setTimeout(() => {
+                // Анимация скрытия уведомления
+                gsap.to(notification, {
+                    x: 150,
+                    duration: 0.3,
                     ease: "power2.in",
                     onComplete: () => {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
+                        notification.classList.remove('show');
                     }
                 });
-            }
+            }, 3000);
         }
         
         // Базовая функциональность
@@ -1853,7 +2028,7 @@
             }
             
             // Плавная прокрутка
-            document.querySelectorAll('nav a').forEach(anchor => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
@@ -1870,7 +2045,9 @@
                         // Закрытие мобильного меню после клика
                         if (mobileNav) {
                             mobileNav.classList.remove('active');
-                            mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                            if (mobileMenuBtn) {
+                                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                            }
                         }
                     }
                 });
@@ -1884,10 +2061,10 @@
             function applyTheme() {
                 if (isDarkTheme) {
                     document.body.classList.add('dark-theme');
-                    themeIcon.className = 'fas fa-sun';
+                    if (themeIcon) themeIcon.className = 'fas fa-sun';
                 } else {
                     document.body.classList.remove('dark-theme');
-                    themeIcon.className = 'fas fa-moon';
+                    if (themeIcon) themeIcon.className = 'fas fa-moon';
                 }
             }
             
@@ -1897,14 +2074,16 @@
                 applyTheme();
                 
                 // Анимация переключателя темы
-                gsap.fromTo(themeToggle, {
-                    scale: 1
-                }, {
-                    scale: 1.2,
-                    duration: 0.2,
-                    yoyo: true,
-                    repeat: 1
-                });
+                if (themeToggle) {
+                    gsap.fromTo(themeToggle, {
+                        scale: 1
+                    }, {
+                        scale: 1.2,
+                        duration: 0.2,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                }
             }
             
             if (themeToggle && themeIcon) {
@@ -1913,94 +2092,30 @@
             }
             
             // Модальное окно
-            const modal = document.getElementById('modal');
-            const catalogBtn = document.getElementById('catalogBtn');
+            const contactBtn = document.getElementById('contactBtn');
             const closeModal = document.getElementById('closeModal');
             
-            function openModal() {
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Анимация открытия модального окна
-                    gsap.fromTo('.modal-content', {
-                        scale: 0.8,
-                        opacity: 0
-                    }, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.3,
-                        ease: "back.out(1.7)"
-                    });
-                }
-            }
-            
-            function closeModalFunc() {
-                if (modal) {
-                    // Анимация закрытия модального окна
-                    gsap.to('.modal-content', {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.2,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    });
-                }
-            }
-            
-            if (catalogBtn) {
-                catalogBtn.addEventListener('click', (e) => {
+            if (contactBtn) {
+                contactBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    openModal();
+                    openModal('modal');
                 });
             }
             
             if (closeModal) {
-                closeModal.addEventListener('click', closeModalFunc);
+                closeModal.addEventListener('click', closeCurrentModal);
             }
             
             // Закрытие по клику вне модального окна
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModalFunc();
+            document.addEventListener('click', (e) => {
+                if (currentModal && e.target === currentModal) {
+                    closeCurrentModal();
                 }
             });
             
             // Формы
             const contactForm = document.getElementById('contact-form');
             const quickForm = document.getElementById('quick-form');
-            const notification = document.getElementById('notification');
-            
-            function showNotification(message = "Сообщение отправлено успешно!") {
-                if (notification) {
-                    notification.textContent = message;
-                    notification.classList.add('show');
-                    
-                    // Анимация появления уведомления
-                    gsap.fromTo(notification, {
-                        x: 150
-                    }, {
-                        x: 0,
-                        duration: 0.5,
-                        ease: "back.out(1.7)"
-                    });
-                    
-                    setTimeout(() => {
-                        // Анимация скрытия уведомления
-                        gsap.to(notification, {
-                            x: 150,
-                            duration: 0.3,
-                            ease: "power2.in",
-                            onComplete: () => {
-                                notification.classList.remove('show');
-                            }
-                        });
-                    }, 3000);
-                }
-            }
             
             // Обработка формы обратной связи
             if (contactForm) {
@@ -2010,10 +2125,10 @@
                     // Получаем данные формы
                     const formData = new FormData(contactForm);
                     const data = {
-                        name: formData.get('name') || document.getElementById('name').value,
-                        phone: formData.get('phone') || document.getElementById('phone').value,
-                        location: formData.get('location') || document.getElementById('location').value,
-                        message: formData.get('message') || document.getElementById('message').value
+                        name: document.getElementById('name').value,
+                        phone: document.getElementById('phone').value,
+                        location: document.getElementById('location').value,
+                        message: document.getElementById('message').value
                     };
                     
                     // В реальном приложении здесь будет отправка на сервер
@@ -2033,11 +2148,10 @@
                     e.preventDefault();
                     
                     // Получаем данные формы
-                    const formData = new FormData(quickForm);
                     const data = {
-                        name: formData.get('name') || document.getElementById('quick-name').value,
-                        phone: formData.get('phone') || document.getElementById('quick-phone').value,
-                        location: formData.get('location') || document.getElementById('quick-location').value
+                        name: document.getElementById('quick-name').value,
+                        phone: document.getElementById('quick-phone').value,
+                        location: document.getElementById('quick-location').value
                     };
                     
                     // В реальном приложении здесь будет отправка на сервер
@@ -2046,7 +2160,7 @@
                     // Имитация отправки
                     setTimeout(() => {
                         quickForm.reset();
-                        closeModalFunc();
+                        closeCurrentModal();
                         showNotification("Заявка на консультацию отправлена! Мы перезвоним вам в течение 15 минут.");
                     }, 500);
                 });
@@ -2062,7 +2176,7 @@
             document.querySelectorAll('.phone').forEach(phoneElement => {
                 phoneElement.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.open('tel:+735321234567');
+                    window.location.href = 'tel:+735321234567';
                 });
             });
             
@@ -2079,13 +2193,15 @@
             // Обработка скролла для шапки
             const header = document.getElementById('header');
             
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
         }
         
         // Инициализация при загрузке страницы
@@ -2101,6 +2217,18 @@
                 }, 100);
             } catch (error) {
                 console.error('Ошибка инициализации:', error);
+            }
+        });
+
+        // Обработка ошибок загрузки GSAP
+        window.addEventListener('error', (e) => {
+            if (e.target.tagName === 'SCRIPT' && e.target.src.includes('gsap')) {
+                console.error('Ошибка загрузки GSAP:', e);
+                // Отключаем анимации, если GSAP не загрузился
+                const loadingAnimation = document.getElementById('loadingAnimation');
+                if (loadingAnimation) {
+                    loadingAnimation.classList.add('hidden');
+                }
             }
         });
     </script>
