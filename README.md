@@ -1,6 +1,5 @@
 Сайт в РАЗРАБОТКЕ ver: 1.1
-
-<!DOCTYPE html>
+ 
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
