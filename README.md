@@ -1,9 +1,11 @@
-Сайт в РАЗРАБОТКЕ ver.1.1
+Сайт в РАЗРАБОТКЕ ver: 1.1
+
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ИП Рахметов А.К. - Насосные станции АКВАЛОС</title>
+    <title>ИП Рахметов А.К. - Автономная канализация Аквалос</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -80,6 +82,17 @@
             background-color: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 7px 14px rgba(0, 86, 179, 0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
         }
         
         section {
@@ -263,7 +276,7 @@
         
         /* Герой секция */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Насосные+станции+АКВАЛОС') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Автономная+канализация+Аквалос') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
@@ -318,17 +331,6 @@
             font-size: 48px;
         }
         
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .service-card:hover .service-img img {
-            transform: scale(1.1);
-        }
-        
         .service-content {
             padding: 25px;
         }
@@ -342,6 +344,30 @@
         .catalog-section {
             padding: 80px 0;
             background-color: var(--white);
+        }
+        
+        .catalog-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        
+        .catalog-filter-btn {
+            padding: 8px 16px;
+            background: var(--light);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .catalog-filter-btn.active,
+        .catalog-filter-btn:hover {
+            background: var(--primary);
+            color: var(--white);
         }
         
         .catalog-grid {
@@ -374,17 +400,6 @@
             justify-content: center;
             color: var(--primary);
             font-size: 48px;
-        }
-        
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .product-card:hover .product-img img {
-            transform: scale(1.1);
         }
         
         .product-badge {
@@ -449,15 +464,42 @@
             font-size: 14px;
         }
         
-        .product-actions .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
+        /* Секция преимуществ */
+        .advantages-section {
+            padding: 80px 0;
+            background-color: var(--light);
         }
         
-        .product-actions .btn-outline:hover {
-            background: var(--primary);
-            color: var(--white);
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .advantage-item {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .advantage-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .advantage-item i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .advantage-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark);
         }
         
         /* Модальное окно товара */
@@ -525,13 +567,6 @@
             justify-content: center;
             color: var(--primary);
             font-size: 64px;
-        }
-        
-        .product-modal-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px 0 0 12px;
         }
         
         .product-modal-info {
@@ -619,13 +654,6 @@
             justify-content: center;
             color: var(--primary);
             font-size: 64px;
-        }
-        
-        .about-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
         }
         
         .about-content {
@@ -930,10 +958,6 @@
                 height: 250px;
             }
             
-            .product-modal-img img {
-                border-radius: 12px 12px 0 0;
-            }
-            
             .stats {
                 flex-direction: column;
                 gap: 20px;
@@ -958,6 +982,10 @@
             }
             
             .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .advantages-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -986,7 +1014,7 @@
                 <nav class="desktop-nav">
                     <ul>
                         <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог АКВАЛОС</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
                         <li><a href="#about">О компании</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
@@ -999,7 +1027,7 @@
             <nav class="mobile-nav" id="mobileNav">
                 <ul>
                     <li><a href="#services">Услуги</a></li>
-                    <li><a href="#catalog">Каталог АКВАЛОС</a></li>
+                    <li><a href="#catalog">Каталог</a></li>
                     <li><a href="#about">О компании</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
@@ -1010,8 +1038,8 @@
     <!-- Герой секция -->
     <section class="hero" id="hero">
         <div class="container">
-            <h1>Насосные станции АКВАЛОС</h1>
-            <p>Профессиональные автоматические насосные станции для систем водоснабжения домов, дач и предприятий в Оренбурге и Оренбургской области</p>
+            <h1>Автономная канализация Аквалос</h1>
+            <p>Профессиональные системы биологической очистки сточных вод для загородного дома и дачи в Оренбурге и Оренбургской области</p>
             <a href="#catalog" class="btn" id="catalogBtn">Смотреть каталог</a>
         </div>
     </section>
@@ -1023,20 +1051,11 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img">
-                        <i class="fas fa-water"></i>
+                        <i class="fas fa-recycle"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Монтаж систем водоснабжения</h3>
-                        <p>Проектирование и установка систем водоснабжения для частных домов, квартир и коммерческих объектов в Оренбурге и области.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Обслуживание насосных станций</h3>
-                        <p>Профессиональное обслуживание, ремонт и настройка насосных станций АКВАЛОС и другого оборудования.</p>
+                        <h3>Монтаж автономной канализации</h3>
+                        <p>Профессиональная установка септиков Аквалос для частных домов, дач и коммерческих объектов в Оренбурге и области.</p>
                     </div>
                 </div>
                 <div class="service-card">
@@ -1044,20 +1063,111 @@
                         <i class="fas fa-tools"></i>
                     </div>
                     <div class="service-content">
-                        <h3>Ремонт и диагностика</h3>
-                        <p>Быстрая диагностика и качественный ремонт насосного оборудования любой сложности для Оренбурга и Оренбургской области.</p>
+                        <h3>Обслуживание септиков</h3>
+                        <p>Регулярное обслуживание, чистка и ремонт автономных канализационных систем Аквалос.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Доставка и установка</h3>
+                        <p>Быстрая доставка и профессиональный монтаж септиков Аквалос в Оренбурге и Оренбургской области.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Каталог АКВАЛОС -->
+    <!-- Каталог -->
     <section id="catalog" class="catalog-section">
         <div class="container">
-            <h2>Каталог насосных станций АКВАЛОС</h2>
+            <h2>Каталог автономных канализаций Аквалос</h2>
+            <div class="catalog-filters">
+                <button class="catalog-filter-btn active" data-filter="all">Все модели</button>
+                <button class="catalog-filter-btn" data-filter="vertical">Вертикальные станции</button>
+                <button class="catalog-filter-btn" data-filter="horizontal">Горизонтальные станции</button>
+            </div>
             <div class="catalog-grid" id="catalogGrid">
                 <!-- Товары будут загружены через JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="advantages-section">
+        <div class="container">
+            <h2>17 преимуществ септика Аквалос</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <i class="fas fa-ruble-sign"></i>
+                    <h3>Оптимальное соотношение цена - качество</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-warehouse"></i>
+                    <h3>Постоянное наличие на складе</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Три рабочих дня до пользования станцией</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Малое электропотребление</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Отсутствие часто ломающихся устройств</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-power-off"></i>
+                    <h3>Работает при отсутствии электроэнергии (до 7 суток)</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-wind"></i>
+                    <h3>Полное отсутствие запаха</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-snowflake"></i>
+                    <h3>Работа при любых экстремальных погодных условиях</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Гарантия на корпус 50 лет</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-tint"></i>
+                    <h3>Нечувствительность к пиковым потокам</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-filter"></i>
+                    <h3>Степень очистки 96-98%</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-flask"></i>
+                    <h3>Не используются химические вещества</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-user-cog"></i>
+                    <h3>Самостоятельное обслуживание</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-volume-mute"></i>
+                    <h3>Низкий уровень шума</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Возможность оплаты после сдачи объекта</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-truck-loading"></i>
+                    <h3>Не нужна ассенизаторская машина</h3>
+                </div>
+                <div class="advantage-item">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>Простота переоборудования</h3>
+                </div>
             </div>
         </div>
     </section>
@@ -1068,7 +1178,7 @@
             <button class="product-modal-close" id="productModalClose" aria-label="Закрыть">&times;</button>
             <div class="product-modal-body">
                 <div class="product-modal-img">
-                    <i class="fas fa-water-pump" id="modalProductIcon"></i>
+                    <i class="fas fa-recycle" id="modalProductIcon"></i>
                 </div>
                 <div class="product-modal-info">
                     <h3 id="modalProductName"></h3>
@@ -1098,7 +1208,7 @@
                 </div>
                 <div class="about-content">
                     <h2>О компании</h2>
-                    <p><strong>ИП Рахметов А.К.</strong> (ИНН 561902398552) специализируется на услугах в области водоснабжения и установке насосных станций с 2010 года. Мы являемся официальными дилерами насосных станций АКВАЛОС в Оренбурге и Оренбургской области.</p>
+                    <p><strong>ИП Рахметов А.К.</strong> (ИНН 561902398552) специализируется на установке автономных канализационных систем с 2010 года. Мы являемся официальными дилерами систем Аквалос в Оренбурге и Оренбургской области.</p>
                     <p>Наша команда состоит из опытных специалистов, которые используют современное оборудование и материалы для обеспечения высокого качества работ.</p>
                     <div class="stats">
                         <div class="stat-item">
@@ -1107,7 +1217,7 @@
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="projectsCounter">0</span>
-                            <span class="stat-text">Установленных станций</span>
+                            <span class="stat-text">Установленных систем</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number" id="clientsCounter">0</span>
@@ -1178,7 +1288,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Сообщение</label>
-                            <textarea id="message" class="form-control" rows="4" placeholder="Интересует насосная станция АКВАЛОС..."></textarea>
+                            <textarea id="message" class="form-control" rows="4" placeholder="Интересует автономная канализация Аквалос..."></textarea>
                         </div>
                         <button type="submit" class="btn">Отправить</button>
                     </form>
@@ -1196,16 +1306,16 @@
                     <ul>
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#services">Услуги</a></li>
-                        <li><a href="#catalog">Каталог АКВАЛОС</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Услуги</h3>
                     <ul>
-                        <li><a href="#services">Водоснабжение</a></li>
-                        <li><a href="#services">Обслуживание станций</a></li>
-                        <li><a href="#services">Ремонт оборудования</a></li>
+                        <li><a href="#services">Автономная канализация</a></li>
+                        <li><a href="#services">Монтаж септиков</a></li>
+                        <li><a href="#services">Обслуживание</a></li>
                         <li><a href="#services">Консультации</a></li>
                     </ul>
                 </div>
@@ -1261,214 +1371,275 @@
     </div>
 
     <script>
-        // Данные товаров АКВАЛОС с исправленными характеристиками
+        // Глобальные переменные для управления модальными окнами
+        let currentModal = null;
+
+        // Данные товаров - автономные канализации Аквалос
         const products = [
             {
                 id: 1,
-                name: "АКВАЛОС 1",
-                description: "Бытовая насосная станция для водоснабжения",
-                price: "24 500 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Производительность 2.0 м³/ч", "Напор 35 м", "Мощность 600 Вт"],
-                badge: "Бюджетная",
-                fullDescription: "АКВАЛОС 1 - надежная бытовая насосная станция для водоснабжения дач и небольших домов. Идеальное решение для стабильного водоснабжения при ограниченном бюджете.",
+                name: "АКВАЛОС 2 Un*",
+                description: "Автономная канализация для дома и дачи",
+                price: "101 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 400л/сут", "Залповый сброс: 120л", "Глубина подводящей трубы: до 30 см"],
+                category: "vertical",
+                badge: "Универсальная",
+                fullDescription: "Автономная канализация АКВАЛОС 2 Un* предназначена для использования в частных домах и на дачах. Способ отведения воды: универсальная.",
                 specifications: [
-                    { name: "Производительность", value: "2.0 м³/ч" },
-                    { name: "Напор", value: "35 м" },
-                    { name: "Мощность", value: "600 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "20 л" },
-                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
-                    { name: "Защита от сухого хода", value: "Да" },
-                    { name: "Уровень шума", value: "55 дБ" }
+                    { name: "Способ отведения воды", value: "Универсальная" },
+                    { name: "Производительность", value: "400л/сут" },
+                    { name: "Залповый сброс", value: "120л" },
+                    { name: "Глубина подводящей трубы", value: "До 30 см" },
+                    { name: "Габаритные размеры Д*Ш*В", value: "860*860*1500" }
                 ]
             },
             {
                 id: 2,
-                name: "АКВАЛОС 2",
-                description: "Автоматическая насосная станция для дома",
-                price: "31 800 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Производительность 3.0 м³/ч", "Напор 42 м", "Мощность 750 Вт"],
-                badge: "Хит продаж",
-                fullDescription: "АКВАЛОС 2 - популярная модель для автоматического водоснабжения частных домов. Оптимальное сочетание цены и производительности.",
+                name: "АКВАЛОС 3 Un*",
+                description: "Автономная канализация для частного дома",
+                price: "113 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 600л/сут", "Залповый сброс: 200л", "Глубина подводящей трубы: до 50 см"],
+                category: "vertical",
+                badge: "Универсальная",
+                fullDescription: "Автономная канализация АКВАЛОС 3 Un* предназначена для использования в частных домах. Способ отведения воды: универсальная.",
                 specifications: [
-                    { name: "Производительность", value: "3.0 м³/ч" },
-                    { name: "Напор", value: "42 м" },
-                    { name: "Мощность", value: "750 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "24 л" },
-                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
-                    { name: "Защита от сухого хода", value: "Да" },
-                    { name: "Уровень шума", value: "53 дБ" }
+                    { name: "Способ отведения воды", value: "Универсальная" },
+                    { name: "Производительность", value: "600л/сут" },
+                    { name: "Залповый сброс", value: "200л" },
+                    { name: "Глубина подводящей трубы", value: "До 50 см" },
+                    { name: "Габаритные размеры Д*Ш*В", value: "860*860*1850" }
                 ]
             },
             {
                 id: 3,
-                name: "АКВАЛОС 3",
-                description: "Насосная станция с увеличенным гидробаком",
-                price: "38 200 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Производительность 3.2 м³/ч", "Напор 45 м", "Гидробак 50 л"],
-                badge: "Комфорт",
-                fullDescription: "АКВАЛОС 3 с гидробаком 50 литров обеспечивает стабильное давление и уменьшает количество включений насоса. Идеально для семей из 3-4 человек.",
+                name: "АКВАЛОС 4 Un*",
+                description: "Автономная канализация для загородного дома",
+                price: "129 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 800л/сут", "Залповый сброс: 230л", "Глубина подводящей трубы: до 60 см"],
+                category: "vertical",
+                badge: "Универсальная",
+                fullDescription: "Автономная канализация АКВАЛОС 4 Un* предназначена для использования в загородных домах. Способ отведения воды: универсальная.",
                 specifications: [
-                    { name: "Производительность", value: "3.2 м³/ч" },
-                    { name: "Напор", value: "45 м" },
-                    { name: "Мощность", value: "800 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "50 л" },
-                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
-                    { name: "Защита от сухого хода", value: "Да" },
-                    { name: "Уровень шума", value: "52 дБ" }
+                    { name: "Способ отведения воды", value: "Универсальная" },
+                    { name: "Производительность", value: "800л/сут" },
+                    { name: "Залповый сброс", value: "230л" },
+                    { name: "Глубина подводящей трубы", value: "До 60 см" },
+                    { name: "Габаритные размеры Д*Ш*В", value: "860*860*2280" }
                 ]
             },
             {
                 id: 4,
-                name: "АКВАЛОС 4",
-                description: "Мощная насосная станция для коттеджей",
-                price: "45 900 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Производительность 3.8 м³/ч", "Напор 50 м", "Мощность 1100 Вт"],
-                badge: "Для коттеджа",
-                fullDescription: "АКВАЛОС 4 предназначена для водоснабжения коттеджей и домов с большим водопотреблением. Обеспечивает одновременную работу нескольких точек водозабора.",
+                name: "АКВАЛОС 5 Un*",
+                description: "Автономная канализация для большого дома",
+                price: "141 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 900л/сут", "Залповый сброс: 320л", "Глубина подводящей трубы: до 60 см"],
+                category: "vertical",
+                badge: "Универсальная",
+                fullDescription: "Автономная канализация АКВАЛОС 5 Un* предназначена для использования в больших домах. Способ отведения воды: универсальная.",
                 specifications: [
-                    { name: "Производительность", value: "3.8 м³/ч" },
-                    { name: "Напор", value: "50 м" },
-                    { name: "Мощность", value: "1100 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "24 л" },
-                    { name: "Материал корпуса", value: "Чугун" },
-                    { name: "Защита от сухого хода", value: "Да" },
-                    { name: "Уровень шума", value: "58 дБ" }
+                    { name: "Способ отведения воды", value: "Универсальная (2,28)" },
+                    { name: "Производительность", value: "900л/сут" },
+                    { name: "Залповый сброс", value: "320л" },
+                    { name: "Глубина подводящей трубы", value: "До 60 см" },
+                    { name: "Габаритные размеры Д*Ш*В", value: "1000*1000*2280" }
                 ]
             },
             {
                 id: 5,
-                name: "АКВАЛОС 5",
-                description: "Насосная станция с системой плавного пуска",
-                price: "52 700 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Плавный пуск", "Производительность 4.2 м³/ч", "Напор 55 м"],
-                badge: "Энергоэффективная",
-                fullDescription: "АКВАЛОС 5 оснащена системой плавного пуска, что снижает пусковые токи и продлевает срок службы оборудования. Рекомендуется для сетей с нестабильным напряжением.",
+                name: "АКВАЛОС 7 Un*",
+                description: "Автономная канализация повышенной производительности",
+                price: "171 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 1200л/сут", "Залповый сброс: 500л", "Глубина подводящей трубы: до 60 см"],
+                category: "vertical",
+                badge: "Универсальная",
+                fullDescription: "Автономная канализация АКВАЛОС 7 Un* обладает повышенной производительностью. Способ отведения воды: универсальная.",
                 specifications: [
-                    { name: "Производительность", value: "4.2 м³/ч" },
-                    { name: "Напор", value: "55 м" },
-                    { name: "Мощность", value: "1200 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "24 л" },
-                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
-                    { name: "Плавный пуск", value: "Да" },
-                    { name: "Уровень шума", value: "56 дБ" }
+                    { name: "Способ отведения воды", value: "Универсальная (2,28)" },
+                    { name: "Производительность", value: "1200л/сут" },
+                    { name: "Залповый сброс", value: "500л" },
+                    { name: "Глубина подводящей трубы", value: "До 60 см" },
+                    { name: "Габаритные размеры Д*Ш*В", value: "1100*1100*2280" }
                 ]
             },
             {
                 id: 6,
-                name: "АКВАЛОС 6",
-                description: "Профессиональная насосная станция",
-                price: "61 500 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Производительность 4.8 м³/ч", "Напор 60 м", "Гидробак 100 л"],
-                badge: "Профессиональная",
-                fullDescription: "АКВАЛОС 6 - профессиональное решение для объектов с высоким водопотреблением. Большой гидробак обеспечивает стабильное давление при пиковых нагрузках.",
+                name: "АКВАЛОС 8 Un*",
+                description: "Профессиональная автономная канализация",
+                price: "181 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 1600л/сут", "Залповый сброс: 630л", "Глубина подводящей трубы: до 60 см"],
+                category: "vertical",
+                badge: "Универсальная",
+                fullDescription: "Профессиональная автономная канализация АКВАЛОС 8 Un* предназначена для объектов с повышенными требованиями.",
                 specifications: [
-                    { name: "Производительность", value: "4.8 м³/ч" },
-                    { name: "Напор", value: "60 м" },
-                    { name: "Мощность", value: "1400 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "100 л" },
-                    { name: "Материал корпуса", value: "Чугун" },
-                    { name: "Защита от сухого хода", value: "Да" },
-                    { name: "Уровень шума", value: "60 дБ" }
+                    { name: "Способ отведения воды", value: "Универсальная (2,28)" },
+                    { name: "Производительность", value: "1600л/сут" },
+                    { name: "Залповый сброс", value: "630л" },
+                    { name: "Глубина подводящей трубы", value: "До 60 см" },
+                    { name: "Габаритные размеры Д*Ш*В", value: "1200*1200*2280" }
                 ]
             },
             {
                 id: 7,
-                name: "АКВАЛОС 7",
-                description: "Насосная станция с электронным управлением",
-                price: "73 800 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Электронное управление", "Производительность 5.5 м³/ч", "Напор 65 м"],
-                badge: "Умная",
-                fullDescription: "АКВАЛОС 7 с электронной системой управления обеспечивает точный контроль давления и защиту оборудования. Встроенный дисплей отображает рабочие параметры.",
+                name: "АКВАЛОС 10 Un*",
+                description: "Промышленная автономная канализация",
+                price: "237 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 2000л/сут", "Залповый сброс: 800л", "Глубина подводящей трубы: до 60 см"],
+                category: "vertical",
+                badge: "Универсальная",
+                fullDescription: "Промышленная автономная канализация АКВАЛОС 10 Un* предназначена для коммерческих объектов и больших домовладений.",
                 specifications: [
-                    { name: "Производительность", value: "5.5 м³/ч" },
-                    { name: "Напор", value: "65 м" },
-                    { name: "Мощность", value: "1600 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "24 л" },
-                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
-                    { name: "Электронное управление", value: "Да" },
-                    { name: "Дисплей", value: "ЖК-дисплей" }
+                    { name: "Способ отведения воды", value: "Универсальная (2,28)" },
+                    { name: "Производительность", value: "2000л/сут" },
+                    { name: "Залповый сброс", value: "800л" },
+                    { name: "Глубина подводящей трубы", value: "До 60 см" },
+                    { name: "Габаритные размеры Д*Ш*В", value: "1500*1500*2280" }
                 ]
             },
             {
                 id: 8,
-                name: "АКВАЛОС 8",
-                description: "Промышленная насосная станция",
-                price: "89 200 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Производительность 6.5 м³/ч", "Напор 70 м", "Мощность 2000 Вт"],
-                badge: "Промышленная",
-                fullDescription: "АКВАЛОС 8 - промышленная насосная станция для коммерческих объектов и небольших производств. Обеспечивает высокую производительность и надежность.",
+                name: "Горизонтальная станция АКВАЛОС 4",
+                description: "Горизонтальная автономная канализация",
+                price: "148 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 800 л/сут", "Залповый сброс: 200 л", "Глубина подводящей трубы: до 30 см"],
+                category: "horizontal",
+                badge: "Горизонтальная",
+                fullDescription: "Горизонтальная станция АКВАЛОС 4 предназначена для использования в частных домах и на дачах. Глубина подводящей трубы: до 30 см.",
                 specifications: [
-                    { name: "Производительность", value: "6.5 м³/ч" },
-                    { name: "Напор", value: "70 м" },
-                    { name: "Мощность", value: "2000 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "100 л" },
-                    { name: "Материал корпуса", value: "Чугун" },
-                    { name: "Защита от сухого хода", value: "Да" },
-                    { name: "Уровень шума", value: "65 дБ" }
+                    { name: "Глубина подводящей трубы", value: "До 30 см" },
+                    { name: "Производительность", value: "800 л/сут" },
+                    { name: "Залповый сброс", value: "200 л" },
+                    { name: "Габаритные размеры", value: "1620*1000*1300" }
                 ]
             },
             {
                 id: 9,
-                name: "АКВАЛОС 9",
-                description: "Насосная станция с частотным регулированием",
-                price: "112 500 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Частотное регулирование", "Производительность 7.5 м³/ч", "Напор 75 м"],
-                badge: "Премиум",
-                fullDescription: "АКВАЛОС 9 с системой частотного регулирования поддерживает точное давление независимо от расхода воды. Экономит электроэнергию и продлевает срок службы.",
+                name: "Горизонтальная станция АКВАЛОС 5",
+                description: "Горизонтальная автономная канализация",
+                price: "158 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 900 л/сут", "Залповый сброс: 300 л", "Глубина подводящей трубы: до 30 см"],
+                category: "horizontal",
+                badge: "Горизонтальная",
+                fullDescription: "Горизонтальная станция АКВАЛОС 5 предназначена для использования в частных домах. Глубина подводящей трубы: до 30 см.",
                 specifications: [
-                    { name: "Производительность", value: "7.5 м³/ч" },
-                    { name: "Напор", value: "75 м" },
-                    { name: "Мощность", value: "2200 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "24 л" },
-                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
-                    { name: "Частотное регулирование", value: "Да" },
-                    { name: "КПД", value: "92%" }
+                    { name: "Глубина подводящей трубы", value: "До 30 см" },
+                    { name: "Производительность", value: "900 л/сут" },
+                    { name: "Залповый сброс", value: "300 л" },
+                    { name: "Габаритные размеры", value: "1820*1000*1300" }
                 ]
             },
             {
                 id: 10,
-                name: "АКВАЛОС 10",
-                description: "Высокопроизводительная промышленная станция",
-                price: "148 000 ₽",
-                icon: "fas fa-water-pump",
-                features: ["Производительность 9.0 м³/ч", "Напор 80 м", "Мощность 2800 Вт"],
-                badge: "Экстра",
-                fullDescription: "АКВАЛОС 10 - флагманская модель для объектов с экстремально высоким водопотреблением. Обеспечивает бесперебойную работу в самых demanding условиях.",
+                name: "Горизонтальная станция АКВАЛОС 7",
+                description: "Горизонтальная автономная канализация",
+                price: "194 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 1200 л/сут", "Залповый сброс: 550 л", "Глубина подводящей трубы: до 30 см"],
+                category: "horizontal",
+                badge: "Горизонтальная",
+                fullDescription: "Горизонтальная станция АКВАЛОС 7 предназначена для использования в загородных домах. Глубина подводящей трубы: до 30 см.",
                 specifications: [
-                    { name: "Производительность", value: "9.0 м³/ч" },
-                    { name: "Напор", value: "80 м" },
-                    { name: "Мощность", value: "2800 Вт" },
-                    { name: "Глубина всасывания", value: "8 м" },
-                    { name: "Объем гидробака", value: "100 л" },
-                    { name: "Материал корпуса", value: "Чугун" },
-                    { name: "Защита от сухого хода", value: "Да" },
-                    { name: "Класс защиты", value: "IP54" }
+                    { name: "Глубина подводящей трубы", value: "До 30 см" },
+                    { name: "Производительность", value: "1200 л/сут" },
+                    { name: "Залповый сброс", value: "550 л" },
+                    { name: "Габаритные размеры", value: "2120*1000*1300" }
+                ]
+            },
+            {
+                id: 11,
+                name: "Горизонтальная станция АКВАЛОС 10",
+                description: "Горизонтальная автономная канализация",
+                price: "246 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Производительность: 2000 л/сут", "Залповый сброс: 800 л", "Глубина подводящей трубы: до 30 см"],
+                category: "horizontal",
+                badge: "Горизонтальная",
+                fullDescription: "Горизонтальная станция АКВАЛОС 10 предназначена для использования в больших домах и коммерческих объектах. Глубина подводящей трубы: до 30 см.",
+                specifications: [
+                    { name: "Глубина подводящей трубы", value: "До 30 см" },
+                    { name: "Производительность", value: "2000 л/сут" },
+                    { name: "Залповый сброс", value: "800 л" },
+                    { name: "Габаритные размеры", value: "2120*1260*1570" }
                 ]
             }
         ];
 
+        // Функции для работы с модальными окнами
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                currentModal = modal;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Анимация открытия модального окна
+                gsap.fromTo(modal.querySelector('.modal-content, .product-modal-content'), {
+                    scale: 0.8,
+                    opacity: 0
+                }, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.3,
+                    ease: "back.out(1.7)"
+                });
+            }
+        }
+
+        function closeCurrentModal() {
+            if (currentModal) {
+                // Анимация закрытия модального окна
+                gsap.to(currentModal.querySelector('.modal-content, .product-modal-content'), {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        currentModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                        currentModal = null;
+                    }
+                });
+            }
+        }
+
+        // Функция для закрытия модального окна товара
+        function closeProductModal() {
+            const modal = document.getElementById('productModal');
+            if (modal) {
+                // Анимация закрытия модального окна
+                gsap.to(modal.querySelector('.product-modal-content'), {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        }
+
         // Инициализация GSAP анимаций
         function initAnimations() {
+            // Проверяем, загружена ли GSAP
+            if (typeof gsap === 'undefined') {
+                console.warn('GSAP не загружен');
+                return;
+            }
+            
             // Инициализация ScrollTrigger
-            gsap.registerPlugin(ScrollTrigger);
+            if (typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+            }
             
             // Анимация появления секций при скролле
             gsap.utils.toArray('section').forEach(section => {
@@ -1521,6 +1692,25 @@
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация преимуществ
+            gsap.utils.toArray('.advantage-item').forEach((item, i) => {
+                gsap.fromTo(item, {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: item,
                         start: "top 85%",
                         toggleActions: "play none none reverse"
                     }
@@ -1599,6 +1789,8 @@
 
         // Улучшенная функция для анимации счетчика с GSAP
         function animateCounter(element, start, end, duration) {
+            if (!element) return;
+            
             const obj = { value: start };
             gsap.to(obj, {
                 value: end,
@@ -1645,6 +1837,7 @@
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
+                productCard.setAttribute('data-category', product.category);
                 productCard.innerHTML = `
                     <div class="product-img">
                         <i class="${product.icon}"></i>
@@ -1666,11 +1859,61 @@
                 catalogGrid.appendChild(productCard);
             });
             
+            // Инициализация фильтров каталога
+            initCatalogFilters();
+            
             // Инициализация обработчиков событий для кнопок товаров
             initProductButtons();
             
             // Инициализация модального окна товара
             initProductModal();
+        }
+        
+        // Инициализация фильтров каталога
+        function initCatalogFilters() {
+            const filterButtons = document.querySelectorAll('.catalog-filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Убираем активный класс у всех кнопок
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    filterCatalog(filter);
+                });
+            });
+        }
+        
+        // Фильтрация каталога
+        function filterCatalog(filter) {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                    // Анимация появления отфильтрованных карточек
+                    gsap.fromTo(card, {
+                        opacity: 0,
+                        scale: 0.8
+                    }, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power2.out"
+                    });
+                } else {
+                    // Анимация скрытия карточек
+                    gsap.to(card, {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            });
         }
         
         // Инициализация обработчиков событий для кнопок товаров
@@ -1681,7 +1924,7 @@
                 buttons.forEach(button => {
                     button.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        const productId = button.getAttribute('data-product-id');
+                        const productId = parseInt(button.getAttribute('data-product-id'));
                         if (button.classList.contains('btn-outline')) {
                             // Заказ товара
                             orderProduct(productId);
@@ -1694,7 +1937,7 @@
                 
                 // Клик по карточке товара
                 card.addEventListener('click', () => {
-                    const productId = card.querySelector('.btn').getAttribute('data-product-id');
+                    const productId = parseInt(card.querySelector('.btn').getAttribute('data-product-id'));
                     viewProductDetails(productId);
                 });
             });
@@ -1702,7 +1945,7 @@
         
         // Просмотр детальной информации о товаре
         function viewProductDetails(productId) {
-            const product = products.find(p => p.id == productId);
+            const product = products.find(p => p.id === productId);
             if (product) {
                 const modal = document.getElementById('productModal');
                 const modalIcon = document.getElementById('modalProductIcon');
@@ -1749,11 +1992,10 @@
         
         // Заказ товара
         function orderProduct(productId) {
-            const product = products.find(p => p.id == productId);
+            const product = products.find(p => p.id === productId);
             if (product) {
                 // Открытие модального окна заказа
-                openModal();
-                // В реальном приложении здесь можно добавить логику для предзаполнения формы
+                openModal('modal');
             }
         }
         
@@ -1774,13 +2016,13 @@
             // Заказ товара из модального окна
             orderButton.addEventListener('click', () => {
                 closeProductModal();
-                openModal();
+                openModal('modal');
             });
             
             // Консультация по товару
             consultButton.addEventListener('click', () => {
                 closeProductModal();
-                openModal();
+                openModal('modal');
             });
             
             // Закрытие по клику вне модального окна
@@ -1797,23 +2039,35 @@
                 }
             });
         }
-        
-        // Закрытие модального окна товара
-        function closeProductModal() {
-            const modal = document.getElementById('productModal');
-            if (modal) {
-                // Анимация закрытия модального окна
-                gsap.to('.product-modal-content', {
-                    scale: 0.8,
-                    opacity: 0,
-                    duration: 0.2,
+
+        // Функция показа уведомления
+        function showNotification(message = "Сообщение отправлено успешно!") {
+            const notification = document.getElementById('notification');
+            if (!notification) return;
+            
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            // Анимация появления уведомления
+            gsap.fromTo(notification, {
+                x: 150
+            }, {
+                x: 0,
+                duration: 0.5,
+                ease: "back.out(1.7)"
+            });
+            
+            setTimeout(() => {
+                // Анимация скрытия уведомления
+                gsap.to(notification, {
+                    x: 150,
+                    duration: 0.3,
                     ease: "power2.in",
                     onComplete: () => {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
+                        notification.classList.remove('show');
                     }
                 });
-            }
+            }, 3000);
         }
         
         // Базовая функциональность
@@ -1854,7 +2108,7 @@
             }
             
             // Плавная прокрутка
-            document.querySelectorAll('nav a').forEach(anchor => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
@@ -1871,7 +2125,9 @@
                         // Закрытие мобильного меню после клика
                         if (mobileNav) {
                             mobileNav.classList.remove('active');
-                            mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                            if (mobileMenuBtn) {
+                                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                            }
                         }
                     }
                 });
@@ -1885,10 +2141,10 @@
             function applyTheme() {
                 if (isDarkTheme) {
                     document.body.classList.add('dark-theme');
-                    themeIcon.className = 'fas fa-sun';
+                    if (themeIcon) themeIcon.className = 'fas fa-sun';
                 } else {
                     document.body.classList.remove('dark-theme');
-                    themeIcon.className = 'fas fa-moon';
+                    if (themeIcon) themeIcon.className = 'fas fa-moon';
                 }
             }
             
@@ -1898,14 +2154,16 @@
                 applyTheme();
                 
                 // Анимация переключателя темы
-                gsap.fromTo(themeToggle, {
-                    scale: 1
-                }, {
-                    scale: 1.2,
-                    duration: 0.2,
-                    yoyo: true,
-                    repeat: 1
-                });
+                if (themeToggle) {
+                    gsap.fromTo(themeToggle, {
+                        scale: 1
+                    }, {
+                        scale: 1.2,
+                        duration: 0.2,
+                        yoyo: true,
+                        repeat: 1
+                    });
+                }
             }
             
             if (themeToggle && themeIcon) {
@@ -1914,94 +2172,38 @@
             }
             
             // Модальное окно
-            const modal = document.getElementById('modal');
+            const contactBtn = document.getElementById('contactBtn');
             const catalogBtn = document.getElementById('catalogBtn');
             const closeModal = document.getElementById('closeModal');
             
-            function openModal() {
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Анимация открытия модального окна
-                    gsap.fromTo('.modal-content', {
-                        scale: 0.8,
-                        opacity: 0
-                    }, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.3,
-                        ease: "back.out(1.7)"
-                    });
-                }
-            }
-            
-            function closeModalFunc() {
-                if (modal) {
-                    // Анимация закрытия модального окна
-                    gsap.to('.modal-content', {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.2,
-                        ease: "power2.in",
-                        onComplete: () => {
-                            modal.classList.remove('active');
-                            document.body.style.overflow = 'auto';
-                        }
-                    });
-                }
+            if (contactBtn) {
+                contactBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal('modal');
+                });
             }
             
             if (catalogBtn) {
                 catalogBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    openModal();
+                    openModal('modal');
                 });
             }
             
             if (closeModal) {
-                closeModal.addEventListener('click', closeModalFunc);
+                closeModal.addEventListener('click', closeCurrentModal);
             }
             
             // Закрытие по клику вне модального окна
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModalFunc();
+            document.addEventListener('click', (e) => {
+                if (currentModal && e.target === currentModal) {
+                    closeCurrentModal();
                 }
             });
             
             // Формы
             const contactForm = document.getElementById('contact-form');
             const quickForm = document.getElementById('quick-form');
-            const notification = document.getElementById('notification');
-            
-            function showNotification(message = "Сообщение отправлено успешно!") {
-                if (notification) {
-                    notification.textContent = message;
-                    notification.classList.add('show');
-                    
-                    // Анимация появления уведомления
-                    gsap.fromTo(notification, {
-                        x: 150
-                    }, {
-                        x: 0,
-                        duration: 0.5,
-                        ease: "back.out(1.7)"
-                    });
-                    
-                    setTimeout(() => {
-                        // Анимация скрытия уведомления
-                        gsap.to(notification, {
-                            x: 150,
-                            duration: 0.3,
-                            ease: "power2.in",
-                            onComplete: () => {
-                                notification.classList.remove('show');
-                            }
-                        });
-                    }, 3000);
-                }
-            }
             
             // Обработка формы обратной связи
             if (contactForm) {
@@ -2011,10 +2213,10 @@
                     // Получаем данные формы
                     const formData = new FormData(contactForm);
                     const data = {
-                        name: formData.get('name') || document.getElementById('name').value,
-                        phone: formData.get('phone') || document.getElementById('phone').value,
-                        location: formData.get('location') || document.getElementById('location').value,
-                        message: formData.get('message') || document.getElementById('message').value
+                        name: document.getElementById('name').value,
+                        phone: document.getElementById('phone').value,
+                        location: document.getElementById('location').value,
+                        message: document.getElementById('message').value
                     };
                     
                     // В реальном приложении здесь будет отправка на сервер
@@ -2034,11 +2236,10 @@
                     e.preventDefault();
                     
                     // Получаем данные формы
-                    const formData = new FormData(quickForm);
                     const data = {
-                        name: formData.get('name') || document.getElementById('quick-name').value,
-                        phone: formData.get('phone') || document.getElementById('quick-phone').value,
-                        location: formData.get('location') || document.getElementById('quick-location').value
+                        name: document.getElementById('quick-name').value,
+                        phone: document.getElementById('quick-phone').value,
+                        location: document.getElementById('quick-location').value
                     };
                     
                     // В реальном приложении здесь будет отправка на сервер
@@ -2047,7 +2248,7 @@
                     // Имитация отправки
                     setTimeout(() => {
                         quickForm.reset();
-                        closeModalFunc();
+                        closeCurrentModal();
                         showNotification("Заявка на консультацию отправлена! Мы перезвоним вам в течение 15 минут.");
                     }, 500);
                 });
@@ -2063,7 +2264,7 @@
             document.querySelectorAll('.phone').forEach(phoneElement => {
                 phoneElement.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.open('tel:+735321234567');
+                    window.location.href = 'tel:+735321234567';
                 });
             });
             
@@ -2080,13 +2281,15 @@
             // Обработка скролла для шапки
             const header = document.getElementById('header');
             
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
         }
         
         // Инициализация при загрузке страницы
@@ -2102,6 +2305,18 @@
                 }, 100);
             } catch (error) {
                 console.error('Ошибка инициализации:', error);
+            }
+        });
+
+        // Обработка ошибок загрузки GSAP
+        window.addEventListener('error', (e) => {
+            if (e.target.tagName === 'SCRIPT' && e.target.src.includes('gsap')) {
+                console.error('Ошибка загрузки GSAP:', e);
+                // Отключаем анимации, если GSAP не загрузился
+                const loadingAnimation = document.getElementById('loadingAnimation');
+                if (loadingAnimation) {
+                    loadingAnimation.classList.add('hidden');
+                }
             }
         });
     </script>
