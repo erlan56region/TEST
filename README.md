@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -21,6 +22,7 @@
             --transition: all 0.3s ease;
         }
         
+        /* Темная тема */
         .dark-theme {
             --primary: #4dabf7;
             --primary-dark: #339af0;
@@ -39,18 +41,12 @@
             font-family: 'Inter', sans-serif;
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
-        
         body {
             color: var(--dark);
             line-height: 1.6;
             overflow-x: hidden;
             background-color: var(--white);
             transition: background-color 0.5s ease, color 0.5s ease;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
         
         .container {
@@ -109,6 +105,7 @@
             border-radius: 2px;
         }
         
+        /* Переключатель темы */
         .theme-toggle {
             position: fixed;
             bottom: 20px;
@@ -131,6 +128,7 @@
             transform: scale(1.1);
         }
         
+        /* Шапка */
         header {
             background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -139,11 +137,6 @@
             top: 0;
             z-index: 1000;
             transition: var(--transition);
-            transform: translateY(0);
-        }
-        
-        header.hidden {
-            transform: translateY(-100%);
         }
         
         header.scrolled {
@@ -232,9 +225,9 @@
             font-size: 24px;
             cursor: pointer;
             color: var(--primary);
-            padding: 5px;
         }
         
+        /* Мобильная навигация */
         .mobile-nav {
             display: none;
             width: 100%;
@@ -268,8 +261,9 @@
             color: var(--primary);
         }
         
+        /* Герой секция */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://via.placeholder.com/1920x1080/0056b3/ffffff?text=Водоснабжение+и+отопление') no-repeat center center/cover;
             color: var(--white);
             text-align: center;
             padding: 200px 0 120px;
@@ -290,15 +284,7 @@
             margin-right: auto;
         }
         
-        .hero .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-        
-        .hero .btn:hover {
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-        
+        /* Услуги */
         .services {
             background-color: var(--light);
         }
@@ -332,6 +318,17 @@
             font-size: 48px;
         }
         
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
         .service-content {
             padding: 25px;
         }
@@ -341,6 +338,7 @@
             font-size: 22px;
         }
         
+        /* Каталог */
         .catalog-section {
             padding: 80px 0;
             background-color: var(--white);
@@ -400,6 +398,17 @@
             justify-content: center;
             color: var(--primary);
             font-size: 48px;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
         }
         
         .product-badge {
@@ -475,124 +484,7 @@
             color: var(--white);
         }
         
-        .septics-section {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .septics-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .septics-header h2 {
-            margin-bottom: 20px;
-        }
-        
-        .septics-description {
-            font-size: 18px;
-            color: var(--gray);
-            max-width: 800px;
-            margin: 0 auto 30px;
-        }
-        
-        .septics-consultation {
-            background: var(--primary);
-            color: var(--white);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .septics-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-        
-        .septic-type {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: var(--transition);
-        }
-        
-        .septic-type:hover {
-            transform: translateY(-5px);
-        }
-        
-        .septic-type-icon {
-            font-size: 48px;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .septic-type h3 {
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-        
-        .septics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        .septic-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-        
-        .septic-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .septic-card-header {
-            background: var(--primary);
-            color: var(--white);
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .septic-card-body {
-            padding: 20px;
-        }
-        
-        .septic-features {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .septic-features li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .septic-feature-name {
-            font-weight: 500;
-        }
-        
-        .septic-feature-value {
-            color: var(--gray);
-        }
-        
-        .septic-price {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
+        /* Модальное окно товара */
         .product-modal {
             display: none;
             position: fixed;
@@ -640,12 +532,6 @@
             cursor: pointer;
             color: var(--gray);
             z-index: 10;
-            padding: 5px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .product-modal-body {
@@ -663,6 +549,13 @@
             justify-content: center;
             color: var(--primary);
             font-size: 64px;
+        }
+        
+        .product-modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px 0 0 12px;
         }
         
         .product-modal-info {
@@ -727,6 +620,7 @@
             flex: 1;
         }
         
+        /* О компании */
         .about-section {
             padding: 80px 0;
         }
@@ -749,6 +643,13 @@
             justify-content: center;
             color: var(--primary);
             font-size: 64px;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
         }
         
         .about-content {
@@ -781,6 +682,7 @@
             display: block;
         }
         
+        /* Контакты */
         .contacts {
             background-color: var(--light);
         }
@@ -836,12 +738,7 @@
             transition: var(--transition);
         }
         
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
-        }
-        
+        /* Подвал */
         footer {
             background-color: var(--dark);
             color: var(--white);
@@ -895,11 +792,6 @@
             transition: var(--transition);
         }
         
-        .social-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-        
         .copyright {
             text-align: center;
             padding-top: 20px;
@@ -908,6 +800,7 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
+        /* Модальное окно */
         .modal {
             display: none;
             position: fixed;
@@ -953,12 +846,6 @@
             font-size: 24px;
             cursor: pointer;
             color: var(--gray);
-            padding: 5px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .notification {
@@ -979,6 +866,7 @@
             transform: translateX(0);
         }
         
+        /* Анимация загрузки */
         .loading-animation {
             position: fixed;
             top: 0;
@@ -1011,6 +899,7 @@
             to { transform: rotate(360deg); }
         }
         
+        /* Адаптивность */
         @media (max-width: 992px) {
             .about {
                 flex-direction: column;
@@ -1027,15 +916,6 @@
             
             .stats {
                 justify-content: space-around;
-            }
-            
-            .product-modal-body {
-                flex-direction: column;
-            }
-            
-            .product-modal-img {
-                height: 250px;
-                min-width: 100%;
             }
         }
         
@@ -1066,23 +946,31 @@
                 font-size: 18px;
             }
             
+            .product-modal-body {
+                flex-direction: column;
+            }
+            
+            .product-modal-img {
+                height: 250px;
+            }
+            
+            .product-modal-img img {
+                border-radius: 12px 12px 0 0;
+            }
+            
             .stats {
                 flex-direction: column;
                 gap: 20px;
-            }
-            
-            h2 {
-                font-size: 28px;
-            }
-            
-            .product-modal-info {
-                min-width: 100%;
             }
         }
         
         @media (max-width: 576px) {
             section {
                 padding: 60px 0;
+            }
+            
+            h2 {
+                font-size: 28px;
             }
             
             .hero {
@@ -1095,45 +983,6 @@
             
             .services-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .septics-types {
-                grid-template-columns: 1fr;
-            }
-            
-            .septics-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .product-modal-actions {
-                flex-direction: column;
-            }
-            
-            .product-actions {
-                flex-direction: column;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .hero h1 {
-                font-size: 28px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .catalog-filters {
-                gap: 5px;
-            }
-            
-            .catalog-filter-btn {
-                padding: 6px 12px;
-                font-size: 14px;
             }
         }
     </style>
@@ -1162,7 +1011,6 @@
                     <ul>
                         <li><a href="#services">Услуги</a></li>
                         <li><a href="#catalog">Каталог</a></li>
-                        <li><a href="#septics">Септики Аквалос</a></li>
                         <li><a href="#about">О компании</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
@@ -1176,7 +1024,6 @@
                 <ul>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#catalog">Каталог</a></li>
-                    <li><a href="#septics">Септики Аквалос</a></li>
                     <li><a href="#about">О компании</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
@@ -1244,57 +1091,6 @@
             </div>
             <div class="catalog-grid" id="catalogGrid">
                 <!-- Товары будут загружены через JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Септики Аквалос -->
-    <section id="septics" class="septics-section">
-        <div class="container">
-            <div class="septics-header">
-                <h2>Купить септик, автономную канализацию Аквалос</h2>
-                <p class="septics-description">Не знаете какую станцию выбрать? Оставьте заявку или позвоните нам!</p>
-                <div class="septics-consultation">
-                    <h3>Бесплатная консультация по подбору септика</h3>
-                    <p>Наши специалисты помогут выбрать оптимальное решение для вашего дома</p>
-                    <a href="#contacts" class="btn" style="background: var(--white); color: var(--primary); margin-top: 15px;">Получить консультацию</a>
-                </div>
-            </div>
-            
-            <div class="septics-types">
-                <div class="septic-type">
-                    <div class="septic-type-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>До 10 человек</h3>
-                    <p>Компактные решения для частных домов и дач</p>
-                </div>
-                <div class="septic-type">
-                    <div class="septic-type-icon">
-                        <i class="fas fa-arrows-alt-h"></i>
-                    </div>
-                    <h3>Горизонтальные станции</h3>
-                    <p>Для участков с высоким уровнем грунтовых вод</p>
-                </div>
-                <div class="septic-type">
-                    <div class="septic-type-icon">
-                        <i class="fas fa-industry"></i>
-                    </div>
-                    <h3>Более 10 человек</h3>
-                    <p>Мощные системы для коттеджей и небольших предприятий</p>
-                </div>
-                <div class="septic-type">
-                    <div class="septic-type-icon">
-                        <i class="fas fa-hard-hat"></i>
-                    </div>
-                    <h3>Промышленные</h3>
-                    <p>Для предприятий, гостиниц, ресторанов и других коммерческих объектов</p>
-                </div>
-            </div>
-            
-            <h2 style="margin-bottom: 30px;">Популярные модели септиков Аквалос</h2>
-            <div class="septics-grid" id="septicsGrid">
-                <!-- Септики будут загружены через JavaScript -->
             </div>
         </div>
     </section>
@@ -1392,10 +1188,10 @@
                         <div>Работаем по всему Оренбургу и области</div>
                     </div>
                     <div class="social-links">
-                        <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
-                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://vk.com" target="_blank" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://wa.me/735321234567" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="contact-info">
@@ -1434,17 +1230,16 @@
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#services">Услуги</a></li>
                         <li><a href="#catalog">Каталог</a></li>
-                        <li><a href="#septics">Септики Аквалос</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Услуги</h3>
                     <ul>
-                        <li><a href="#">Водоснабжение</a></li>
-                        <li><a href="#">Отопление</a></li>
-                        <li><a href="#">Канализация</a></li>
-                        <li><a href="#">Септики Аквалос</a></li>
+                        <li><a href="#services">Водоснабжение</a></li>
+                        <li><a href="#services">Отопление</a></li>
+                        <li><a href="#services">Канализация</a></li>
+                        <li><a href="#catalog">Криология</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1499,7 +1294,7 @@
     </div>
 
     <script>
-        // Данные товаров
+        // Данные товаров с иконками вместо изображений
         const products = [
             {
                 id: 1,
@@ -1557,234 +1352,380 @@
                     { name: "Объем секции", value: "0,19 л" },
                     { name: "Вес секции", value: "2,15 кг" }
                 ]
-            }
-        ];
-
-        // Данные септиков Аквалос
-        const septics = [
+            },
             {
-                id: 101,
-                name: "Аквалос 5",
-                description: "Автономная канализация для семьи до 5 человек",
-                price: "89 000 ₽",
-                icon: "fas fa-home",
-                features: ["До 5 человек", "Компактный", "Энергонезависимый"],
-                category: "до 10 человек",
-                badge: "Популярный",
-                fullDescription: "Автономная канализация Аквалос 5 предназначена для загородного дома с постоянным проживанием до 5 человек. Обеспечивает эффективную очистку сточных вод.",
+                id: 4,
+                name: "Трубы полипропиленовые Valtec PP-R 20мм",
+                description: "Полипропиленовые трубы для систем отопления и водоснабжения",
+                price: "85 ₽/м",
+                icon: "fas fa-pipe",
+                features: ["Полипропилен", "Диаметр 20 мм", "Рабочая t: 95°C"],
+                category: "pipes",
+                badge: "Скидка",
+                fullDescription: "Полипропиленовые трубы Valtec PP-R предназначены для систем холодного и горячего водоснабжения, а также отопления. Не подвержены коррозии и имеют длительный срок службы.",
                 specifications: [
-                    { name: "Производительность", value: "1 м³/сут" },
-                    { name: "Объем", value: "2500 л" },
-                    { name: "Количество пользователей", value: "5 человек" },
-                    { name: "Габариты", value: "2300x1200x1700 мм" },
-                    { name: "Вес", value: "120 кг" },
-                    { name: "Степень очистки", value: "98%" }
+                    { name: "Наружный диаметр", value: "20 мм" },
+                    { name: "Толщина стенки", value: "2,8 мм" },
+                    { name: "Рабочая температура", value: "95°C" },
+                    { name: "Рабочее давление", value: "25 бар" },
+                    { name: "Коэффициент линейного расширения", value: "0,15 мм/м°C" },
+                    { name: "Теплопроводность", value: "0,24 Вт/м°C" }
                 ]
             },
             {
-                id: 102,
-                name: "Аквалос 8",
-                description: "Автономная канализация для семьи до 8 человек",
-                price: "112 000 ₽",
-                icon: "fas fa-users",
-                features: ["До 8 человек", "Высокая степень очистки", "Надежность"],
-                category: "до 10 человек",
-                badge: "Хит",
-                fullDescription: "Автономная канализация Аквалос 8 предназначена для загородного дома с постоянным проживанием до 8 человек. Идеальное решение для средней семьи.",
+                id: 5,
+                name: "Водонагреватель Thermex Champion Silverheat 100",
+                description: "Накопительный водонагреватель для обеспечения ГВС",
+                price: "18 900 ₽",
+                icon: "fas fa-water",
+                features: ["Объем 100 л", "Мощность 1,5 кВт", "Вертикальный"],
+                category: "water-heaters",
+                badge: "Новинка",
+                fullDescription: "Накопительный водонагреватель Thermex Champion Silverheat 100 обеспечивает стабильное горячее водоснабжение для семьи из 3-4 человек. Оснащен системой защиты от коррозии.",
                 specifications: [
-                    { name: "Производительность", value: "1,6 м³/сут" },
-                    { name: "Объем", value: "3000 л" },
-                    { name: "Количество пользователей", value: "8 человек" },
-                    { name: "Габариты", value: "2500x1200x1700 мм" },
-                    { name: "Вес", value: "150 кг" },
-                    { name: "Степень очистки", value: "98%" }
+                    { name: "Объем", value: "100 л" },
+                    { name: "Мощность", value: "1,5 кВт" },
+                    { name: "Нагрев до 60°C", value: "3 ч 15 мин" },
+                    { name: "Максимальная температура", value: "75°C" },
+                    { name: "Рабочее давление", value: "0,7-6 бар" },
+                    { name: "Габариты", value: "493x970 мм" }
+                ]
+            },
+            {
+                id: 6,
+                name: "Циркуляционный насос Wilo Star-RS 25/4",
+                description: "Циркуляционный насос для систем отопления",
+                price: "6 800 ₽",
+                icon: "fas fa-pump",
+                features: ["Три скорости", "Напор 4 м", "Производительность 3 м³/ч"],
+                category: "pumps",
+                badge: "",
+                fullDescription: "Циркуляционный насос Wilo Star-RS 25/4 предназначен для циркуляции теплоносителя в системах отопления. Имеет три скорости работы и низкий уровень шума.",
+                specifications: [
+                    { name: "Производительность", value: "3 м³/ч" },
+                    { name: "Напор", value: "4 м" },
+                    { name: "Мощность", value: "48 Вт" },
+                    { name: "Присоединительный размер", value: "1 дюйм" },
+                    { name: "Максимальная температура", value: "110°C" },
+                    { name: "Уровень шума", value: "< 45 дБ" }
+                ]
+            },
+            // Добавлен товар АКВАЛОС 2 2U
+            {
+                id: 13,
+                name: "АКВАЛОС 2 2U",
+                description: "Автоматическая насосная станция для систем водоснабжения",
+                price: "18 500 ₽",
+                icon: "fas fa-water-pump",
+                features: ["Производительность 2 м³/ч", "Напор 45 м", "Гидробак 24 л"],
+                category: "pumps",
+                badge: "Новинка",
+                fullDescription: "АКВАЛОС 2 2U - это современная автоматическая насосная станция для систем водоснабжения загородных домов, дач и других объектов. Обеспечивает стабильное давление в системе и автоматическое включение при открытии крана. Оснащена защитой от сухого хода и перегрева.",
+                specifications: [
+                    { name: "Производительность", value: "2 м³/ч" },
+                    { name: "Напор", value: "45 м" },
+                    { name: "Мощность", value: "750 Вт" },
+                    { name: "Глубина всасывания", value: "8 м" },
+                    { name: "Объем гидробака", value: "24 л" },
+                    { name: "Материал корпуса", value: "Нержавеющая сталь" },
+                    { name: "Защита от сухого хода", value: "Да" },
+                    { name: "Защита от перегрева", value: "Да" }
+                ]
+            },
+            // Товары криологии
+            {
+                id: 7,
+                name: "Чиллер Trane CGAM 60",
+                description: "Центральный холодильный агрегат для систем кондиционирования",
+                price: "850 000 ₽",
+                icon: "fas fa-snowflake",
+                features: ["Мощность 60 кВт", "Водяное охлаждение", "Энергоэффективность A++"],
+                category: "cryology",
+                badge: "Профессиональный",
+                fullDescription: "Чиллер Trane CGAM 60 - это центральный холодильный агрегат с водяным охлаждением для систем кондиционирования и промышленного охлаждения. Обеспечивает высокую энергоэффективность и надежность.",
+                specifications: [
+                    { name: "Холодопроизводительность", value: "60 кВт" },
+                    { name: "Потребляемая мощность", value: "18,5 кВт" },
+                    { name: "Тип хладагента", value: "R410A" },
+                    { name: "Уровень шума", value: "65 дБ" },
+                    { name: "Габариты", value: "1800x900x1200 мм" },
+                    { name: "Вес", value: "450 кг" }
+                ]
+            },
+            {
+                id: 8,
+                name: "Фанкойл Carrier 42CQ",
+                description: "Внутренний блок фанкойла для систем чиллер-фанкойл",
+                price: "32 500 ₽",
+                icon: "fas fa-wind",
+                features: ["Кассетный тип", "Расход воздуха 1200 м³/ч", "4-х трубная система"],
+                category: "cryology",
+                badge: "Популярный",
+                fullDescription: "Фанкойл Carrier 42CQ кассетного типа предназначен для систем чиллер-фанкойл. Обеспечивает эффективное охлаждение и нагрев воздуха в помещениях коммерческого назначения.",
+                specifications: [
+                    { name: "Холодопроизводительность", value: "5,8 кВт" },
+                    { name: "Теплопроизводительность", value: "8,2 кВт" },
+                    { name: "Расход воздуха", value: "1200 м³/ч" },
+                    { name: "Уровень шума", value: "42 дБ" },
+                    { name: "Габариты", value: "840x840x300 мм" },
+                    { name: "Вес", value: "32 кг" }
+                ]
+            },
+            {
+                id: 9,
+                name: "Холодильная машина York YCIV 120",
+                description: "Промышленная холодильная машина с винтовыми компрессорами",
+                price: "1 250 000 ₽",
+                icon: "fas fa-industry",
+                features: ["Мощность 120 кВт", "Винтовые компрессоры", "Полная автоматизация"],
+                category: "cryology",
+                badge: "Профессиональный",
+                fullDescription: "Холодильная машина York YCIV 120 с винтовыми компрессорами предназначена для промышленного применения. Обеспечивает высокую надежность и энергоэффективность в системах охлаждения.",
+                specifications: [
+                    { name: "Холодопроизводительность", value: "120 кВт" },
+                    { name: "Потребляемая мощность", value: "32 кВт" },
+                    { name: "Тип хладагента", value: "R134a" },
+                    { name: "Количество компрессоров", value: "2" },
+                    { name: "Габариты", value: "2500x1200x1800 мм" },
+                    { name: "Вес", value: "980 кг" }
+                ]
+            },
+            {
+                id: 10,
+                name: "Система холодоснабжения Daikin EWAD-B200",
+                description: "Модульная система холодоснабжения для коммерческих объектов",
+                price: "680 000 ₽",
+                icon: "fas fa-cogs",
+                features: ["Модульная конструкция", "Мощность 200 кВт", "Инверторное управление"],
+                category: "cryology",
+                badge: "Энергоэффективный",
+                fullDescription: "Система холодоснабжения Daikin EWAD-B200 с модульной конструкцией и инверторным управлением обеспечивает высокую энергоэффективность и гибкость в применении для коммерческих объектов.",
+                specifications: [
+                    { name: "Холодопроизводительность", value: "200 кВт" },
+                    { name: "Потребляемая мощность", value: "55 кВт" },
+                    { name: "Тип хладагента", value: "R410A" },
+                    { name: "Количество модулей", value: "2" },
+                    { name: "Габариты", value: "3200x1500x1800 мм" },
+                    { name: "Вес", value: "1250 кг" }
+                ]
+            },
+            {
+                id: 11,
+                name: "Охладитель жидкости GEA Grasso RC 35",
+                description: "Промышленный охладитель жидкости для технологических процессов",
+                price: "420 000 ₽",
+                icon: "fas fa-tint",
+                features: ["Мощность 35 кВт", "Поршневые компрессоры", "Защита от коррозии"],
+                category: "cryology",
+                badge: "Промышленный",
+                fullDescription: "Охладитель жидкости GEA Grasso RC 35 с поршневыми компрессорами предназначен для промышленного применения в системах охлаждения технологических процессов.",
+                specifications: [
+                    { name: "Холодопроизводительность", value: "35 кВт" },
+                    { name: "Потребляемая мощность", value: "11 кВт" },
+                    { name: "Тип хладагента", value: "R407C" },
+                    { name: "Количество компрессоров", value: "2" },
+                    { name: "Габариты", value: "1500x800x1200 мм" },
+                    { name: "Вес", value: "320 кг" }
+                ]
+            },
+            {
+                id: 12,
+                name: "Абсорбционная холодильная машина Broad BDH 80",
+                description: "Абсорбционная холодильная машина на горячей воде",
+                price: "1 850 000 ₽",
+                icon: "fas fa-recycle",
+                features: ["Мощность 80 кВт", "Абсорбционный цикл", "Работа на горячей воде"],
+                category: "cryology",
+                badge: "Экологичный",
+                fullDescription: "Абсорбционная холодильная машина Broad BDH 80 использует тепло горячей воды для производства холода. Экологичное решение для объектов с избыточным теплом.",
+                specifications: [
+                    { name: "Холодопроизводительность", value: "80 кВт" },
+                    { name: "Температура горячей воды", value: "85-95°C" },
+                    { name: "Температура охлажденной воды", value: "7°C" },
+                    { name: "Потребление горячей воды", value: "12 м³/ч" },
+                    { name: "Габариты", value: "2800x1400x1800 мм" },
+                    { name: "Вес", value: "1800 кг" }
                 ]
             }
         ];
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingAnimation = document.getElementById('loadingAnimation');
-            if (loadingAnimation) {
-                setTimeout(() => {
-                    loadingAnimation.classList.add('hidden');
-                }, 1000);
-            }
+        // Инициализация GSAP анимаций
+        function initAnimations() {
+            // Инициализация ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
             
-            initBaseFunctionality();
-            initCatalog();
-            initSeptics();
-            initCounters();
-        });
+            // Анимация появления секций при скролле
+            gsap.utils.toArray('section').forEach(section => {
+                gsap.fromTo(section, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация карточек услуг
+            gsap.utils.toArray('.service-card').forEach((card, i) => {
+                gsap.fromTo(card, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация карточек товаров
+            gsap.utils.toArray('.product-card').forEach((card, i) => {
+                gsap.fromTo(card, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация элементов "О компании"
+            gsap.fromTo('.about-img', {
+                opacity: 0,
+                x: -50
+            }, {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.about',
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            gsap.fromTo('.about-content', {
+                opacity: 0,
+                x: 50
+            }, {
+                opacity: 1,
+                x: 0,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: '.about',
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+            
+            // Анимация статистики
+            gsap.utils.toArray('.stat-item').forEach((item, i) => {
+                gsap.fromTo(item, {
+                    opacity: 0,
+                    y: 30
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: '.stats',
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+            
+            // Анимация контактных блоков
+            gsap.utils.toArray('.contact-info').forEach((info, i) => {
+                gsap.fromTo(info, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: i * 0.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: '.contacts-grid',
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+        }
 
-        function initBaseFunctionality() {
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileNav = document.getElementById('mobileNav');
-            
-            if (mobileMenuBtn && mobileNav) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileNav.classList.toggle('active');
-                    
-                    const icon = mobileMenuBtn.querySelector('i');
-                    if (mobileNav.classList.contains('active')) {
-                        icon.className = 'fas fa-times';
+        // Улучшенная функция для анимации счетчика с GSAP
+        function animateCounter(element, start, end, duration) {
+            const obj = { value: start };
+            gsap.to(obj, {
+                value: end,
+                duration: duration / 1000,
+                ease: "power2.out",
+                onUpdate: function() {
+                    if (element.id === 'clientsCounter') {
+                        element.textContent = Math.floor(obj.value) + '%';
                     } else {
-                        icon.className = 'fas fa-bars';
+                        element.textContent = Math.floor(obj.value).toLocaleString();
                     }
-                });
-            }
-            
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                        
-                        if (mobileNav) {
-                            mobileNav.classList.remove('active');
-                            if (mobileMenuBtn) {
-                                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
-                            }
-                        }
-                    }
-                });
-            });
-            
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            let isDarkTheme = localStorage.getItem('darkTheme') === 'true';
-            
-            function applyTheme() {
-                if (isDarkTheme) {
-                    document.body.classList.add('dark-theme');
-                    if (themeIcon) themeIcon.className = 'fas fa-sun';
-                } else {
-                    document.body.classList.remove('dark-theme');
-                    if (themeIcon) themeIcon.className = 'fas fa-moon';
-                }
-            }
-            
-            function toggleTheme() {
-                isDarkTheme = !isDarkTheme;
-                localStorage.setItem('darkTheme', isDarkTheme);
-                applyTheme();
-            }
-            
-            if (themeToggle && themeIcon) {
-                themeToggle.addEventListener('click', toggleTheme);
-                applyTheme();
-            }
-            
-            const modal = document.getElementById('modal');
-            const contactBtn = document.getElementById('contactBtn');
-            const closeModal = document.getElementById('closeModal');
-            
-            function openModal() {
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            }
-            
-            function closeModalFunc() {
-                if (modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }
-            
-            if (contactBtn) {
-                contactBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openModal();
-                });
-            }
-            
-            if (closeModal) {
-                closeModal.addEventListener('click', closeModalFunc);
-            }
-            
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModalFunc();
+                },
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
                 }
             });
-            
-            const contactForm = document.getElementById('contact-form');
-            const quickForm = document.getElementById('quick-form');
-            const notification = document.getElementById('notification');
-            
-            function showNotification() {
-                if (notification) {
-                    notification.classList.add('show');
-                    
-                    setTimeout(() => {
-                        notification.classList.remove('show');
-                    }, 3000);
-                }
-            }
-            
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    setTimeout(() => {
-                        contactForm.reset();
-                        showNotification();
-                    }, 500);
-                });
-            }
-            
-            if (quickForm) {
-                quickForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    setTimeout(() => {
-                        quickForm.reset();
-                        closeModalFunc();
-                        showNotification();
-                    }, 500);
-                });
-            }
-            
-            window.addEventListener('resize', () => {
-                if (window.innerWidth > 768 && mobileNav) {
-                    mobileNav.classList.remove('active');
-                    if (mobileMenuBtn) {
-                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
-                    }
-                }
-            });
+        }
 
-            let lastScrollY = window.scrollY;
-            const header = document.getElementById('header');
+        // Функция для запуска счетчиков
+        function initCounters() {
+            const yearsCounter = document.getElementById('yearsCounter');
+            const projectsCounter = document.getElementById('projectsCounter');
+            const clientsCounter = document.getElementById('clientsCounter');
             
-            if (header) {
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                    
-                    if (window.scrollY > lastScrollY && window.scrollY > 100) {
-                        header.classList.add('hidden');
-                    } else {
-                        header.classList.remove('hidden');
-                    }
-                    
-                    lastScrollY = window.scrollY;
-                });
+            if (yearsCounter && projectsCounter && clientsCounter) {
+                animateCounter(yearsCounter, 0, 15, 2000);
+                animateCounter(projectsCounter, 0, 1200, 2500);
+                animateCounter(clientsCounter, 0, 98, 1800);
             }
         }
-        
+
+        // Инициализация каталога
         function initCatalog() {
             const catalogGrid = document.getElementById('catalogGrid');
             
             if (!catalogGrid) return;
             
+            // Очистка контейнера
             catalogGrid.innerHTML = '';
             
+            // Создание карточек товаров
             products.forEach(product => {
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
@@ -1810,67 +1751,24 @@
                 catalogGrid.appendChild(productCard);
             });
             
+            // Инициализация фильтров каталога
             initCatalogFilters();
+            
+            // Инициализация обработчиков событий для кнопок товаров
             initProductButtons();
+            
+            // Инициализация модального окна товара
             initProductModal();
         }
         
-        function initSeptics() {
-            const septicsGrid = document.getElementById('septicsGrid');
-            
-            if (!septicsGrid) return;
-            
-            septicsGrid.innerHTML = '';
-            
-            septics.forEach(septic => {
-                const septicCard = document.createElement('div');
-                septicCard.className = 'septic-card';
-                septicCard.innerHTML = `
-                    <div class="septic-card-header">
-                        <h3>${septic.name}</h3>
-                        <p>${septic.description}</p>
-                    </div>
-                    <div class="septic-card-body">
-                        <div class="septic-price">${septic.price}</div>
-                        <ul class="septic-features">
-                            ${septic.specifications.map(spec => `
-                                <li>
-                                    <span class="septic-feature-name">${spec.name}</span>
-                                    <span class="septic-feature-value">${spec.value}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                        <div class="product-actions">
-                            <button class="btn" data-product-id="${septic.id}" data-septic="true">Подробнее</button>
-                            <button class="btn btn-outline" data-product-id="${septic.id}" data-septic="true">Заказать</button>
-                        </div>
-                    </div>
-                `;
-                septicsGrid.appendChild(septicCard);
-            });
-            
-            document.querySelectorAll('.septic-card .btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const productId = button.getAttribute('data-product-id');
-                    const isSeptic = button.getAttribute('data-septic') === 'true';
-                    
-                    if (button.classList.contains('btn-outline')) {
-                        orderProduct(productId, isSeptic);
-                    } else {
-                        viewProductDetails(productId, isSeptic);
-                    }
-                });
-            });
-        }
-        
+        // Инициализация фильтров каталога
         function initCatalogFilters() {
             const filterButtons = document.querySelectorAll('.catalog-filter-btn');
-            if (filterButtons.length === 0) return;
-            
             filterButtons.forEach(button => {
                 button.addEventListener('click', () => {
+                    // Убираем активный класс у всех кнопок
                     filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
                     button.classList.add('active');
                     
                     const filter = button.getAttribute('data-filter');
@@ -1879,20 +1777,40 @@
             });
         }
         
+        // Фильтрация каталога
         function filterCatalog(filter) {
             const productCards = document.querySelectorAll('.product-card');
-            if (productCards.length === 0) return;
-            
             productCards.forEach(card => {
-                const shouldShow = filter === 'all' || card.getAttribute('data-category') === filter;
-                card.style.display = shouldShow ? 'block' : 'none';
+                if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                    card.style.display = 'block';
+                    // Анимация появления отфильтрованных карточек
+                    gsap.fromTo(card, {
+                        opacity: 0,
+                        scale: 0.8
+                    }, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.5,
+                        ease: "power2.out"
+                    });
+                } else {
+                    // Анимация скрытия карточек
+                    gsap.to(card, {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 0.3,
+                        ease: "power2.out",
+                        onComplete: () => {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
             });
         }
         
+        // Инициализация обработчиков событий для кнопок товаров
         function initProductButtons() {
             const productCards = document.querySelectorAll('.product-card');
-            if (productCards.length === 0) return;
-            
             productCards.forEach(card => {
                 const buttons = card.querySelectorAll('.btn');
                 buttons.forEach(button => {
@@ -1900,25 +1818,26 @@
                         e.stopPropagation();
                         const productId = button.getAttribute('data-product-id');
                         if (button.classList.contains('btn-outline')) {
-                            orderProduct(productId, false);
+                            // Заказ товара
+                            orderProduct(productId);
                         } else {
-                            viewProductDetails(productId, false);
+                            // Просмотр подробной информации
+                            viewProductDetails(productId);
                         }
                     });
                 });
                 
+                // Клик по карточке товара
                 card.addEventListener('click', () => {
                     const productId = card.querySelector('.btn').getAttribute('data-product-id');
-                    viewProductDetails(productId, false);
+                    viewProductDetails(productId);
                 });
             });
         }
         
-        function viewProductDetails(productId, isSeptic = false) {
-            const product = isSeptic ? 
-                septics.find(p => p.id == productId) : 
-                products.find(p => p.id == productId);
-                
+        // Просмотр детальной информации о товаре
+        function viewProductDetails(productId) {
+            const product = products.find(p => p.id == productId);
             if (product) {
                 const modal = document.getElementById('productModal');
                 const modalIcon = document.getElementById('modalProductIcon');
@@ -1929,11 +1848,13 @@
                 
                 if (!modal || !modalIcon || !modalName || !modalPrice || !modalDescription || !modalSpecs) return;
                 
+                // Заполнение модального окна данными товара
                 modalIcon.className = product.icon;
                 modalName.textContent = product.name;
                 modalPrice.textContent = product.price;
                 modalDescription.textContent = product.fullDescription;
                 
+                // Очистка и заполнение спецификаций
                 modalSpecs.innerHTML = '';
                 product.specifications.forEach(spec => {
                     const li = document.createElement('li');
@@ -1944,21 +1865,34 @@
                     modalSpecs.appendChild(li);
                 });
                 
+                // Анимация открытия модального окна
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
-            }
-        }
-        
-        function orderProduct(productId, isSeptic = false) {
-            const product = isSeptic ? 
-                septics.find(p => p.id == productId) : 
-                products.find(p => p.id == productId);
                 
-            if (product) {
-                openModal();
+                // Анимация появления контента в модальном окне
+                gsap.fromTo('.product-modal-content', {
+                    scale: 0.8,
+                    opacity: 0
+                }, {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.3,
+                    ease: "back.out(1.7)"
+                });
             }
         }
         
+        // Заказ товара
+        function orderProduct(productId) {
+            const product = products.find(p => p.id == productId);
+            if (product) {
+                // Открытие модального окна заказа
+                openModal();
+                // В реальном приложении здесь можно добавить логику для предзаполнения формы
+            }
+        }
+        
+        // Инициализация модального окна товара
         function initProductModal() {
             const modal = document.getElementById('productModal');
             const closeButton = document.getElementById('productModalClose');
@@ -1967,26 +1901,31 @@
             
             if (!modal || !closeButton || !orderButton || !consultButton) return;
             
+            // Закрытие модального окна
             closeButton.addEventListener('click', () => {
                 closeProductModal();
             });
             
+            // Заказ товара из модального окна
             orderButton.addEventListener('click', () => {
                 closeProductModal();
                 openModal();
             });
             
+            // Консультация по товару
             consultButton.addEventListener('click', () => {
                 closeProductModal();
                 openModal();
             });
             
+            // Закрытие по клику вне модального окна
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeProductModal();
                 }
             });
             
+            // Закрытие по клавише Escape
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('active')) {
                     closeProductModal();
@@ -1994,51 +1933,312 @@
             });
         }
         
+        // Закрытие модального окна товара
         function closeProductModal() {
             const modal = document.getElementById('productModal');
             if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                // Анимация закрытия модального окна
+                gsap.to('.product-modal-content', {
+                    scale: 0.8,
+                    opacity: 0,
+                    duration: 0.2,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
             }
         }
         
-        function initCounters() {
-            const yearsCounter = document.getElementById('yearsCounter');
-            const projectsCounter = document.getElementById('projectsCounter');
-            const clientsCounter = document.getElementById('clientsCounter');
+        // Базовая функциональность
+        function initBaseFunctionality() {
+            // Скрытие анимации загрузки
+            const loadingAnimation = document.getElementById('loadingAnimation');
+            if (loadingAnimation) {
+                setTimeout(() => {
+                    loadingAnimation.classList.add('hidden');
+                }, 1000);
+            }
             
-            if (yearsCounter && projectsCounter && clientsCounter) {
-                let years = 0;
-                let projects = 0;
-                let clients = 0;
-                
-                const yearsInterval = setInterval(() => {
-                    years++;
-                    yearsCounter.textContent = years;
-                    if (years >= 15) clearInterval(yearsInterval);
-                }, 100);
-                
-                const projectsInterval = setInterval(() => {
-                    projects += 50;
-                    projectsCounter.textContent = projects;
-                    if (projects >= 1200) clearInterval(projectsInterval);
-                }, 10);
-                
-                const clientsInterval = setInterval(() => {
-                    clients += 2;
-                    clientsCounter.textContent = clients + '%';
-                    if (clients >= 98) clearInterval(clientsInterval);
-                }, 20);
+            // Мобильное меню
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            
+            if (mobileMenuBtn && mobileNav) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileNav.classList.toggle('active');
+                    
+                    // Анимация иконки меню
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (mobileNav.classList.contains('active')) {
+                        icon.className = 'fas fa-times';
+                        gsap.fromTo(mobileNav, {
+                            opacity: 0,
+                            y: -20
+                        }, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.3,
+                            ease: "power2.out"
+                        });
+                    } else {
+                        icon.className = 'fas fa-bars';
+                    }
+                });
             }
-        }
-
-        function openModal() {
+            
+            // Плавная прокрутка
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Нативная плавная прокрутка
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 70;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Закрытие мобильного меню после клика
+                        if (mobileNav) {
+                            mobileNav.classList.remove('active');
+                            mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                        }
+                    }
+                });
+            });
+            
+            // Переключение темы
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            let isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+            
+            function applyTheme() {
+                if (isDarkTheme) {
+                    document.body.classList.add('dark-theme');
+                    themeIcon.className = 'fas fa-sun';
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    themeIcon.className = 'fas fa-moon';
+                }
+            }
+            
+            function toggleTheme() {
+                isDarkTheme = !isDarkTheme;
+                localStorage.setItem('darkTheme', isDarkTheme);
+                applyTheme();
+                
+                // Анимация переключателя темы
+                gsap.fromTo(themeToggle, {
+                    scale: 1
+                }, {
+                    scale: 1.2,
+                    duration: 0.2,
+                    yoyo: true,
+                    repeat: 1
+                });
+            }
+            
+            if (themeToggle && themeIcon) {
+                themeToggle.addEventListener('click', toggleTheme);
+                applyTheme();
+            }
+            
+            // Модальное окно
             const modal = document.getElementById('modal');
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+            const contactBtn = document.getElementById('contactBtn');
+            const closeModal = document.getElementById('closeModal');
+            
+            function openModal() {
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Анимация открытия модального окна
+                    gsap.fromTo('.modal-content', {
+                        scale: 0.8,
+                        opacity: 0
+                    }, {
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.3,
+                        ease: "back.out(1.7)"
+                    });
+                }
             }
+            
+            function closeModalFunc() {
+                if (modal) {
+                    // Анимация закрытия модального окна
+                    gsap.to('.modal-content', {
+                        scale: 0.8,
+                        opacity: 0,
+                        duration: 0.2,
+                        ease: "power2.in",
+                        onComplete: () => {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                }
+            }
+            
+            if (contactBtn) {
+                contactBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            }
+            
+            if (closeModal) {
+                closeModal.addEventListener('click', closeModalFunc);
+            }
+            
+            // Закрытие по клику вне модального окна
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModalFunc();
+                }
+            });
+            
+            // Формы
+            const contactForm = document.getElementById('contact-form');
+            const quickForm = document.getElementById('quick-form');
+            const notification = document.getElementById('notification');
+            
+            function showNotification(message = "Сообщение отправлено успешно!") {
+                if (notification) {
+                    notification.textContent = message;
+                    notification.classList.add('show');
+                    
+                    // Анимация появления уведомления
+                    gsap.fromTo(notification, {
+                        x: 150
+                    }, {
+                        x: 0,
+                        duration: 0.5,
+                        ease: "back.out(1.7)"
+                    });
+                    
+                    setTimeout(() => {
+                        // Анимация скрытия уведомления
+                        gsap.to(notification, {
+                            x: 150,
+                            duration: 0.3,
+                            ease: "power2.in",
+                            onComplete: () => {
+                                notification.classList.remove('show');
+                            }
+                        });
+                    }, 3000);
+                }
+            }
+            
+            // Обработка формы обратной связи
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Получаем данные формы
+                    const formData = new FormData(contactForm);
+                    const data = {
+                        name: formData.get('name') || document.getElementById('name').value,
+                        phone: formData.get('phone') || document.getElementById('phone').value,
+                        location: formData.get('location') || document.getElementById('location').value,
+                        message: formData.get('message') || document.getElementById('message').value
+                    };
+                    
+                    // В реальном приложении здесь будет отправка на сервер
+                    console.log('Данные формы обратной связи:', data);
+                    
+                    // Имитация отправки
+                    setTimeout(() => {
+                        contactForm.reset();
+                        showNotification("Заявка отправлена! Мы свяжемся с вами в ближайшее время.");
+                    }, 500);
+                });
+            }
+            
+            // Обработка формы быстрой консультации
+            if (quickForm) {
+                quickForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Получаем данные формы
+                    const formData = new FormData(quickForm);
+                    const data = {
+                        name: formData.get('name') || document.getElementById('quick-name').value,
+                        phone: formData.get('phone') || document.getElementById('quick-phone').value,
+                        location: formData.get('location') || document.getElementById('quick-location').value
+                    };
+                    
+                    // В реальном приложении здесь будет отправка на сервер
+                    console.log('Данные формы быстрой консультации:', data);
+                    
+                    // Имитация отправки
+                    setTimeout(() => {
+                        quickForm.reset();
+                        closeModalFunc();
+                        showNotification("Заявка на консультацию отправлена! Мы перезвоним вам в течение 15 минут.");
+                    }, 500);
+                });
+            }
+            
+            // Социальные сети - открытие в новом окне
+            document.querySelectorAll('.social-links a').forEach(link => {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+            
+            // Телефонный номер
+            document.querySelectorAll('.phone').forEach(phoneElement => {
+                phoneElement.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.open('tel:+735321234567');
+                });
+            });
+            
+            // Закрытие мобильного меню при ресайзе
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768 && mobileNav) {
+                    mobileNav.classList.remove('active');
+                    if (mobileMenuBtn) {
+                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                    }
+                }
+            });
+
+            // Обработка скролла для шапки
+            const header = document.getElementById('header');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
         }
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                initBaseFunctionality();
+                initCatalog();
+                
+                // Инициализация анимаций после небольшой задержки
+                setTimeout(() => {
+                    initAnimations();
+                    initCounters();
+                }, 100);
+            } catch (error) {
+                console.error('Ошибка инициализации:', error);
+            }
+        });
     </script>
 </body>
 </html>
